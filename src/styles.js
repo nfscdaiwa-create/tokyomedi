@@ -1041,6 +1041,161 @@ button{cursor:pointer}
   .rxNext .btn{margin-top:20px}
 }
 
+
+/* Compact editorial rhythm */
+.bar{height:72px}
+.nav a{padding:26px 0 21px}
+.hero{padding:56px 0 50px}
+.heroGrid{gap:50px}
+.hero h1{margin:14px 0 18px;font-size:clamp(48px,5.7vw,72px)}
+.lead{font-size:clamp(15px,1.3vw,18px);line-height:1.66}
+.searchBox{margin-top:22px}
+.heroMeta{margin-top:16px;gap:16px}
+.heroStage{min-height:550px}
+.heroPhoto{inset:0 0 44px 26px;border-radius:28px}
+.heroStage .route{left:-42px;right:18px;padding:18px 22px 14px}
+.heroStage .routeRow{padding:11px 4px}
+.heroStage .routeTitle{margin-bottom:5px}
+.sourceRailInner{min-height:72px}
+.sourceRailMarks span{padding:4px 20px;min-width:155px}
+
+.section{padding:70px 0}
+.sectionHead{gap:30px;margin-bottom:26px}
+.sectionHead h2{font-size:clamp(32px,3.8vw,50px)}
+.sectionHead p{font-size:13px;line-height:1.68}
+
+.strength:after{top:52px;font-size:60px}
+.strengthMedia{margin:6px 0 18px}
+.strengthPhoto{height:390px}
+.strengthManifesto{min-height:390px;padding:28px}
+.manifestoNo{font-size:96px}
+.strengthManifesto strong{font-size:22px}
+.strength .strengthList{gap:14px}
+.strength .strengthRow{min-height:160px;padding:20px 14px 0 0}
+.strength .strengthRow span{margin-bottom:24px}
+.strength .strengthRow h3{font-size:18px;margin-bottom:7px}
+.strength .strengthRow p{font-size:10.5px;line-height:1.58}
+
+.dbPanel{grid-template-columns:330px minmax(0,1fr);gap:16px}
+.dbSearch{padding:22px;border-radius:20px}
+.dbSearch h3{font-size:21px}
+.dbSearch .searchBox{margin-top:18px}
+.chips{margin-top:13px;gap:6px}
+.chip{padding:6px 9px}
+.medicineRows{border-radius:20px}
+.medicineRow{padding:15px 18px}
+.medicineRow strong{font-size:13px}
+.medicineRow small{font-size:9px}
+
+.trustLayout{gap:46px}
+.trustStatement{padding:6px 0 12px}
+.trustStatement h2{margin:8px 0 14px;font-size:clamp(38px,4.6vw,56px)}
+.trustStatement p{font-size:13px;line-height:1.68;margin-bottom:18px}
+.whyStack{border-radius:22px}
+.trustSection .whyItem{padding:21px 24px;grid-template-columns:48px 1fr;gap:18px}
+.trustSection .whyItem h3{font-size:19px;margin-bottom:6px}
+.trustSection .whyItem p{font-size:11px;line-height:1.62}
+
+.guideLayout{gap:16px}
+.featuredGuide{min-height:340px;padding:30px;border-radius:24px}
+.featuredGuide h3{font-size:32px;margin:14px 0 10px}
+.featuredGuide p{font-size:12px;line-height:1.64}
+.guideList{border-radius:24px}
+.guideRow{min-height:102px;padding:17px 21px}
+.guideRow h3{font-size:16px;margin-bottom:5px}
+.guideRow p{font-size:10px;line-height:1.55}
+
+.travelGrid{gap:16px}
+.travelVisual{min-height:500px;border-radius:24px}
+.travelVisualCopy{left:24px;right:24px;bottom:24px}
+.travelVisualCopy strong{font-size:24px}
+.travelFlow{gap:10px}
+.timeline{padding:22px 24px 8px;border-radius:22px}
+.step{padding:0 0 20px 30px}
+.step strong{font-size:13px}
+.step p{font-size:10px;line-height:1.55}
+.travelFlow .hospitalPreview{min-height:0;border-radius:22px}
+.hospitalRow{padding:15px 18px}
+.hospitalRow strong{font-size:13px}
+.hospitalRow small{font-size:9px}
+
+.decisionRail{margin-bottom:14px}
+.inquirySplit{gap:12px}
+.inquiryCard{min-height:280px;padding:27px;border-radius:20px}
+.inquiryCard h3{font-size:24px;margin:10px 0 9px}
+.inquiryCard p{min-height:54px;font-size:12px;line-height:1.58}
+.inquiryCard ul{margin:12px 0 18px;font-size:11px;line-height:1.65}
+.rxNote{margin-top:12px;padding:14px 16px}
+
+.rxTable{gap:10px}
+.rxItem{min-height:218px;padding:18px;border-radius:17px}
+.rxGlyph{width:52px;height:38px;margin-bottom:40px}
+.rxItem:before{left:18px;top:74px}
+.rxItem:after{left:24px;top:77px}
+.rxItem>div:nth-child(2){min-height:58px}
+.rxItem strong{font-size:13px}
+.rxItem small{font-size:9px}
+.rxItem .area{margin-top:14px}
+.rxItem .rxTag{top:18px;right:18px}
+.rxNext{margin-top:14px;padding:21px 24px;border-radius:18px}
+.rxNext strong{font-size:18px}
+
+.pageHero{padding:56px 0 40px}
+.pageHero h1{margin:12px 0 14px;font-size:clamp(42px,5vw,62px)}
+.pageHero p{font-size:14px;line-height:1.68}
+.content{padding:54px 0 72px}
+.filters{margin-bottom:20px}
+.medicineTable .medicineRow{padding:15px 18px}
+.detailGrid{gap:26px}
+.fact{padding:13px 17px}
+.sourceBox{margin-top:18px;padding:20px}
+.articleMeta{margin-bottom:22px}
+.article h2{margin:32px 0 10px;font-size:28px}
+.article p{line-height:1.75}
+.articleFooter{margin-top:38px;padding-top:20px}
+.hospitalGrid{gap:12px}
+.hospitalCard{padding:21px}
+.sourceLevel{padding:20px 0}
+.sourceLinks{margin-top:26px}
+.sourceLink{padding:14px 18px}
+
+.foot{padding:46px 0 22px}
+.footGrid{gap:48px}
+.footBottom{margin-top:24px;padding-top:14px}
+
+@media(max-width:1080px){
+  .heroStage{min-height:650px}
+  .heroPhoto{bottom:96px}
+  .heroStage .route{left:28px;right:28px}
+  .strengthPhoto{height:370px}
+  .strengthManifesto{min-height:270px}
+  .travelVisual{min-height:460px}
+}
+@media(max-width:760px){
+  .bar{height:64px}
+  .hero{padding:42px 0 34px}
+  .heroGrid{gap:26px}
+  .hero h1{font-size:clamp(39px,12vw,54px);margin-bottom:15px}
+  .heroMeta{margin-top:12px}
+  .heroStage{min-height:650px}
+  .heroPhoto{height:420px}
+  .heroStage .route{left:10px;right:10px;padding:17px 18px 13px}
+  .section{padding:54px 0}
+  .sectionHead{margin-bottom:22px}
+  .sectionHead h2{font-size:34px}
+  .strengthPhoto{height:300px}
+  .strengthManifesto{min-height:235px;padding:22px}
+  .strength .strengthRow{min-height:150px}
+  .featuredGuide{min-height:300px;padding:24px}
+  .featuredGuide h3{font-size:28px}
+  .travelVisual{min-height:410px}
+  .inquiryCard{padding:23px}
+  .rxItem{min-height:205px}
+  .pageHero{padding:44px 0 32px}
+  .content{padding:44px 0 58px}
+  .foot{padding:38px 0 20px}
+}
+
 /* 2026 progressive-enhancement layer */
 html{scrollbar-gutter:stable}
 h1,h2,h3{text-wrap:balance}
