@@ -29,13 +29,25 @@ checks.push(['institutional pathway separated',
   s.includes('提交资质') &&
   s.includes('机构询价')
 ]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
-r=await hit('/zh-hans/medicines?q=opdivo'); s=await r.text(); checks.push(['medicine search by brand',r.status===200&&s.includes('オプジーボ')&&s.includes('小野薬品工業')]);
-r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]);
+checks.push(['seo home metadata',
+  s.includes('<title>日本医药品资料库与赴日医疗 | TOKYO MEDI</title>') &&
+  s.includes('name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"') &&
+  s.includes('hreflang="x-default"') &&
+  s.includes('rel="icon" href="/favicon.svg"') &&
+  s.includes('"@type":"Organization"') &&
+  s.includes('"@type":"WebSite"')
+]);
+r=await hit('/zh-hans/medicines?q=opdivo'); s=await r.text(); checks.push(['medicine search by brand',r.status===200&&s.includes('オプジーボ')&&s.includes('小野薬品工業')]); checks.push(['query pages noindex',s.includes('name="robots" content="noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"')]);
+r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]); checks.push(['medicine semantic schema',s.includes('"@type":"Drug"')&&s.includes('"manufacturer"')&&s.includes('"BreadcrumbList"')&&s.includes('"prescriptionStatus":"https://schema.org/PrescriptionOnly"')]);
 r=await hit('/zh-hans/medicines/ramelteon'); s=await r.text(); checks.push(['regulatory status nuance',r.status===200&&s.includes('解除“处方笺医药品”指定')&&!s.includes('<strong>Rx ·')]);
+r=await hit('/en/guides/read-japanese-medicine-information'); s=await r.text(); checks.push(['article schema',r.status===200&&s.includes('"@type":"Article"')&&s.includes('"BreadcrumbList"')&&s.includes('"publisher":{"@id":"https://tokyomedi.com/#organization"}')]);
 r=await hit('/en/medical-travel'); checks.push(['legacy route 404',r.status===404]);
 r=await hit('/en/travel'); s=await r.text(); checks.push(['travel',r.status===200&&s.includes('National Cancer Center')&&s.includes('designated coordinating agent')&&s.includes('Center for Global Health')]);
 r=await hit('/ja/inquiry?type=institution'); s=await r.text(); checks.push(['inquiry',r.status===200&&s.includes('医療機関 / 薬局 / 企業')]);
-r=await hit('/sitemap.xml'); s=await r.text(); checks.push(['sitemap',r.status===200&&s.includes('/zh-hans/medicines/nivolumab')]);
-r=await hit('/zh-hans/inquiry'); s=await r.text(); checks.push(['contact email rendered',s.includes('beibei7jp1978@yahoo.co.jp')&&!s.includes('business@tokyomedi.com')]);
+r=await hit('/sitemap.xml'); s=await r.text(); checks.push(['sitemap',r.status===200&&s.includes('/zh-hans/medicines/nivolumab')&&s.includes('<lastmod>2026-09-22</lastmod>')&&s.includes('xmlns:xhtml=')&&s.includes('hreflang="x-default"')]);
+r=await hit('/robots.txt'); s=await r.text(); checks.push(['robots ai crawl',r.status===200&&s.includes('User-agent: OAI-SearchBot')&&s.includes('Sitemap: https://tokyomedi.com/sitemap.xml')]);
+r=await hit('/llms.txt'); s=await r.text(); checks.push(['llms discovery',r.status===200&&s.includes('# TOKYO MEDI')&&s.includes('/en/medicines')&&s.includes('PMDA')]);
+r=await hit('/favicon.svg'); s=await r.text(); checks.push(['favicon',r.status===200&&s.includes('<svg')]);
+r=await hit('/zh-hans/inquiry'); s=await r.text(); checks.push(['contact email rendered',s.includes('beibei7jp1978@yahoo.co.jp')&&!s.includes('business@tokyomedi.com')]); checks.push(['accessible inquiry form',s.includes('label for="f0"')&&s.includes('id="f0" name="f0"')]);
 r=await hit('/healthz'); const j=await r.json(); checks.push(['health',j.ok===true&&j.version]);
 for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`); if(!ok)process.exitCode=1;}
