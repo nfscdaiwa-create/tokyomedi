@@ -5,16 +5,16 @@ export const LOCALES = ['zh-hans','en','ja'];
 
 export const UI = {
   'zh-hans': {
-    lang:'简体中文', nav:{medicines:'日本医药品',guides:'医疗指南',travel:'赴日医疗资讯',sources:'资料来源',about:'关于',inquiry:'机构询价'},
+    lang:'简体中文', nav:{medicines:'日本医药品',health:'健康与营养',guides:'医疗指南',travel:'赴日医疗资讯',sources:'资料来源',about:'关于',inquiry:'机构询价'},
     heroKicker:'日本医药品 · 官方资料 · 赴日就医',
     heroTitle:'日本医药品资料与赴日就医信息',
     heroLead:'整理日本商品名、一般名、制造销售企业、规格与 PMDA 产品级资料，并汇总日本医疗机构面向海外患者的受理与预约信息。处方药的使用与取得须经过医生诊察及相应医疗流程。',
     searchPlaceholder:'搜索药名 / 成分 / 日文名 / 英文名', search:'搜索资料库',
     routeTitle:'主要入口',
-    routeItems:[['medicines','日本医药品资料','按商品名、一般名、厂家与治疗领域查询'],['guides','医疗指南','了解药品资料与日本医疗制度'],['travel','赴日医疗资讯','查看医院官方受理条件与海外患者信息'],['inquiry','机构询价','面向医疗机构、药局与企业的品项询价']],
+    routeItems:[['medicines','日本医药品资料','按商品名、一般名、厂家与治疗领域查询'],['health','健康与营养','日本健康食品、补给品与产品资料'],['guides','医疗指南','了解药品资料与日本医疗制度'],['travel','赴日医疗资讯','查看医院官方受理条件与海外患者信息'],['inquiry','机构询价','面向医疗机构、药局与企业的品项询价']],
     strength:'日本医学研究与医疗发展', strengthLead:'列出与现代医疗相关的代表性研究成果及来源，作为理解日本医学研究发展的背景资料。',
     medicineDb:'日本医药品资料库', medicineLead:'按日本商品名、一般名、制造销售企业、规格、治疗领域与官方来源整理。',
-    why:'资料整理原则', guides:'医疗指南', travel:'赴日医疗资讯', inquiry:'医药品询价说明', rx:'处方药资料索引',
+    why:'资料整理原则', health:'健康与营养', healthLead:'健康食品与补给品独立于医药品展示，明确标注食品属性、内容量与产品来源。', guides:'医疗指南', travel:'赴日医疗资讯', inquiry:'医药品询价说明', rx:'处方药资料索引',
     viewAll:'查看全部', read:'阅读指南', details:'查看资料', official:'官方资料', updated:'核验日期',
     noBuy:'资料展示 · 不提供在线购买', rxNotice:'处方药信息仅供资料参考，不构成处方、诊断或治疗建议。是否适合使用、如何使用以及能否取得，必须由医生、药师及相关医疗流程决定。',
     filters:{all:'全部领域',cardio:'心血管',oncology:'肿瘤',metabolic:'代谢',neuro:'神经',immune:'免疫',respiratory:'呼吸'},
@@ -25,16 +25,16 @@ export const UI = {
     footer:'本站提供一般医疗与药品资料信息，不提供诊断、处方或个体化治疗建议。'
   },
   en: {
-    lang:'English', nav:{medicines:'Medicines',guides:'Medical Guides',travel:'Medical Travel Info',sources:'Sources',about:'About',inquiry:'Institutional Inquiry'},
+    lang:'English', nav:{medicines:'Medicines',health:'Health & Nutrition',guides:'Medical Guides',travel:'Medical Travel Info',sources:'Sources',about:'About',inquiry:'Institutional Inquiry'},
     heroKicker:'JAPANESE MEDICINES · PRIMARY SOURCES · CARE IN JAPAN',
     heroTitle:'Japanese medicine reference and care information in Japan',
     heroLead:'Japanese product names, generics, marketing authorization holders, strengths and PMDA product-level sources are organized alongside official hospital intake information for international patients. Prescription medicines require clinician assessment and the appropriate care process.',
     searchPlaceholder:'Search medicine / ingredient / Japanese or English name', search:'Search database',
     routeTitle:'Main sections',
-    routeItems:[['medicines','Medicine reference','Search by product, generic, manufacturer or therapeutic area'],['guides','Medical guides','Understand medicine information and the Japanese healthcare system'],['travel','Medical travel information','Check official hospital intake and overseas-patient information'],['inquiry','Institutional inquiry','For medicine inquiries from institutions, pharmacies and companies']],
+    routeItems:[['medicines','Medicine reference','Search by product, generic, manufacturer or therapeutic area'],['health','Health & nutrition','Japanese health foods, supplements and product information'],['guides','Medical guides','Understand medicine information and the Japanese healthcare system'],['travel','Medical travel information','Check official hospital intake and overseas-patient information'],['inquiry','Institutional inquiry','For medicine inquiries from institutions, pharmacies and companies']],
     strength:'Medical research and care in Japan', strengthLead:'Selected developments in Japanese medical research are presented with verifiable sources as background for understanding current medicine and care information.',
     medicineDb:'Japanese medicine reference', medicineLead:'Organized by Japanese product name, generic name, marketing authorization holder, strength, therapeutic area and primary source.',
-    why:'Editorial principles', guides:'Medical guides', travel:'Medical travel information', inquiry:'Institutional medicine inquiry', rx:'Prescription medicine reference',
+    why:'Editorial principles', health:'Health & nutrition', healthLead:'Health foods and supplements are kept separate from medicines and clearly labeled with food status, pack size and product sources.', guides:'Medical guides', travel:'Medical travel information', inquiry:'Institutional medicine inquiry', rx:'Prescription medicine reference',
     viewAll:'View all', read:'Read guide', details:'View reference', official:'Official source', updated:'Verified',
     noBuy:'Reference only · no online purchase', rxNotice:'Prescription-medicine information is provided for reference and does not constitute a prescription, diagnosis or treatment recommendation. Suitability, use and access require licensed professionals and the relevant clinical process.',
     filters:{all:'All fields',cardio:'Cardiovascular',oncology:'Oncology',metabolic:'Metabolic',neuro:'Neurology',immune:'Immunology',respiratory:'Respiratory'},
@@ -45,16 +45,16 @@ export const UI = {
     footer:'This site provides general medicine and healthcare reference information. It does not provide diagnosis, prescribing or individualized treatment advice.'
   },
   ja: {
-    lang:'日本語', nav:{medicines:'医薬品',guides:'医療ガイド',travel:'医療渡航情報',sources:'情報源',about:'TOKYO MEDI',inquiry:'機関向け照会'},
+    lang:'日本語', nav:{medicines:'医薬品',health:'ヘルス・栄養',guides:'医療ガイド',travel:'医療渡航情報',sources:'情報源',about:'TOKYO MEDI',inquiry:'機関向け照会'},
     heroKicker:'日本の医薬品 · 一次情報 · 日本での受診',
     heroTitle:'日本の医薬品資料と受診情報',
     heroLead:'日本販売名、一般名、製造販売元、規格、PMDA の製品別資料と、海外患者向けの病院公式受入情報を整理しています。処方薬の使用・入手には医師の診察と適切な医療手続きが必要です。',
     searchPlaceholder:'医薬品名・成分・日本語名・英語名を検索', search:'データベース検索',
     routeTitle:'主な入口',
-    routeItems:[['medicines','医薬品資料','販売名・一般名・メーカー・領域から検索'],['guides','医療ガイド','医薬品情報と日本の医療制度を確認'],['travel','医療渡航情報','病院公式の受入条件・海外患者情報を確認'],['inquiry','機関向け照会','医療機関・薬局・企業向けの品目照会']],
+    routeItems:[['medicines','医薬品資料','販売名・一般名・メーカー・領域から検索'],['health','ヘルス・栄養','日本の健康食品・サプリメントと製品資料'],['guides','医療ガイド','医薬品情報と日本の医療制度を確認'],['travel','医療渡航情報','病院公式の受入条件・海外患者情報を確認'],['inquiry','機関向け照会','医療機関・薬局・企業向けの品目照会']],
     strength:'日本の医学研究と医療', strengthLead:'現代医療に関連する代表的な研究成果と出典を、現在の医薬品・受診情報を理解するための背景資料として紹介します。',
     medicineDb:'日本医薬品データベース', medicineLead:'日本販売名、一般名、製造販売元、規格、領域、一次情報を軸に整理しています。',
-    why:'情報整理の方針', guides:'医療ガイド', travel:'医療渡航情報', inquiry:'機関向け医薬品照会', rx:'処方薬資料',
+    why:'情報整理の方針', health:'ヘルス・栄養', healthLead:'健康食品・サプリメントは医薬品と分け、食品区分、内容量、製品情報源を明確に表示します。', guides:'医療ガイド', travel:'医療渡航情報', inquiry:'機関向け医薬品照会', rx:'処方薬資料',
     viewAll:'すべて見る', read:'ガイドを読む', details:'資料を見る', official:'一次情報', updated:'確認日',
     noBuy:'資料表示のみ · オンライン販売なし', rxNotice:'処方薬情報は資料目的であり、処方・診断・治療の推奨ではありません。適否、使用方法、入手可否は医師・薬剤師等の専門家および適切な医療プロセスで判断されます。',
     filters:{all:'すべて',cardio:'循環器',oncology:'腫瘍',metabolic:'代謝',neuro:'神経',immune:'免疫',respiratory:'呼吸器'},
@@ -206,6 +206,31 @@ export const medicines = [
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190016F1024_1?user=2'
   }
 ];
+
+export const healthProducts = [
+  {slug:'fish-collagen-peptide-granules-w',sku:'TSU-HF-COLLAGEN-500',brand:'Tsubaki Trading',zh:'日本深海鱼胶原蛋白',ja:'日本発・高品質 深海魚コラーゲン',en:'Japan Deep-Sea Fish Collagen Peptide',pack:'500g',price:'280 CNY',kind:'food',origin:'日本',sourcePage:'https://tsubaki-jp.com/ja/product/fish-collagen-peptide-granules-w/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-blood-sugar-care',sku:'TSU-HF-0020',brand:'DHC',zh:'DHC 血糖值双重对策',ja:'DHC 血糖値ダブル対策',en:'DHC Blood Sugar Double Support',pack:'60粒 / 20日分',price:'¥2,418',kind:'functional-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-blood-sugar-care/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-calcium-cbp',sku:'TSU-HF-0021',brand:'DHC',zh:'DHC 钙 + CBP',ja:'DHC カルシウム + CBP',en:'DHC Calcium + CBP',pack:'80粒 / 20日分',price:'¥969',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-cbp/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-calcium-magnesium-20',sku:'TSU-HF-0003',brand:'DHC',zh:'DHC 钙 / 镁',ja:'DHC カルシウム／マグ',en:'DHC Calcium / Magnesium',pack:'60粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium-2/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-calcium-magnesium-60',sku:'TSU-HF-0004',brand:'DHC',zh:'DHC 钙 / 镁 60日装',ja:'DHC カルシウム／マグ 60日分',en:'DHC Calcium / Magnesium 60-Day',pack:'180粒 / 60日分',price:'¥1,788',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-citrulline',sku:'TSU-HF-0005',brand:'DHC',zh:'DHC 瓜氨酸',ja:'DHC シトルリン',en:'DHC Citrulline',pack:'60粒 / 20日分',price:'¥2,256',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-citrulline/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-coenzyme-q10',sku:'TSU-HF-0006',brand:'DHC',zh:'DHC 包接体辅酶 Q10',ja:'DHC コエンザイムQ10 包接体',en:'DHC Coenzyme Q10 Inclusion Complex',pack:'20日分',price:'¥1,548',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-coenzyme-q10/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-concentrated-ukon-20',sku:'TSU-HF-0008',brand:'DHC',zh:'DHC 浓缩姜黄',ja:'DHC 濃縮ウコン',en:'DHC Concentrated Turmeric Ukon',pack:'40粒 / 20日分',price:'¥1,302',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-concentrated-ukon-60',sku:'TSU-HF-0009',brand:'DHC',zh:'DHC 浓缩姜黄 60日装',ja:'DHC 濃縮ウコン 60日分',en:'DHC Concentrated Turmeric Ukon 60-Day',pack:'120粒 / 60日分',price:'¥3,603',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric-2/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-fermented-black-sesamin-stamina',sku:'TSU-HF-0012',brand:'DHC',zh:'DHC 发酵黑芝麻素 + 活力',ja:'DHC 醗酵黒セサミン＋スタミナ',en:'DHC Fermented Black Sesamin + Stamina',pack:'120粒 / 20日分',price:'¥2,823',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-stamina/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-fermented-black-sesamin-premium',sku:'TSU-HF-0013',brand:'DHC',zh:'DHC 发酵黑芝麻素 PREMIUM',ja:'DHC 醗酵黒セサミン プレミアム',en:'DHC Fermented Black Sesamin Premium',pack:'120粒 / 20日分',price:'¥4,755',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-premium/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-hatomugi-coix-extract',sku:'TSU-HF-0014',brand:'DHC',zh:'DHC 薏仁精华',ja:'DHC はとむぎエキス',en:'DHC Hatomugi Extract',pack:'20日分',price:'¥1,056',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-hatomugi-coix-extract/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-heme-iron',sku:'TSU-HF-0015',brand:'DHC',zh:'DHC 血红素铁',ja:'DHC ヘム鉄',en:'DHC Heme Iron',pack:'40粒 / 20日分',price:'¥1,227',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-heme-iron/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-kozu-black-vinegar',sku:'TSU-HF-0011',brand:'DHC',zh:'DHC 黑醋',ja:'DHC 黒酢',en:'DHC Kozu Black Vinegar',pack:'60粒 / 20日分',price:'¥1,794',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-kozu-black-vinegar/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-liver-extract-ornithine',sku:'TSU-HF-0018',brand:'DHC',zh:'DHC 肝脏精华 + 鸟氨酸',ja:'DHC 肝臓エキス＋オルニチン',en:'DHC Liver Extract + Ornithine',pack:'60粒 / 20日分',price:'¥2,160',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-liver-extract-ornithine/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-multivitamin',sku:'TSU-HF-0007',brand:'DHC',zh:'DHC 综合维生素',ja:'DHC マルチビタミン',en:'DHC Multivitamin',pack:'20粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-multivitamin/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-natural-vitamin-e-soy',sku:'TSU-HF-0010',brand:'DHC',zh:'DHC 天然维生素 E（大豆）',ja:'DHC 天然ビタミンE（大豆）',en:'DHC Natural Vitamin E (Soy)',pack:'20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-natural-vitamin-e-soy/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-ornithine',sku:'TSU-HF-0017',brand:'DHC',zh:'DHC 鸟氨酸',ja:'DHC オルニチン',en:'DHC Ornithine',pack:'100粒 / 20日分',price:'¥1,815',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-ornithine/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-perfect-supple-multivitamin-mineral',sku:'TSU-HF-0019',brand:'DHC',zh:'DHC 完美综合维生素与矿物质',ja:'DHC パーフェクトサプリ マルチビタミン＆ミネラル',en:'DHC Perfect Supplement Multivitamin & Mineral',pack:'20日分',price:'¥2,844',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-perfect-supple-multivitamin-mineral/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-domestic-perfect-vegetable-premium',sku:'TSU-HF-0016',brand:'DHC',zh:'DHC 国产完美蔬菜 PREMIUM',ja:'DHC 国産パーフェクト野菜 プレミアム',en:'DHC Perfect Vegetables Premium',pack:'20日分',price:'¥1,344',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-domestic-perfect-vegetable-premium/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-sustained-release-folic-acid',sku:'TSU-HF-0022',brand:'DHC',zh:'DHC 缓释叶酸',ja:'DHC 持続型葉酸',en:'DHC Sustained-Release Folic Acid',pack:'60日分',price:'¥1,554',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-sustained-release-folic-acid/',verifiedAt:'2026-09-23'}
+];
+
 
 export const guides = [
   {
