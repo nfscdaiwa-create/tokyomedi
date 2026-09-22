@@ -51,7 +51,7 @@ function homeCopy(l){
     eyebrow:'日本药品 · 汉方 · 赴日医疗',
     title:'查日本药品、汉方和医疗信息，一打开就能用。',
     lead:'按药名、成分、厂家、汉方或赴日医疗需求查找资料。重要内容尽量链接日本官方和一手来源。',
-    search:'输入药名、成分、厂家或健康主题',
+    search:'搜索 TOKYO MEDI 内容',
     searchBtn:'开始查找',
     taskTitle:'你来这里，是要解决哪件事？',
     tasks:[
@@ -74,7 +74,7 @@ function homeCopy(l){
     eyebrow:'医薬品 · 漢方 · 日本での受診',
     title:'日本の医薬品・漢方・医療情報を、すぐに探せる。',
     lead:'医薬品名、成分、メーカー、漢方、日本での受診準備を、情報源付きで分かりやすく整理します。',
-    search:'医薬品名・成分・メーカー・健康テーマを入力',
+    search:'TOKYO MEDI内を検索',
     searchBtn:'検索する',
     taskTitle:'何を調べたいですか？',
     tasks:[
@@ -97,7 +97,7 @@ function homeCopy(l){
     eyebrow:'JAPANESE MEDICINES · KAMPO · MEDICAL CARE',
     title:'Find Japanese medicines, Kampo and healthcare information.',
     lead:'Search by medicine name, ingredient, manufacturer, Kampo formula or medical-travel need. Important information links back to Japanese primary sources whenever possible.',
-    search:'Medicine, ingredient, manufacturer or health topic',
+    search:'TOKYO MEDI topic',
     searchBtn:'Search',
     taskTitle:'What are you here to do?',
     tasks:[
@@ -195,6 +195,24 @@ export function page(l,s){
   const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(d[0])+'</div><h1>'+esc(d[1])+'</h1><p class="lead">'+esc(d[2])+'</p></div></section>'+
     '<section class="content"><div class="wrap"><div class="infoGrid">'+cards.map(c=>'<article class="info"><h3>'+esc(c[0])+'</h3><p>'+esc(c[1])+'</p></article>').join('')+'</div></div></section></main>';
   return shell(l,d[1],d[2],s,body);
+}
+
+export function searchPage(l,q){
+  const query=(q||"").trim();
+  const t=L[l];
+  const labels={
+    en:{title:"Search TOKYO MEDI",empty:"Enter a topic to search.",none:"No matching section found.",found:"Matching sections",button:"Search"},
+    ja:{title:"TOKYO MEDIを検索",empty:"検索するテーマを入力してください。",none:"一致するセクションが見つかりません。",found:"検索結果",button:"検索"},
+    zh:{title:"搜索 TOKYO MEDI",empty:"请输入要查找的主题。",none:"没有找到匹配的栏目。",found:"匹配结果",button:"搜索"}
+  }[l];
+  const hay=slugs.map(slug=>({slug,title:lab(l,slug),text:(D[l][slug]||[]).join(" ")}));
+  const needle=query.toLowerCase();
+  const results=needle?hay.filter(x=>(x.title+" "+x.text).toLowerCase().includes(needle)):hay;
+  const cards=results.length
+    ? results.map(x=>'<a class="searchResult" href="'+path(l,x.slug)+'"><div><strong>'+esc(x.title)+'</strong><p>'+esc((D[l][x.slug]||[])[2]||"")+'</p></div><b>→</b></a>').join("")
+    : '<div class="searchEmpty">'+esc(labels.none)+'</div>';
+  const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(labels.title)+'</div><h1>'+esc(query||labels.title)+'</h1><form class="bigSearch searchPageForm" action="'+path(l,'search')+'" method="get"><span>⌕</span><input name="q" value="'+esc(query)+'" placeholder="'+esc(labels.empty)+'"><button type="submit">'+esc(labels.button)+'</button></form></div></section><section class="content"><div class="wrap"><div class="searchResults"><h2>'+esc(labels.found)+'</h2>'+cards+'</div></div></section></main>';
+  return shell(l,query?query+" — "+labels.title:labels.title,labels.title,"search",body);
 }
 
 export function sitemap(){
