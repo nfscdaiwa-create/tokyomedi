@@ -50,4 +50,4 @@ r=await hit('/llms.txt'); s=await r.text(); checks.push(['llms discovery',r.stat
 r=await hit('/favicon.svg'); s=await r.text(); checks.push(['favicon',r.status===200&&s.includes('<svg')]);
 r=await hit('/zh-hans/inquiry'); s=await r.text(); checks.push(['contact email rendered',s.includes('beibei7jp1978@yahoo.co.jp')&&!s.includes('business@tokyomedi.com')]); checks.push(['accessible inquiry form',s.includes('label for="f0"')&&s.includes('id="f0" name="f0"')]);
 r=await hit('/healthz'); const j=await r.json(); checks.push(['health',j.ok===true&&j.version]);
-for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`); if(!ok)process.exitCode=1;}
+const failures=[]; for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`); if(!ok)failures.push(name);} if(failures.length){console.error(`::error title=Smoke failures::${failures.join(', ')}`);process.exitCode=1;}
