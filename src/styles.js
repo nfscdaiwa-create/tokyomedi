@@ -16,7 +16,7 @@ export const CSS = `
   --red:#a25448;
   --red-soft:#f3e8e5;
   --max:1180px;
-  --header:70px;
+  --header:74px;
   --radius:6px;
   --radius-lg:10px;
 }
@@ -105,7 +105,7 @@ p{text-wrap:pretty}
   gap:10px;
   flex:0 0 auto;
 }
-.brandSymbol{width:34px;height:34px;display:block;flex:0 0 34px}
+.brandSymbol{width:37px;height:37px;display:block;flex:0 0 37px}
 .brandSymbol svg{width:100%;height:100%}
 .logoLine{
   fill:none;
@@ -117,7 +117,7 @@ p{text-wrap:pretty}
 .logoDot{fill:var(--red)}
 .wordmark{display:block;line-height:1}
 .wordTop{display:flex;gap:6px;align-items:baseline}
-.wordTop b{font-size:12px;line-height:1;font-weight:800;letter-spacing:.11em}
+.wordTop b{font-size:13px;line-height:1;font-weight:800;letter-spacing:.105em}
 .wordmark small{
   display:block;
   margin-top:5px;
@@ -130,7 +130,7 @@ p{text-wrap:pretty}
   display:flex;
   align-self:stretch;
   align-items:center;
-  gap:24px;
+  gap:27px;
   margin-left:auto;
 }
 .nav a{
@@ -139,8 +139,8 @@ p{text-wrap:pretty}
   align-items:center;
   height:100%;
   color:#516166;
-  font-size:11px;
-  font-weight:650;
+  font-size:11.5px;
+  font-weight:680;
   white-space:nowrap;
 }
 .nav a:after{
@@ -754,6 +754,353 @@ p{text-wrap:pretty}
   font-weight:650;
 }
 
+/* Medicine index */
+.medicineIndex{
+  background:#f4f5f1;
+  min-height:70vh;
+}
+.medicineIndexHero{
+  padding:46px 0 34px;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at 88% 12%,rgba(57,107,100,.07),transparent 24%),
+    linear-gradient(180deg,#f7f7f3 0%,#f1f2ee 100%);
+}
+.medicineIndexHeroGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1.22fr) minmax(360px,.78fr);
+  gap:60px;
+  align-items:end;
+}
+.medicineIndexIntro h1{
+  margin:10px 0 12px;
+  font-size:clamp(42px,4.4vw,58px);
+  line-height:1.04;
+  letter-spacing:-.045em;
+  font-weight:720;
+}
+.medicineIndexIntro>p{
+  max-width:720px;
+  margin:0;
+  color:#5f6f73;
+  font-size:13px;
+  line-height:1.72;
+}
+.medicineSearch{
+  display:flex;
+  margin-top:22px;
+  max-width:760px;
+  min-height:48px;
+  border:1px solid #bcc5c1;
+  border-radius:7px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 1px 0 rgba(31,49,54,.02);
+}
+.medicineSearch input{
+  min-width:0;
+  flex:1;
+  padding:0 15px;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:12px;
+}
+.medicineSearch input::placeholder{color:#9aa4a4}
+.medicineSearch button{
+  min-width:124px;
+  border:0;
+  border-left:1px solid #c6ceca;
+  background:var(--ink);
+  color:#fff;
+  font-size:11px;
+  font-weight:760;
+}
+.medicineSearch button:hover{background:var(--ink-2)}
+.medicineIndexTrust{
+  padding:20px 22px 18px;
+  border-radius:10px;
+  background:#263b40;
+  color:#e8efed;
+  box-shadow:0 12px 32px rgba(32,49,54,.08);
+}
+.medicineIndexTrust>div{
+  display:grid;
+  grid-template-columns:108px minmax(0,1fr);
+  gap:14px;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.11);
+}
+.medicineIndexTrust>div:first-child{padding-top:0}
+.medicineIndexTrust>div span{
+  color:#fff;
+  font-size:13px;
+  font-weight:760;
+  letter-spacing:.02em;
+}
+.medicineIndexTrust>div strong{
+  color:#b9c7c6;
+  font-size:10px;
+  line-height:1.45;
+  font-weight:650;
+}
+.medicineIndexTrust>p{
+  margin:14px 0 0;
+  color:#aebdbc;
+  font-size:9.5px;
+  line-height:1.65;
+}
+.medicineIndexBody{
+  padding:30px 0 72px;
+  background:#f7f7f4;
+}
+.medicineToolbar{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:12px;
+}
+.medicineToolbar>div:first-child{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+}
+.medicineResultCount{
+  color:#667579;
+  font-size:10px;
+  font-weight:650;
+}
+.medicineResultCount b{
+  margin-right:3px;
+  color:var(--ink);
+  font-size:19px;
+  line-height:1;
+  letter-spacing:-.025em;
+}
+.medicineQuery{
+  color:var(--teal-dark);
+  font-size:10px;
+  font-weight:700;
+}
+.medicineFilterLabel{
+  color:#778487;
+  font-size:9.5px;
+  font-weight:700;
+}
+.medicineFilters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:22px;
+}
+.medicineFilters .filter{
+  min-height:34px;
+  gap:8px;
+  padding:6px 10px 6px 11px;
+  border-radius:999px;
+  background:#fff;
+}
+.medicineFilters .filter b{
+  min-width:20px;
+  height:20px;
+  display:grid;
+  place-items:center;
+  border-radius:999px;
+  background:#eef0ec;
+  color:#7a8586;
+  font-size:8px;
+  font-weight:800;
+}
+.medicineFilters .filter.on{
+  background:var(--ink);
+  border-color:var(--ink);
+}
+.medicineFilters .filter.on b{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+.medicineCardGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.medicineCard{
+  position:relative;
+  min-height:286px;
+  display:flex;
+  flex-direction:column;
+  padding:21px 22px 18px;
+  border:1px solid #d8dcd7;
+  border-radius:11px;
+  background:#fff;
+  overflow:hidden;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.medicineCard:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  background:#6d9891;
+  opacity:.72;
+}
+.medicineCard:hover{
+  transform:translateY(-2px);
+  border-color:#b8c8c3;
+  box-shadow:0 12px 28px rgba(35,57,61,.07);
+}
+.medicineCardTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:13px;
+}
+.medicineArea{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:var(--teal-soft);
+  color:var(--teal-dark);
+  font-size:9px;
+  line-height:1.2;
+  font-weight:750;
+}
+.medicineStatus{
+  color:var(--red);
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:.06em;
+}
+.medicineCard h2{
+  margin:0;
+  font-size:20px;
+  line-height:1.28;
+  letter-spacing:-.025em;
+  font-weight:720;
+}
+.medicineCardNames{
+  min-height:38px;
+  margin:7px 0 15px;
+  color:#748184;
+  font-size:10px;
+  line-height:1.55;
+  overflow-wrap:anywhere;
+}
+.medicineCardFacts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  margin-top:auto;
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.medicineCardFacts>div{
+  min-height:58px;
+  padding:9px 10px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.medicineCardFacts span{
+  display:block;
+  margin-bottom:4px;
+  color:#879193;
+  font-size:8px;
+  line-height:1.3;
+  font-weight:700;
+}
+.medicineCardFacts strong{
+  display:block;
+  color:#405358;
+  font-size:9.5px;
+  line-height:1.48;
+  font-weight:650;
+  overflow-wrap:anywhere;
+}
+.medicineCardFoot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding-top:13px;
+}
+.pmdaVerified{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#647477;
+  font-size:9px;
+  font-weight:750;
+}
+.pmdaVerified i{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:#4f8178;
+  box-shadow:0 0 0 3px rgba(79,129,120,.1);
+}
+.medicineCardFoot>b{
+  color:var(--teal-dark);
+  font-size:10px;
+  font-weight:760;
+}
+.medicineEmpty{
+  padding:54px 24px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  text-align:center;
+}
+.medicineEmpty strong{
+  display:block;
+  margin-bottom:13px;
+  color:#586a6e;
+  font-size:13px;
+}
+.medicineEmpty a{
+  color:var(--teal-dark);
+  font-size:10px;
+  font-weight:760;
+}
+.medicineIndexNote{
+  display:grid;
+  grid-template-columns:140px minmax(0,1fr) auto;
+  gap:20px;
+  align-items:center;
+  margin-top:26px;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#f0f1ed;
+}
+.medicineIndexNote>div span{
+  display:block;
+  color:var(--teal-dark);
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.08em;
+}
+.medicineIndexNote>div strong{
+  display:block;
+  margin-top:3px;
+  color:#596b6f;
+  font-size:9px;
+}
+.medicineIndexNote p{
+  margin:0;
+  color:#68777a;
+  font-size:9.5px;
+  line-height:1.58;
+}
+.medicineIndexNote>a{
+  white-space:nowrap;
+  color:var(--teal-dark);
+  font-size:10px;
+  font-weight:760;
+}
+
 /* Interior page headers */
 .pageHero{
   padding:48px 0 34px;
@@ -1105,6 +1452,11 @@ p{text-wrap:pretty}
 
 /* Tablet */
 @media(max-width:1080px){
+  .medicineIndexHeroGrid{grid-template-columns:1fr;gap:26px}
+  .medicineIndexTrust{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .medicineIndexTrust>div{grid-template-columns:1fr;gap:3px;padding:0 16px;border-bottom:0;border-left:1px solid rgba(255,255,255,.11)}
+  .medicineIndexTrust>div:first-child{padding-left:0;border-left:0}
+  .medicineIndexTrust>p{grid-column:1/-1;margin-top:16px}
   .bar{gap:18px}
   .nav{gap:17px}
   .heroGrid{grid-template-columns:1fr;gap:30px}
@@ -1125,6 +1477,17 @@ p{text-wrap:pretty}
 
 /* Mobile */
 @media(max-width:820px){
+  .medicineIndexHero{padding:32px 0 26px}
+  .medicineIndexIntro h1{font-size:38px}
+  .medicineIndexHeroGrid{gap:22px}
+  .medicineIndexTrust{display:block;padding:17px 18px}
+  .medicineIndexTrust>div{grid-template-columns:100px 1fr;padding:8px 0;border-left:0;border-bottom:1px solid rgba(255,255,255,.11)}
+  .medicineIndexTrust>div:first-child{padding-top:0}
+  .medicineIndexBody{padding:24px 0 54px}
+  .medicineToolbar{align-items:flex-start;flex-direction:column;gap:5px}
+  .medicineCardGrid{grid-template-columns:1fr}
+  .medicineCard{min-height:0}
+  .medicineIndexNote{grid-template-columns:1fr;gap:10px}
   .institutionInquiryGrid{grid-template-columns:1fr;gap:24px}
   :root{--header:auto}
   .wrap{width:min(var(--max),calc(100% - 30px))}
@@ -1216,6 +1579,12 @@ p{text-wrap:pretty}
   .footLinks{gap:18px}
 }
 @media(max-width:520px){
+  .medicineSearch{min-height:46px}
+  .medicineSearch button{min-width:100px}
+  .medicineCard{padding:18px 17px 15px}
+  .medicineCard h2{font-size:18px}
+  .medicineCardFacts{grid-template-columns:1fr}
+  .medicineCardFacts>div{min-height:0}
   body{font-size:13px}
   .wordmark small{display:none}
   .brandSymbol{width:31px;height:31px;flex-basis:31px}
