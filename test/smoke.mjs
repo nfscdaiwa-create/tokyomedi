@@ -24,7 +24,7 @@ checks.push(['institution-only inquiry on homepage',
   s.includes('医药品询价说明') &&
   s.includes('仅面向医疗机构、药局与企业') &&
   s.includes('不提供个人医疗咨询')
-]); ]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
+ ]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
 checks.push(['seo home metadata',
   s.includes('<title>日本医药品资料库与赴日医疗 | TOKYO MEDI</title>') &&
   s.includes('name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"') &&
@@ -34,7 +34,7 @@ checks.push(['seo home metadata',
   s.includes('"@type":"WebSite"')
 ]);
 r=await hit('/zh-hans/medicines?q=opdivo'); s=await r.text(); checks.push(['medicine search by brand',r.status===200&&s.includes('オプジーボ')&&s.includes('小野薬品工業')]); checks.push(['query pages noindex',s.includes('name="robots" content="noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"')]);
-r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]); checks.push(['medicine semantic schema',s.includes('"@type":"Drug"')&&s.includes('"manufacturer"')&&s.includes('"BreadcrumbList"')&&s.includes('"prescriptionStatus":"https://schema.org/PrescriptionOnly"')]); checks.push(['patient medicine CTA',s.includes('href="/zh-hans/travel">查看赴日就医信息</a>')&&!s.includes('type=personal')&&s.includes('type=institution')]);
+r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]); checks.push(['medicine semantic schema',s.includes('"@type":"Drug"')&&s.includes('"manufacturer"')&&s.includes('"BreadcrumbList"')&&s.includes('"prescriptionStatus":"https://schema.org/PrescriptionOnly"')]); checks.push(['patient medicine CTA',s.includes('href="/zh-hans/travel">查看赴日医疗资讯</a>')&&!s.includes('type=personal')&&s.includes('type=institution')]);
 r=await hit('/zh-hans/medicines/ramelteon'); s=await r.text(); checks.push(['regulatory status nuance',r.status===200&&s.includes('解除“处方笺医药品”指定')&&!s.includes('<strong>Rx ·')]);
 r=await hit('/en/guides/read-japanese-medicine-information'); s=await r.text(); checks.push(['article schema',r.status===200&&s.includes('"@type":"Article"')&&s.includes('"BreadcrumbList"')&&s.includes('"publisher":{"@id":"https://tokyomedi.com/#organization"}')]);
 r=await hit('/en/medical-travel'); checks.push(['legacy route 404',r.status===404]);
