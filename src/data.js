@@ -251,13 +251,76 @@ export const guides = [
 ];
 
 export const hospitals = [
-  {slug:'national-cancer-center',name:'National Cancer Center Hospital',ja:'国立がん研究センター中央病院',city:'Tokyo',area:'oncology',path:'Coordinator / international-patient route',url:'https://www.ncc.go.jp/en/about/appointments/index.html',verified:'2026-09-22'},
-  {slug:'utokyo-hospital',name:'The University of Tokyo Hospital',ja:'東京大学医学部附属病院',city:'Tokyo',area:'multidisciplinary',path:'International Medical Center',url:'https://www.h.u-tokyo.ac.jp/english/international-patients/',verified:'2026-09-22'},
-  {slug:'keio-hospital',name:'Keio University Hospital',ja:'慶應義塾大学病院',city:'Tokyo',area:'multidisciplinary',path:'International Patient Services / partner route for overseas patients',url:'https://www.hosp.keio.ac.jp/en/shinryo/international-patient-services/',verified:'2026-09-22'},
-  {slug:'osaka-university-hospital',name:'The University of Osaka Hospital',ja:'大阪大学医学部附属病院',city:'Osaka',area:'multidisciplinary',path:'Center for Global Health / pre-arrival contact',url:'https://www.hosp.med.osaka-u.ac.jp/english/foreign_patients/',verified:'2026-09-22'},
-  {slug:'kyoto-university-hospital',name:'Kyoto University Hospital',ja:'京都大学医学部附属病院',city:'Kyoto',area:'multidisciplinary',path:'Coordinator route for patients living outside Japan',url:'https://www.kuhp.kyoto-u.ac.jp/english/access/index.html',verified:'2026-09-22'},
-  {slug:'ncvc',name:'National Cerebral and Cardiovascular Center',ja:'国立循環器病研究センター',city:'Osaka',area:'cardio',path:'Foreign-patient information / advanced cardiovascular and cerebrovascular care',url:'https://www.ncvc.go.jp/english/hospital/about/',verified:'2026-09-22'},
-  {slug:'tokyo-midtown-clinic',name:'Tokyo Midtown Clinic',ja:'東京ミッドタウンクリニック',city:'Tokyo',area:'checkup',path:'Outpatient care / health screening / foreign visitor services',url:'https://www.tokyomidtown-mc.jp/en/',verified:'2026-09-22'}
+  {
+    slug:'national-cancer-center',name:'National Cancer Center Hospital',ja:'国立がん研究センター中央病院',city:'Tokyo',area:'oncology',
+    path:'Designated coordinating agent required for international patients',
+    facts:{
+      'zh-hans':['国际患者及非日语母语患者原则上需通过指定协调机构联系','院方医疗服务以日语为主，沟通支持需提前安排','国际患者费用体系与日本医保患者不同'],
+      en:['International and non-native Japanese patients are asked to contact the hospital through a designated coordinating agent','Clinical services are provided in Japanese; communication support must be arranged','International-patient fees differ from Japanese national-insurance billing'],
+      ja:['海外患者・日本語を母語としない患者は指定コーディネーター経由での連絡が原則','診療は日本語で提供され、コミュニケーション支援の事前手配が必要','国際患者向け料金体系は日本の保険診療と異なる']
+    },
+    officialUpdated:'2026-01',url:'https://www.ncc.go.jp/en/about/appointments/index.html',verified:'2026-09-22'
+  },
+  {
+    slug:'utokyo-hospital',name:'The University of Tokyo Hospital',ja:'東京大学医学部附属病院',city:'Tokyo',area:'multidisciplinary',
+    path:'International Medical Center / coordinator-facilitator route',
+    facts:{
+      'zh-hans':['居住在日本以外的患者原则上需指定医疗协调员/协助机构','需提供转诊资料及当前健康状况资料','国际医疗中心处理多语言、资料翻译及费用等受理条件'],
+      en:['Patients living outside Japan are basically required to appoint a medical coordinator/facilitator','Referral and current health-condition information are required','The International Medical Center supports multilingual, document-translation and financial intake needs'],
+      ja:['海外居住患者は原則として医療コーディネーター／ファシリテーターの指定が必要','紹介状と現在の健康状態に関する情報が必要','国際診療部が多言語、医療文書翻訳、費用面などの受入条件を支援']
+    },
+    url:'https://www.h.u-tokyo.ac.jp/english/international-patients/',verified:'2026-09-22'
+  },
+  {
+    slug:'keio-hospital',name:'Keio University Hospital',ja:'慶應義塾大学病院',city:'Tokyo',area:'multidisciplinary',
+    path:'International Patient Services / approved business-partner route',
+    facts:{
+      'zh-hans':['海外患者需先准备转诊/病情资料并联系院方合作机构或医疗协调员','合作机构协助预约、医疗签证、翻译、住宿及交通等','院方说明不会直接提供医疗口译，非日语/英语患者应自行安排'],
+      en:['Overseas patients prepare referral/medical information and contact a hospital business partner or medical coordinator','Partners can arrange appointments, medical-stay visa support, interpreters, accommodation and transport','The hospital states that it does not directly provide interpretation; patients should arrange it when needed'],
+      ja:['海外患者は紹介状・診療情報を準備し、提携事業者または医療コーディネーターへ連絡','提携事業者が予約、医療滞在ビザ、通訳、宿泊、交通等を支援','病院は通訳を直接提供せず、必要に応じ患者側で手配']
+    },
+    url:'https://www.hosp.keio.ac.jp/en/shinryo/international-patient-services/',verified:'2026-09-22'
+  },
+  {
+    slug:'osaka-university-hospital',name:'The University of Osaka Hospital',ja:'大阪大学医学部附属病院',city:'Osaka',area:'multidisciplinary',
+    path:'Center for Global Health / pre-arrival contact',
+    facts:{
+      'zh-hans':['海外患者来日前应先联系 Center for Global Health','首次预约只能由医疗机构提出，不能由患者本人直接预约','语言支持需要预约；首次就诊原则上需要转诊信'],
+      en:['Overseas patients should contact the Center for Global Health before coming to Japan','A first appointment can only be made by a medical clinic/institution, not by the patient','Language services require reservation; a referral is expected for the first visit'],
+      ja:['海外患者は来日前にCenter for Global Healthへ連絡','初診予約は医療機関からのみで、患者本人からは不可','言語支援は予約制で、初診は紹介状が原則必要']
+    },
+    url:'https://www.hosp.med.osaka-u.ac.jp/english/foreign_patients/',verified:'2026-09-22'
+  },
+  {
+    slug:'kyoto-university-hospital',name:'Kyoto University Hospital',ja:'京都大学医学部附属病院',city:'Kyoto',area:'multidisciplinary',
+    path:'Coordinator required for patients living outside Japan',
+    facts:{
+      'zh-hans':['居住在日本以外的患者需通过医疗协调员联系医院','需从日本外务省相关名单选择协调员','协调员负责与医院进行联系和沟通'],
+      en:['Patients living outside Japan need to contact the hospital via a coordinator','The hospital directs patients to select a coordinator from the relevant Ministry of Foreign Affairs list','The coordinator communicates with the hospital on the patient’s behalf'],
+      ja:['日本国外居住の患者は医療コーディネーター経由で連絡が必要','外務省関連リストからコーディネーターを選択','コーディネーターが患者に代わって病院と連絡・調整']
+    },
+    url:'https://www.kuhp.kyoto-u.ac.jp/english/access/index.html',verified:'2026-09-22'
+  },
+  {
+    slug:'ncvc',name:'National Cerebral and Cardiovascular Center',ja:'国立循環器病研究センター',city:'Osaka',area:'cardio',
+    path:'Official foreign-patient information / advanced cerebral and cardiovascular care',
+    facts:{
+      'zh-hans':['官方页面明确说明接收海外患者并提供先进医疗','核心领域为脑血管与心血管疾病的临床、研究和教育一体化','具体海外患者受理步骤应以院方最新官方入口确认'],
+      en:['The official site states that the hospital accepts patients from overseas for advanced care','Its core mission integrates clinical care, research and education in cerebral and cardiovascular disease','Specific overseas intake steps should be confirmed on the latest official hospital page'],
+      ja:['公式ページで海外患者の受入と高度医療の提供を明示','脳血管・心血管疾患の診療・研究・教育を統合','具体的な海外患者受入手順は最新の公式ページで確認']
+    },
+    officialUpdated:'2025-07-18',url:'https://www.ncvc.go.jp/english/hospital/about/',verified:'2026-09-22'
+  },
+  {
+    slug:'tokyo-midtown-clinic',name:'Tokyo Midtown Clinic',ja:'東京ミッドタウンクリニック',city:'Tokyo',area:'checkup',
+    path:'Foreign-visitor medical checkup route / reservation agent required',
+    facts:{
+      'zh-hans':['面向海外访日人士提供体检服务，并有英语工作人员','外国访客体检需通过预约代理机构，不接受个人直接预约','医疗口译由代理机构安排，费用和日本居住者套餐不同'],
+      en:['Medical checkup services are offered to overseas visitors with English-speaking staff available','Foreign-visitor checkups require a reservation agent; direct individual reservations are not accepted','Medical interpreters are arranged by the agent, and foreign-visitor fees differ from resident pricing'],
+      ja:['海外訪日者向け健診サービスを提供し、英語対応スタッフあり','海外訪日者の健診は予約代理店経由で、個人の直接予約は不可','医療通訳は代理店が手配し、料金は日本居住者向けと異なる']
+    },
+    url:'https://www.tokyomidtown-mc.jp/en/premium/visiting-foreigners/',verified:'2026-09-22'
+  }
 ];
 
 export const sourceLinks = [
