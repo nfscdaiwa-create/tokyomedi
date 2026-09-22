@@ -48,8 +48,18 @@ export function medicineName(l,m){
  return m.brandEn?`${m.brandEn} (${m.en})`:m.en;
 }
 export function medicineProductName(m){return m.productJa||m.ja||m.en;}
-export function medicineRows(l,items,limit=Infinity){return items.slice(0,limit).map(m=>`<a class="medicineRow" href="${p(l,'medicines/'+m.slug)}"><div><strong>${esc(medicineProductName(m))}</strong><small>${esc(m.brandEn||m.en)} · ${esc(m.en)} · ${esc(m.manufacturerJa||'')}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
-export function rxRows(l,items,limit=8){return items.slice(0,limit).map(m=>`<a class="rxItem" href="${p(l,'medicines/'+m.slug)}"><div class="rxGlyph">${m.status==='Rx'?'RX':'MED'}</div><div><strong>${esc(medicineProductName(m))}</strong><small>${esc(m.brandEn||m.en)} · ${esc(m.en)} · ${esc(m.manufacturerJa||'')}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
+function medicineListPrimary(l,m){
+ if(l==='zh-hans') return [m.zh,m.brandEn].filter(Boolean).join(' · ');
+ if(l==='ja') return m.productJa||m.ja;
+ return m.brandEn?[m.brandEn,m.en].filter(Boolean).join(' · '):m.en;
+}
+function medicineListSecondary(l,m){
+ if(l==='zh-hans') return [m.productJa,m.manufacturerJa].filter(Boolean).join(' · ');
+ if(l==='ja') return [m.en,m.brandEn,m.manufacturerJa].filter(Boolean).join(' · ');
+ return [m.productJa,m.manufacturerJa].filter(Boolean).join(' · ');
+}
+export function medicineRows(l,items,limit=Infinity){return items.slice(0,limit).map(m=>`<a class="medicineRow" href="${p(l,'medicines/'+m.slug)}"><div><strong>${esc(medicineListPrimary(l,m))}</strong><small>${esc(medicineListSecondary(l,m))}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
+export function rxRows(l,items,limit=8){return items.slice(0,limit).map(m=>`<a class="rxItem" href="${p(l,'medicines/'+m.slug)}"><div class="rxGlyph">${m.status==='Rx'?'RX':'MED'}</div><div><strong>${esc(medicineListPrimary(l,m))}</strong><small>${esc(medicineListSecondary(l,m))}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
 export function guideTitle(l,g){return g.title[l]||g.title.en} export function guideExcerpt(l,g){return g.excerpt[l]||g.excerpt.en}
 
 export function securityHeaders(extra={}){return {'x-content-type-options':'nosniff','x-frame-options':'SAMEORIGIN','referrer-policy':'strict-origin-when-cross-origin','permissions-policy':'camera=(), microphone=(), geolocation=()','content-security-policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'inline-speculation-rules'; img-src 'self' data: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:",'cross-origin-opener-policy':'same-origin','cross-origin-resource-policy':'same-origin',...extra};}
