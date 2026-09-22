@@ -8,7 +8,7 @@ const localeName={en:'English',ja:'日本語','zh-hans':'简体中文'};
 export function swapLocale(pathname,l){const parts=pathname.split('/').filter(Boolean); if(parts.length&&LOCALES.includes(parts[0]))parts[0]=l; else parts.unshift(l); return '/'+parts.join('/');}
 function pageTitle(l,title){return `${title} | TOKYO MEDI`;}
 function brandLogo(){
- return `<span class="brandSymbol" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><rect x="1" y="1" width="46" height="46" rx="14" class="logoBg"/><path d="M13 14.5H35M24 14.5V32.5M13.5 32V21L24 28.5L34.5 21V32" class="logoLine"/><circle cx="35.5" cy="12.5" r="2.4" class="logoDot"/></svg></span><span class="wordmark"><span class="wordTop"><b>TOKYO</b><b>MEDI</b></span><small>JAPAN MEDICAL REFERENCE</small></span>`;
+ return `<span class="brandSymbol" aria-hidden="true"><svg viewBox="0 0 48 48" role="img"><path d="M5 12.5H31M18 12.5V39M6.5 37V23.5L18 31.5L29.5 23.5V37" class="logoLine"/><circle cx="38" cy="10" r="3.2" class="logoDot"/></svg></span><span class="wordmark"><span class="wordTop"><b>TOKYO</b><b>MEDI</b></span><small>JAPAN MEDICAL REFERENCE</small></span>`;
 }
 export function jsonLd(obj){return `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g,'\\u003c')}</script>`;}
 function speculationRules(){
