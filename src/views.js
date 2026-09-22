@@ -52,9 +52,7 @@ function shell(l,title,desc,active,body){
     '<meta property="og:title" content="'+esc(title)+' | TOKYO MEDI">'+
     '<meta property="og:description" content="'+esc(desc)+'">'+
     '<style>'+CSS+'</style></head><body>'+
-    header(l,active)+body+footer(l)+
-    '<div class="rev" title="Deployment revision">'+esc(BUILD_META.commit.slice(0,12))+'</div>'+
-    '</body></html>';
+    header(l,active)+body+footer(l)+'</body></html>';
 }
 
 export function home(l){
@@ -74,9 +72,6 @@ export function home(l){
     '<aside class="panel"><div class="panelTitle">TOKYO MEDI INDEX</div><div class="quick">'+
     ss.slice(0,4).map((s,i)=>'<a href="'+path(l,s)+'"><span>0'+(i+1)+'</span><strong>'+esc(lab(l,s))+'</strong></a>').join('')+
     '</div></aside></div></section>'+
-    '<section class="trust"><div class="wrap trustGrid">'+
-    t.trust.map((x,i)=>'<div class="trustItem"><div class="icon">'+["✓","文","○","↗"][i]+'</div><div><strong>'+esc(x)+'</strong><p>'+esc(t.trustText[i])+'</p></div></div>').join('')+
-    '</div></section>'+
     '<section class="section"><div class="wrap"><div class="head"><h2>'+esc(t.section)+'</h2><p>'+esc(t.lead)+'</p></div>'+
     '<div class="cards">'+ss.map((s,i)=>'<a class="card" href="'+path(l,s)+'"><small>0'+(i+1)+'</small><h3>'+esc(lab(l,s))+'</h3><p>'+esc(ds[i])+'</p><span class="arrow">↗</span></a>').join('')+
     '</div></div></section>'+
