@@ -5,5 +5,15 @@
   "compatibility_date": "2026-09-22",
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "tokyomedi.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.tokyomedi.com",
+      "custom_domain": true
+    }
+  ]
 }
