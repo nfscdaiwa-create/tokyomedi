@@ -1196,6 +1196,97 @@ button{cursor:pointer}
   .foot{padding:38px 0 20px}
 }
 
+
+/* Provenance, verification and trust layer */
+.verificationStrip{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;
+}
+.verificationStrip span{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 10px;border:1px solid #cfe0dc;border-radius:10px;
+  background:rgba(255,255,255,.7);color:#687b80;
+  font-size:9px;font-weight:750;
+}
+.verificationStrip b{color:var(--ink);font-size:10px}
+.medicineHero .eyebrow{color:var(--rx)}
+.statusNote{
+  margin-top:16px;padding:17px 19px;
+  border:1px solid #e8d7d2;border-left:4px solid var(--rx);
+  border-radius:14px;background:#fff9f7;
+}
+.statusNote strong{font-size:11px;color:#7b4a44}
+.statusNote p{margin:6px 0 0;color:#705b57;font-size:11px;line-height:1.65}
+.altProducts p{margin-bottom:0}
+.sourceActions{background:#f4f8f6}
+.sourceButtons{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}
+.sourceButtons .btn{display:inline-flex;align-items:center}
+.sideVerify{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  margin:16px 0;
+}
+.sideVerify span{
+  padding:10px;border:1px solid #eadeda;border-radius:10px;
+  color:#846d68;font-size:9px;
+}
+.sideVerify b{display:block;margin-top:4px;color:#5c4743;font-size:10px}
+
+.policyGrid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  margin:34px 0;
+}
+.policyCard{
+  padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff;
+}
+.policyCard span{
+  display:block;margin-bottom:24px;color:#8ca19e;
+  font-size:9px;font-weight:900;letter-spacing:.12em;
+}
+.policyCard h3{margin:0 0 8px;font-size:18px;letter-spacing:-.02em}
+.policyCard p{margin:0;color:var(--muted);font-size:11px;line-height:1.68}
+.transparencyBox{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  margin-top:24px;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:var(--line);
+}
+.transparencyBox>div{padding:22px;background:#f7faf8}
+.transparencyBox strong{font-size:12px}
+.transparencyBox p{margin:8px 0 0;color:var(--muted);font-size:11px;line-height:1.7}
+
+.aboutBoundary{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  margin-bottom:34px;
+}
+.aboutBoundary article{
+  position:relative;padding:24px;border:1px solid var(--line);border-radius:18px;background:#fff;
+}
+.aboutBoundary article>span{
+  display:block;color:#8da29f;font-size:9px;font-weight:900;letter-spacing:.12em;margin-bottom:30px;
+}
+.aboutBoundary h3{margin:0 0 8px;font-size:19px}
+.aboutBoundary p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+
+.hospitalJa{margin:0 0 10px!important}
+.hospitalRoute{
+  margin:10px 0 14px;padding:9px 11px;border-radius:10px;
+  background:var(--paper-2);color:#38565c;font-size:10px;font-weight:800;
+}
+.hospitalFacts{
+  margin:0 0 14px;padding-left:17px;color:#5e7075;font-size:10px;line-height:1.7;
+}
+.hospitalFacts li+li{margin-top:4px}
+.hospitalMeta{margin-top:10px}
+
+.medicineRow strong,.rxItem strong{overflow-wrap:anywhere}
+.medicineRow small,.rxItem small{overflow-wrap:anywhere}
+
+@media(max-width:760px){
+  .verificationStrip{gap:6px}
+  .verificationStrip span{width:100%;justify-content:space-between}
+  .policyGrid,.transparencyBox,.aboutBoundary{grid-template-columns:1fr}
+  .sourceButtons{display:grid}
+  .sideVerify{grid-template-columns:1fr}
+}
+
 /* 2026 progressive-enhancement layer */
 html{scrollbar-gutter:stable}
 h1,h2,h3{text-wrap:balance}
