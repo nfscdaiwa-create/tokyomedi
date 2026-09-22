@@ -18,5 +18,8 @@ TOKYO MEDI is a multilingual Japanese medicine reference, medical guide and medi
 ## Quality check
 `npm test`
 
+## Local preview
+`npm run dev` (uses a local origin so HTTPS redirects do not loop in Wrangler)
+
 ## Deploy
 `npm run deploy`

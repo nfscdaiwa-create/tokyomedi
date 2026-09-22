@@ -6,7 +6,7 @@
   "scripts":{
     "test":"node test/smoke.mjs",
     "build":"npm test",
-    "dev":"wrangler dev",
+    "dev":"wrangler dev --host localhost",
     "deploy":"npm test && wrangler deploy"
   },
   "devDependencies":{"wrangler":"^4.136.1"}
