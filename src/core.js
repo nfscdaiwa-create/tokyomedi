@@ -26,9 +26,14 @@ export function shell(l,req,title,description,active,body,extraLd=''){
  <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a></div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer></body></html>`;
 }
 
-export function medicineName(l,m){return l==='ja'?m.ja:l==='zh-hans'?m.zh:m.en;}
-export function medicineRows(l,items,limit=Infinity){return items.slice(0,limit).map(m=>`<a class="medicineRow" href="${p(l,'medicines/'+m.slug)}"><div><strong>${esc(medicineName(l,m))}</strong><small>${esc(m.en)} · ${esc(m.ja)}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${m.status}</span><b>→</b></a>`).join('');}
-export function rxRows(l,items,limit=8){return items.slice(0,limit).map(m=>`<a class="rxItem" href="${p(l,'medicines/'+m.slug)}"><div class="rxGlyph">RX</div><div><strong>${esc(medicineName(l,m))}</strong><small>${esc(m.en)} · ${esc(m.ja)}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${m.status}</span><b>→</b></a>`).join('');}
+export function medicineName(l,m){
+ if(l==='ja') return m.productJa||m.ja;
+ if(l==='zh-hans') return m.brandEn?`${m.brandEn}｜${m.zh}`:m.zh;
+ return m.brandEn?`${m.brandEn} (${m.en})`:m.en;
+}
+export function medicineProductName(m){return m.productJa||m.ja||m.en;}
+export function medicineRows(l,items,limit=Infinity){return items.slice(0,limit).map(m=>`<a class="medicineRow" href="${p(l,'medicines/'+m.slug)}"><div><strong>${esc(medicineProductName(m))}</strong><small>${esc(m.brandEn||m.en)} · ${esc(m.en)} · ${esc(m.manufacturerJa||'')}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
+export function rxRows(l,items,limit=8){return items.slice(0,limit).map(m=>`<a class="rxItem" href="${p(l,'medicines/'+m.slug)}"><div class="rxGlyph">${m.status==='Rx'?'RX':'MED'}</div><div><strong>${esc(medicineProductName(m))}</strong><small>${esc(m.brandEn||m.en)} · ${esc(m.en)} · ${esc(m.manufacturerJa||'')}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
 export function guideTitle(l,g){return g.title[l]||g.title.en} export function guideExcerpt(l,g){return g.excerpt[l]||g.excerpt.en}
 
 export function securityHeaders(extra={}){return {'x-content-type-options':'nosniff','x-frame-options':'SAMEORIGIN','referrer-policy':'strict-origin-when-cross-origin','permissions-policy':'camera=(), microphone=(), geolocation=()','content-security-policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'inline-speculation-rules'; img-src 'self' data: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:",'cross-origin-opener-policy':'same-origin','cross-origin-resource-policy':'same-origin',...extra};}
