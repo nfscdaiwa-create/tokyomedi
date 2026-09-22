@@ -951,6 +951,24 @@ p{text-wrap:pretty}
   border-color:#b8c8c3;
   box-shadow:0 12px 28px rgba(35,57,61,.07);
 }
+.medicineCardMedia{
+  height:170px;
+  display:grid;
+  place-items:center;
+  margin:-21px -22px 18px;
+  padding:16px 22px;
+  overflow:hidden;
+  border-bottom:1px solid #e1e4df;
+  background:linear-gradient(180deg,#fafbf8,#f0f2ee);
+}
+.medicineCardMedia img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  mix-blend-mode:multiply;
+  transition:transform .2s ease;
+}
+.medicineCard:hover .medicineCardMedia img{transform:scale(1.025)}
 .medicineCardTop{
   display:flex;
   align-items:center;
@@ -1101,6 +1119,127 @@ p{text-wrap:pretty}
   font-weight:760;
 }
 
+/* Health & nutrition */
+.homeHealth{background:#eef2ec;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.homeHealthGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.homeHealthCard{
+  min-width:0;
+  border:1px solid #d6dcd5;
+  border-radius:10px;
+  background:#fff;
+  overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.homeHealthCard:hover{transform:translateY(-2px);border-color:#b9c9bf;box-shadow:0 10px 25px rgba(37,63,56,.06)}
+.homeHealthMedia{height:190px;padding:14px;background:linear-gradient(180deg,#fbfcf8,#f2f4ee)}
+.homeHealthMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.homeHealthBody{padding:14px 15px 15px}
+.homeHealthBody span{display:block;color:#7a8883;font-size:9px;line-height:1.4}
+.homeHealthBody h3{min-height:42px;margin:6px 0 12px;font-size:14px;line-height:1.45}
+.homeHealthBody b{color:var(--teal-dark);font-size:9.5px;font-weight:760}
+.homeHealthFoot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+  margin-top:18px;
+  padding-top:15px;
+  border-top:1px solid #d5dbd4;
+}
+.homeHealthFoot p{margin:0;color:#66766f;font-size:10px;line-height:1.6}
+
+.healthIndex{background:#f5f6f2;min-height:70vh}
+.healthIndexHero{
+  padding:48px 0 36px;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at 84% 20%,rgba(96,137,91,.10),transparent 25%),
+    linear-gradient(180deg,#f8f9f5,#eef1eb);
+}
+.healthIndexHeroGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+  gap:54px;
+  align-items:end;
+}
+.healthIndexHero h1{
+  margin:10px 0 12px;
+  font-size:clamp(42px,4.3vw,58px);
+  line-height:1.04;
+  letter-spacing:-.045em;
+}
+.healthIndexHero p{max-width:700px;margin:0;color:#5f7068;font-size:13px;line-height:1.75}
+.healthSearch{
+  display:flex;
+  max-width:690px;
+  min-height:48px;
+  margin-top:22px;
+  border:1px solid #bdc9bf;
+  border-radius:7px;
+  background:#fff;
+  overflow:hidden;
+}
+.healthSearch input{min-width:0;flex:1;border:0;outline:0;padding:0 14px;font-size:12px;background:transparent}
+.healthSearch button{min-width:118px;border:0;border-left:1px solid #c7d0c8;background:#355f54;color:#fff;font-size:10.5px;font-weight:760}
+.healthBoundary{
+  padding:21px 22px;
+  border-radius:10px;
+  background:#345b52;
+  color:#e9f0ec;
+}
+.healthBoundary>span{display:block;color:#b9d1c8;font-size:9px;font-weight:800;letter-spacing:.11em}
+.healthBoundary>strong{display:block;margin-top:8px;font-size:21px;line-height:1.3}
+.healthBoundary>p{margin:12px 0 0;color:#c0d0ca;font-size:10px;line-height:1.65}
+.healthIndexBody{padding:28px 0 70px}
+.healthToolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;color:#718079;font-size:10px}
+.healthToolbar b{color:var(--ink);font-size:18px;margin-right:3px}
+.healthToolbar a{color:var(--teal-dark);font-weight:700}
+.healthCardGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.healthCard{
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  border:1px solid #d7dcd6;
+  border-radius:11px;
+  background:#fff;
+  overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.healthCard:hover{transform:translateY(-2px);border-color:#b5c7bb;box-shadow:0 12px 28px rgba(34,61,52,.07)}
+.healthCardMedia{height:220px;padding:17px;background:linear-gradient(180deg,#fbfcf9,#f1f3ee)}
+.healthCardMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .2s ease}
+.healthCard:hover .healthCardMedia img{transform:scale(1.025)}
+.healthCardBody{display:flex;flex:1;flex-direction:column;padding:15px 16px}
+.healthCardTop{display:flex;justify-content:space-between;gap:10px;color:#7b8983;font-size:8.5px}
+.healthCardTop span{color:#477268;font-weight:760}
+.healthCard h2{margin:9px 0 6px;font-size:15px;line-height:1.42}
+.healthCardBody>p{margin:0;color:#697871;font-size:10px}
+.healthCardFoot{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #e0e3de;color:#89938f;font-size:8.5px}
+.healthCardFoot b{color:#426b61;font-size:9px}
+.healthDisclaimer{
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:22px;
+  margin-top:28px;
+  padding:17px 19px;
+  border:1px solid #d5dbd4;
+  border-radius:8px;
+  background:#eef1ec;
+}
+.healthDisclaimer strong{font-size:10px;color:#405c54}
+.healthDisclaimer p{margin:0;color:#66766f;font-size:10px;line-height:1.65}
+
+.healthDetailHero{padding:44px 0 36px;border-bottom:1px solid var(--line);background:#f0f3ed}
+.healthDetailGrid{display:grid;grid-template-columns:380px minmax(0,1fr);gap:52px;align-items:center}
+.healthDetailMedia{height:340px;padding:24px;border:1px solid #d4dcd4;border-radius:12px;background:#fff}
+.healthDetailMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.healthDetailIntro h1{margin:10px 0 12px;font-size:clamp(36px,4vw,52px);line-height:1.1;letter-spacing:-.04em}
+.healthDetailIntro>p{max-width:680px;margin:0;color:#5f7068;font-size:13px;line-height:1.75}
+.healthDetailBadges{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.healthDetailBadges span{padding:6px 9px;border:1px solid #c8d1c9;border-radius:999px;background:#f9faf7;color:#66756f;font-size:9px}
+.healthSideNote{background:#edf3ee;border-color:#ccd9cf}
+.healthSideNote>strong{color:#466b5e}
+
 /* Interior page headers */
 .pageHero{
   padding:48px 0 34px;
@@ -1121,6 +1260,23 @@ p{text-wrap:pretty}
 .filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
 
 /* Medicine detail */
+.medicineHeroGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 300px;
+  gap:42px;
+  align-items:center;
+}
+.medicineHeroCopy{min-width:0}
+.medicineHeroMedia{
+  height:250px;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+}
+.medicineHeroMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .verificationStrip{
   display:flex;
   flex-wrap:wrap;
@@ -1452,6 +1608,11 @@ p{text-wrap:pretty}
 
 /* Tablet */
 @media(max-width:1080px){
+  .homeHealthGrid{grid-template-columns:repeat(2,1fr)}
+  .healthIndexHeroGrid{grid-template-columns:1fr;gap:24px}
+  .healthCardGrid{grid-template-columns:repeat(3,1fr)}
+  .healthDetailGrid{grid-template-columns:300px minmax(0,1fr);gap:34px}
+  .medicineHeroGrid{grid-template-columns:minmax(0,1fr) 250px;gap:28px}
   .medicineIndexHeroGrid{grid-template-columns:1fr;gap:26px}
   .medicineIndexTrust{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
   .medicineIndexTrust>div{grid-template-columns:1fr;gap:3px;padding:0 16px;border-bottom:0;border-left:1px solid rgba(255,255,255,.11)}
@@ -1477,6 +1638,15 @@ p{text-wrap:pretty}
 
 /* Mobile */
 @media(max-width:820px){
+  .homeHealthGrid{grid-template-columns:1fr 1fr}
+  .homeHealthFoot{align-items:flex-start;flex-direction:column}
+  .healthIndexHero{padding:32px 0 27px}
+  .healthIndexHero h1{font-size:38px}
+  .healthCardGrid{grid-template-columns:repeat(2,1fr)}
+  .healthDetailGrid{grid-template-columns:1fr;gap:22px}
+  .healthDetailMedia{height:300px}
+  .medicineHeroGrid{grid-template-columns:1fr}
+  .medicineHeroMedia{height:240px}
   .medicineIndexHero{padding:32px 0 26px}
   .medicineIndexIntro h1{font-size:38px}
   .medicineIndexHeroGrid{gap:22px}
@@ -1579,6 +1749,10 @@ p{text-wrap:pretty}
   .footLinks{gap:18px}
 }
 @media(max-width:520px){
+  .homeHealthGrid,.healthCardGrid{grid-template-columns:1fr}
+  .homeHealthMedia{height:210px}
+  .healthCardMedia{height:250px}
+  .healthDisclaimer{grid-template-columns:1fr;gap:5px}
   .medicineSearch{min-height:46px}
   .medicineSearch button{min-width:100px}
   .medicineCard{padding:18px 17px 15px}
