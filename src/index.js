@@ -1,6 +1,6 @@
 import { BUILD_META } from "./build-meta.js";
 import { SITE, L, D } from "./content.js";
-import { home, page, sitemap, headers } from "./views.js";
+import { home, page, searchPage, sitemap, headers } from "./views.js";
 
 export default {
   async fetch(request) {
@@ -51,6 +51,8 @@ export default {
     let html;
     if (!slug) {
       html = home(locale);
+    } else if (slug === "search") {
+      html = searchPage(locale, url.searchParams.get("q") || "");
     } else if (D[locale] && D[locale][slug]) {
       html = page(locale, slug);
     } else {
