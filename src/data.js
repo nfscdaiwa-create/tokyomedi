@@ -74,23 +74,138 @@ export const strengths = [
 ];
 
 export const medicines = [
-  ['amlodipine','Amlodipine','アムロジピン','氨氯地平','cardio','tablet','Rx'],
-  ['nivolumab','Nivolumab','ニボルマブ','纳武利尤单抗','oncology','injection','Rx'],
-  ['pembrolizumab','Pembrolizumab','ペムブロリズマブ','帕博利珠单抗','oncology','injection','Rx'],
-  ['osimertinib','Osimertinib','オシメルチニブ','奥希替尼','oncology','tablet','Rx'],
-  ['trastuzumab-deruxtecan','Trastuzumab deruxtecan','トラスツズマブ デルクステカン','曲妥珠单抗德鲁斯特康','oncology','injection','Rx'],
-  ['lecanemab','Lecanemab','レカネマブ','仑卡奈单抗','neuro','injection','Rx'],
-  ['sacubitril-valsartan','Sacubitril / valsartan','サクビトリルバルサルタン','沙库巴曲缬沙坦','cardio','tablet','Rx'],
-  ['empagliflozin','Empagliflozin','エンパグリフロジン','恩格列净','metabolic','tablet','Rx'],
-  ['semaglutide','Semaglutide','セマグルチド','司美格鲁肽','metabolic','product-dependent','Rx'],
-  ['edoxaban','Edoxaban','エドキサバン','依度沙班','cardio','tablet','Rx'],
-  ['tolvaptan','Tolvaptan','トルバプタン','托伐普坦','cardio','tablet','Rx'],
-  ['pirfenidone','Pirfenidone','ピルフェニドン','吡非尼酮','respiratory','tablet','Rx'],
-  ['dupilumab','Dupilumab','デュピルマブ','度普利尤单抗','immune','injection','Rx'],
-  ['upadacitinib','Upadacitinib','ウパダシチニブ','乌帕替尼','immune','tablet','Rx'],
-  ['risankizumab','Risankizumab','リサンキズマブ','利生奇珠单抗','immune','injection','Rx'],
-  ['ramelteon','Ramelteon','ラメルテオン','雷美替胺','neuro','tablet','Rx']
-].map(([slug,en,ja,zh,area,form,status])=>({slug,en,ja,zh,area,form,status,verified:'2026-09-22',source:'https://www.pmda.go.jp/english/'}));
+  {
+    slug:'amlodipine',en:'Amlodipine',ja:'アムロジピン',zh:'氨氯地平',area:'cardio',form:'tablet / OD tablet',status:'Rx',
+    productJa:'ノルバスク錠2.5mg／5mg／10mg・ノルバスクOD錠2.5mg／5mg／10mg',brandEn:'Norvasc',
+    manufacturerJa:'ヴィアトリス製薬合同会社',strengths:'2.5 mg / 5 mg / 10 mg',scope:'representative',
+    labelUpdated:'2026-05-20',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2171022F1029_4?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2171022F1029_4?user=2'
+  },
+  {
+    slug:'nivolumab',en:'Nivolumab',ja:'ニボルマブ',zh:'纳武利尤单抗',area:'oncology',form:'IV infusion',status:'Rx',
+    productJa:'オプジーボ点滴静注20mg／100mg／120mg／240mg',brandEn:'Opdivo',
+    manufacturerJa:'小野薬品工業株式会社',strengths:'20 mg / 100 mg / 120 mg / 240 mg',scope:'brand-family',
+    labelUpdated:'2026-08-25',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291427A1024_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291427A1024_1?user=2'
+  },
+  {
+    slug:'pembrolizumab',en:'Pembrolizumab',ja:'ペムブロリズマブ',zh:'帕博利珠单抗',area:'oncology',form:'IV infusion',status:'Rx',
+    productJa:'キイトルーダ点滴静注100mg',brandEn:'Keytruda',
+    manufacturerJa:'MSD株式会社',strengths:'100 mg',scope:'brand-family',
+    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291435A2025_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291435A2025_1?user=2'
+  },
+  {
+    slug:'osimertinib',en:'Osimertinib',ja:'オシメルチニブ',zh:'奥希替尼',area:'oncology',form:'tablet',status:'Rx',
+    productJa:'タグリッソ錠40mg／80mg',brandEn:'Tagrisso',
+    manufacturerJa:'アストラゼネカ株式会社',strengths:'40 mg / 80 mg',scope:'brand-family',
+    labelUpdated:'2026-01-13',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291045F1027_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291045F1027_1?user=2'
+  },
+  {
+    slug:'trastuzumab-deruxtecan',en:'Trastuzumab deruxtecan',ja:'トラスツズマブ デルクステカン',zh:'曲妥珠单抗德鲁斯特康',area:'oncology',form:'IV infusion',status:'Rx',
+    productJa:'エンハーツ点滴静注用100mg',brandEn:'Enhertu',
+    manufacturerJa:'第一三共株式会社',strengths:'100 mg',scope:'brand-family',
+    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291452D1029_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291452D1029_1?user=2'
+  },
+  {
+    slug:'lecanemab',en:'Lecanemab',ja:'レカネマブ',zh:'仑卡奈单抗',area:'neuro',form:'IV infusion',status:'Rx',
+    productJa:'レケンビ点滴静注200mg／500mg',brandEn:'Leqembi',
+    manufacturerJa:'エーザイ株式会社',strengths:'200 mg / 500 mg',scope:'brand-family',
+    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190408A1025_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190408A1025_1?user=2'
+  },
+  {
+    slug:'sacubitril-valsartan',en:'Sacubitril / valsartan',ja:'サクビトリルバルサルタン',zh:'沙库巴曲缬沙坦',area:'cardio',form:'tablet / pediatric granules',status:'Rx',
+    productJa:'エンレスト錠50mg／100mg／200mg・粒状錠小児用12.5mg／31.25mg',brandEn:'Entresto',
+    manufacturerJa:'ノバルティスファーマ株式会社',strengths:'50 mg / 100 mg / 200 mg; pediatric 12.5 mg / 31.25 mg',scope:'brand-family',
+    labelUpdated:'2025-09-09',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2190041F1027_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2190041F1027_1?user=2'
+  },
+  {
+    slug:'empagliflozin',en:'Empagliflozin',ja:'エンパグリフロジン',zh:'恩格列净',area:'metabolic',form:'tablet',status:'Rx',
+    productJa:'ジャディアンス錠10mg／25mg',brandEn:'Jardiance',
+    manufacturerJa:'日本ベーリンガーインゲルハイム株式会社',strengths:'10 mg / 25 mg',scope:'brand-family',
+    labelUpdated:'2025-09-01',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3969023F1023_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3969023F1023_1?user=2'
+  },
+  {
+    slug:'semaglutide',en:'Semaglutide',ja:'セマグルチド',zh:'司美格鲁肽',area:'metabolic',form:'product-dependent',status:'Rx',
+    productJa:'リベルサス錠3mg／7mg／14mg',brandEn:'Rybelsus',
+    manufacturerJa:'ノボ ノルディスク ファーマ株式会社',strengths:'3 mg / 7 mg / 14 mg',scope:'representative',
+    alternateProductsJa:['オゼンピック皮下注2mg','ウゴービ皮下注（複数規格）'],
+    labelUpdated:'2025-07',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/iyakuDetail/ResultDataSetPDF/620023_2499014F1021_1_06',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=2'
+  },
+  {
+    slug:'edoxaban',en:'Edoxaban',ja:'エドキサバン',zh:'依度沙班',area:'cardio',form:'tablet',status:'Rx',
+    productJa:'リクシアナ錠15mg／30mg／60mg',brandEn:'Lixiana',
+    manufacturerJa:'第一三共株式会社',strengths:'15 mg / 30 mg / 60 mg',scope:'brand-family',
+    labelUpdated:'2025-11-26',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3339002F1020_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3339002F1020_1?user=2'
+  },
+  {
+    slug:'tolvaptan',en:'Tolvaptan',ja:'トルバプタン',zh:'托伐普坦',area:'cardio',form:'OD tablet / granules',status:'Rx',
+    productJa:'サムスカOD錠7.5mg／15mg／30mg・サムスカ顆粒1%',brandEn:'Samsca',
+    manufacturerJa:'大塚製薬株式会社',strengths:'7.5 mg / 15 mg / 30 mg; granules 1%',scope:'brand-family',
+    labelUpdated:'2025-12-09',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2139011D1022_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2139011D1022_1?user=2'
+  },
+  {
+    slug:'pirfenidone',en:'Pirfenidone',ja:'ピルフェニドン',zh:'吡非尼酮',area:'respiratory',form:'tablet',status:'Rx',
+    productJa:'ピレスパ錠200mg',brandEn:'Pirespa',
+    manufacturerJa:'塩野義製薬株式会社',strengths:'200 mg',scope:'brand-family',
+    labelUpdated:'2023-09-15',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999025F1021_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999025F1021_1?user=2'
+  },
+  {
+    slug:'dupilumab',en:'Dupilumab',ja:'デュピルマブ',zh:'度普利尤单抗',area:'immune',form:'SC pen / syringe',status:'Rx',
+    productJa:'デュピクセント皮下注300mg／200mg ペン・シリンジ',brandEn:'Dupixent',
+    manufacturerJa:'サノフィ株式会社',strengths:'200 mg / 300 mg',scope:'brand-family',
+    labelUpdated:'2026-03-23',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4490405G1024_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4490405G1024_1?user=2'
+  },
+  {
+    slug:'upadacitinib',en:'Upadacitinib',ja:'ウパダシチニブ',zh:'乌帕替尼',area:'immune',form:'tablet / oral solution',status:'Rx',
+    productJa:'リンヴォック錠7.5mg／15mg／30mg／45mg・内用液0.1%',brandEn:'Rinvoq',
+    manufacturerJa:'アッヴィ合同会社',strengths:'7.5 mg / 15 mg / 30 mg / 45 mg; oral solution 0.1%',scope:'brand-family',
+    labelUpdated:'2026-08-25',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999048G2024_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999048G2024_1?user=2'
+  },
+  {
+    slug:'risankizumab',en:'Risankizumab',ja:'リサンキズマブ',zh:'利生奇珠单抗',area:'immune',form:'SC syringe / pen',status:'Rx',
+    productJa:'スキリージ皮下注55mg／75mg／150mg シリンジ・150mgペン',brandEn:'Skyrizi',
+    manufacturerJa:'アッヴィ合同会社',strengths:'55 mg / 75 mg / 150 mg',scope:'brand-family',
+    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999450G1028_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999450G1028_1?user=2'
+  },
+  {
+    slug:'ramelteon',en:'Ramelteon',ja:'ラメルテオン',zh:'雷美替胺',area:'neuro',form:'tablet',status:'Medical',
+    productJa:'ロゼレム錠8mg',brandEn:'Rozerem',
+    manufacturerJa:'武田薬品工業株式会社',strengths:'8 mg',scope:'brand-family',
+    statusNoteJa:'2026年9月に処方箋医薬品の指定解除',statusNoteEn:'Prescription-only designation removed in September 2026; still listed by PMDA as a medical-use medicine.',
+    statusNoteZh:'2026年9月解除“处方笺医药品”指定；仍属于 PMDA 医疗用医药品信息范围。',
+    labelUpdated:'2026-09-01',verifiedAt:'2026-09-22',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190016F1024_1?user=1',
+    patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190016F1024_1?user=2'
+  }
+];
 
 export const guides = [
   {
