@@ -16,9 +16,11 @@ let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status=
 ]);
 checks.push(['patient clinical pathway',
   s.includes('正规就医与处方流程') &&
-  s.indexOf('医院受理 / 预约') < s.indexOf('挂号 / 受付') &&
-  s.indexOf('挂号 / 受付') < s.indexOf('医生诊察') &&
-  s.indexOf('医生诊察') < s.indexOf('处方') &&
+  s.indexOf('医院受理 / 预约') > -1 &&
+  s.indexOf('挂号 / 受付') > s.indexOf('医院受理 / 预约') &&
+  s.indexOf('医生诊察') > s.indexOf('挂号 / 受付') &&
+  s.indexOf('只有医生判断有需要时才会开具处方') > s.indexOf('医生诊察') &&
+  s.indexOf('药局取药') > s.indexOf('只有医生判断有需要时才会开具处方') &&
   s.includes('由医生决定检查、治疗与是否开处方')
 ]);
 checks.push(['institutional pathway separated',
