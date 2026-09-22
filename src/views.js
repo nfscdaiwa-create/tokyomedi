@@ -186,14 +186,47 @@ function pageCards(l,s){
 
 export function page(l,s){
   const d=D[l][s];
+  const copy={
+    en:{
+      medicines:{title:"Browse by what you need",items:[["OTC medicines","Everyday non-prescription medicine categories."],["Prescription medicines","Reference information separated from OTC content."],["Active ingredients","Understand ingredients, dosage forms and label terminology."],["Manufacturers","Find official Japanese manufacturer information."],["Safety information","Read cautions, contraindication context and source material."],["Medicine labels","Understand common Japanese package and label terms."]]},
+      kampo:{title:"Explore Kampo",items:[["Formula names","Japanese and romanized formula names."],["Crude drugs","See ingredient composition and terminology."],["Manufacturers","Official Japanese Kampo manufacturer information."],["Dosage forms","Granules, tablets and other common forms."],["Safety context","Interactions, duplicate ingredients and individual differences."],["Sources","Connect back to official or manufacturer material."]]},
+      health:{title:"Understand the product before the claim",items:[["Nutrition","Ingredient-first explanations."],["Supplements","Separate formulation from marketing."],["Self-care","Everyday wellness and self-care categories."],["Label claims","Understand what a label says and what it does not prove."],["Safety","Keep wellness information separate from treatment claims."],["Sources","Use manufacturer and official information where available."]]},
+      travel:{title:"Prepare before you travel",items:[["01 · Medical records","Recent reports, imaging, medication list and concise history."],["02 · Translation","Translate what the receiving institution actually needs."],["03 · Appointments","Clarify remote review and in-person requirements."],["04 · Costs","Ask which fees are fixed, estimated or institution-specific."],["05 · Language support","Confirm interpretation or companion needs."],["06 · Follow-up","Plan continuity of care after returning home."]]},
+      resources:{title:"Primary Japanese sources",links:[["PMDA","Medicine, device and safety information","https://www.pmda.go.jp/english/"],["Ministry of Health, Labour and Welfare","Official Japanese health and medical policy information","https://www.mhlw.go.jp/english/"]]},
+      about:{title:"What TOKYO MEDI is building",items:[["Useful first","Pages should help a user do something, not just look finished."],["Traceable","Important information should lead back to a source."],["International","Japanese healthcare terminology needs context for overseas users."],["Multilingual","English, Japanese and Chinese are built into the core structure."],["Focused","Medicines, Kampo, health products and medical travel stay the core."],["Correctable","Institutions, manufacturers and users can submit corrections."]]}
+    },
+    ja:{
+      medicines:{title:"目的から探す",items:[["OTC医薬品","一般用医薬品のカテゴリー。"],["処方薬","OTCと分けて参照情報を整理。"],["有効成分","成分、剤形、表示用語を確認。"],["メーカー","日本のメーカー公式情報へ。"],["安全性情報","注意事項や安全性資料を確認。"],["医薬品表示","包装・ラベルで使われる用語を理解。"]]},
+      kampo:{title:"漢方を探す",items:[["処方名","日本語名・ローマ字から確認。"],["構成生薬","生薬構成と用語を確認。"],["メーカー","日本の漢方メーカー情報。"],["剤形","顆粒・錠剤などの一般的な剤形。"],["安全性","相互作用や重複成分に注意。"],["情報源","公的・メーカー資料へ。"]]},
+      health:{title:"広告より先に中身を見る",items:[["栄養","成分を中心に整理。"],["サプリメント","配合と広告表現を分けて確認。"],["セルフケア","日常的な健康管理カテゴリー。"],["表示上の主張","表示が意味する範囲を確認。"],["安全性","健康情報と治療情報を混同しない。"],["情報源","メーカー・公的情報へ。"]]},
+      travel:{title:"渡日前に準備すること",items:[["01 · 診療情報","報告書、画像、服薬リスト、病歴。"],["02 · 翻訳","受診先が必要とする資料を優先。"],["03 · 予約","遠隔確認と来院条件を確認。"],["04 · 費用","確定費用と概算費用を区別。"],["05 · 言語支援","通訳・同行の必要性を確認。"],["06 · 帰国後","フォローアップ方法を事前に整理。"]]},
+      resources:{title:"日本の一次情報",links:[["PMDA","医薬品・医療機器・安全性情報","https://www.pmda.go.jp/"],["厚生労働省","日本の保健医療に関する公的情報","https://www.mhlw.go.jp/"]]},
+      about:{title:"TOKYO MEDIが目指すもの",items:[["使えること","見た目だけでなく、実際に役立つページにする。"],["追跡可能","重要情報は元の情報源まで確認できるように。"],["国際利用者向け","日本独自の用語や背景を補足。"],["多言語","英語・日本語・中国語を基本構造に。"],["重点分野","医薬品、漢方、健康製品、医療渡航。"],["訂正可能","医療機関、メーカー、利用者からの修正を受け付ける。"]]}
+    },
+    zh:{
+      medicines:{title:"按你真正要找的东西进入",items:[["OTC 药品","日本常见非处方药类别。"],["处方药","和 OTC 分开整理，不混在一起。"],["有效成分","理解成分、剂型和标签术语。"],["厂家","进入日本厂家的官方资料。"],["安全信息","查看注意事项与安全资料。"],["药品标签","理解日本包装与标签常见术语。"]]},
+      kampo:{title:"查日本汉方",items:[["方剂名称","按日文名或罗马字查找。"],["组成生药","查看方剂由哪些生药构成。"],["厂家","日本汉方厂家公开资料。"],["剂型","颗粒、片剂等常见剂型。"],["安全性","关注相互作用、重复成分和个体差异。"],["资料来源","回到官方或厂家资料。"]]},
+      health:{title:"先看产品是什么，再看它怎么宣传",items:[["营养","先看成分。"],["补充剂","把配方和营销说法分开。"],["自我护理","日常健康与自我护理类别。"],["标签声称","看清标签到底说了什么。"],["安全边界","不把健康产品写成治疗方案。"],["资料来源","尽量回到厂家和官方资料。"]]},
+      travel:{title:"出发前真正要准备的东西",items:[["01 · 病历","近期报告、影像、用药清单和简要病史。"],["02 · 翻译","优先翻译接诊机构真正需要的资料。"],["03 · 预约","确认远程预审和到院要求。"],["04 · 费用","区分确定费用、估算费用和机构差异。"],["05 · 语言支持","提前确认翻译或陪同需求。"],["06 · 回国后","提前安排后续随访和资料衔接。"]]},
+      resources:{title:"日本一手资料入口",links:[["PMDA","日本医药品医疗器械综合机构","https://www.pmda.go.jp/english/"],["日本厚生劳动省","日本卫生与医疗政策官方信息","https://www.mhlw.go.jp/english/"]]},
+      about:{title:"TOKYO MEDI 到底要做什么",items:[["先有用","页面首先要能解决问题，而不是只看起来做完了。"],["可追溯","重要信息应该能回到原始来源。"],["面向国际用户","补充日本医疗术语和背景。"],["多语言","英语、日语、中文从底层结构开始做。"],["聚焦","日本药品、汉方、健康产品、赴日医疗。"],["可纠错","医疗机构、厂家和用户都可以反馈更正。"]]}
+    }
+  }[l];
+
   if(s==='contact'){
     const contactText=l==='zh'?'商务合作、资料更正、医疗机构或厂家联系，可直接发邮件。':l==='ja'?'事業提携、情報訂正、医療機関・メーカーからのご連絡はこちら。':'For business cooperation, corrections, medical institutions or manufacturers, email us directly.';
     const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(d[0])+'</div><h1>'+esc(d[1])+'</h1><p class="lead">'+esc(contactText)+'</p></div></section><section class="content"><div class="wrap"><div class="contactBox"><strong>'+esc(d[0])+'</strong><a href="mailto:'+EMAIL+'">'+EMAIL+'</a></div></div></section></main>';
     return shell(l,d[1],contactText,s,body);
   }
-  const cards=pageCards(l,s);
-  const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(d[0])+'</div><h1>'+esc(d[1])+'</h1><p class="lead">'+esc(d[2])+'</p></div></section>'+
-    '<section class="content"><div class="wrap"><div class="infoGrid">'+cards.map(c=>'<article class="info"><h3>'+esc(c[0])+'</h3><p>'+esc(c[1])+'</p></article>').join('')+'</div></div></section></main>';
+
+  if(s==='resources'){
+    const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(d[0])+'</div><h1>'+esc(d[1])+'</h1><p class="lead">'+esc(d[2])+'</p></div></section><section class="content"><div class="wrap"><div class="sectionTitle"><h2>'+esc(copy.resources.title)+'</h2></div><div class="resourceList">'+copy.resources.links.map(x=>'<a class="resourceItem" href="'+x[2]+'" target="_blank" rel="noopener"><div><strong>'+esc(x[0])+'</strong><p>'+esc(x[1])+'</p></div><b>↗</b></a>').join("")+'</div></div></section></main>';
+    return shell(l,d[1],d[2],s,body);
+  }
+
+  const key=s==='medical-travel'?'travel':s;
+  const section=copy[key]||copy.about;
+  const body='<main><section class="pageHero"><div class="wrap"><div class="eyebrow">'+esc(d[0])+'</div><h1>'+esc(d[1])+'</h1><p class="lead">'+esc(d[2])+'</p></div></section><section class="content"><div class="wrap"><div class="sectionTitle"><h2>'+esc(section.title)+'</h2></div><div class="infoGrid">'+section.items.map(x=>'<article class="info"><h3>'+esc(x[0])+'</h3><p>'+esc(x[1])+'</p></article>').join("")+'</div></div></section></main>';
   return shell(l,d[1],d[2],s,body);
 }
 
