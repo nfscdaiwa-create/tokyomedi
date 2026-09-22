@@ -78,6 +78,15 @@ h1{font-size:clamp(48px,6vw,78px);line-height:1.01;letter-spacing:-.055em;margin
 .contactBox{max-width:760px;padding:32px;border-radius:22px;background:var(--soft)}
 .contactBox strong{display:block;font-size:14px}
 .contactBox a{display:block;margin-top:14px;color:var(--teal);font-size:20px;font-weight:850;word-break:break-all}
+.searchPageForm{max-width:760px}
+.searchResults{max-width:900px}
+.searchResults h2{font-size:28px;margin:0 0 20px}
+.searchResult{display:flex;justify-content:space-between;align-items:center;gap:22px;padding:20px 4px;border-top:1px solid var(--line)}
+.searchResult:first-of-type{border-top:0}
+.searchResult strong{display:block;font-size:17px}
+.searchResult p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.searchResult b{font-size:20px;color:var(--teal)}
+.searchEmpty{padding:26px;border-radius:16px;background:var(--soft);color:var(--muted)}
 .foot{padding:52px 0 24px;background:#0d1f2c;color:#edf3f5}
 .footGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px}
 .foot p{max-width:680px;color:#9eb0bc;font-size:11px;line-height:1.7}
