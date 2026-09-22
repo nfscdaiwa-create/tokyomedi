@@ -486,12 +486,21 @@ p{text-wrap:pretty}
 }
 .medicineRow{
   display:grid;
-  grid-template-columns:minmax(0,1.55fr) minmax(110px,.55fr) 42px 18px;
+  grid-template-columns:54px minmax(0,1.55fr) minmax(110px,.55fr) 42px 18px;
   gap:16px;
   align-items:center;
   padding:14px 0;
   border-bottom:1px solid var(--line);
 }
+.medicineRowThumb{
+  width:48px;height:48px;
+  display:grid;place-items:center;
+  padding:4px;
+  border:1px solid #e0e4df;
+  border-radius:6px;
+  background:#f7f8f5;
+}
+.medicineRowThumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .medicineRow strong{
   display:block;
   color:var(--ink);
@@ -716,13 +725,22 @@ p{text-wrap:pretty}
 .rxItem{
   min-height:80px;
   display:grid;
-  grid-template-columns:42px minmax(0,1fr) 38px 18px;
+  grid-template-columns:52px minmax(0,1fr) 38px 18px;
   gap:12px;
   align-items:center;
   padding:13px 0;
   border-top:1px solid var(--line);
 }
 .rxItem:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+.rxThumb{
+  width:48px;height:54px;
+  display:grid;place-items:center;
+  padding:4px;
+  border:1px solid #e0e4df;
+  border-radius:6px;
+  background:#f7f8f5;
+}
+.rxThumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .rxGlyph{
   width:36px;height:24px;
   display:grid;
@@ -1720,7 +1738,7 @@ p{text-wrap:pretty}
   .evidenceRow h3{font-size:15px}
   .evidenceRow>b{grid-column:2;justify-self:start}
   .medicineRow{
-    grid-template-columns:minmax(0,1fr) 38px 16px;
+    grid-template-columns:44px minmax(0,1fr) 38px 16px;
     gap:10px;
   }
   .medicineRow .area{display:none}
