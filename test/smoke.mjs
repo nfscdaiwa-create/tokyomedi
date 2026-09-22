@@ -1,7 +1,7 @@
 import worker from '../src/index.js';
 const hit=async(path,lang='zh-CN')=>worker.fetch(new Request('https://tokyomedi.com'+path,{headers:{'accept-language':lang}}));
 const checks=[];
-let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status===200&&s.includes('日本医学实力')&&s.includes('处方药品项展示')]);
+let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status===200&&s.includes('日本医学实力')&&s.includes('处方药品项展示')]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
 r=await hit('/zh-hans/medicines?q=nivolumab'); s=await r.text(); checks.push(['medicine search',r.status===200&&s.includes('Nivolumab')&&s.includes('纳武利尤单抗')]);
 r=await hit('/en/medical-travel'); checks.push(['legacy route 404',r.status===404]);
 r=await hit('/en/travel'); s=await r.text(); checks.push(['travel',r.status===200&&s.includes('National Cancer Center')]);
