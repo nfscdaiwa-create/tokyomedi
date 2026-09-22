@@ -14,21 +14,17 @@ let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status=
   s.indexOf('class="section proofSection"') < s.indexOf('class="section strength evidenceSection"') &&
   s.indexOf('class="section strength evidenceSection"') < s.indexOf('class="section database"')
 ]);
-const clinicalStart=s.indexOf('class="clinicalFlow"'); const clinicalEnd=s.indexOf('</div><a class="textLink"',clinicalStart); const clinical=s.slice(clinicalStart,clinicalEnd);
-checks.push(['patient clinical pathway',
-  s.includes('就医流程与机构咨询') &&
-  s.includes('赴日就医基本流程') &&
-  clinical.indexOf('医院受理 / 预约') > -1 &&
-  clinical.indexOf('初诊登记') > clinical.indexOf('医院受理 / 预约') &&
-  clinical.indexOf('医生诊察') > clinical.indexOf('初诊登记') &&
-  clinical.indexOf('医生判断需要用药时开具处方') > clinical.indexOf('医生诊察') &&
-  clinical.indexOf('药局取药') > clinical.indexOf('医生判断需要用药时开具处方')
+checks.push(['no patient service flow on homepage',
+  !s.includes('class="section pathwaySection"') &&
+  !s.includes('赴日就医基本流程') &&
+  !s.includes('PATIENT / INDIVIDUAL') &&
+  !s.includes('初诊登记')
 ]);
-checks.push(['institutional pathway separated',
-  s.includes('机构品项咨询流程') &&
-  s.includes('提供机构信息') &&
-  s.includes('提交咨询')
-]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
+checks.push(['institution-only inquiry on homepage',
+  s.includes('医药品询价说明') &&
+  s.includes('仅面向医疗机构、药局与企业') &&
+  s.includes('不提供个人医疗咨询')
+]); ]); checks.push(['modern platform features',s.includes('type="speculationrules"')&&s.includes('@view-transition')&&s.includes('animation-timeline')&&s.includes('anchor-name')&&s.includes('container-type:scroll-state')]); checks.push(['modern CSP',(r.headers.get('content-security-policy')||'').includes("inline-speculation-rules")]);
 checks.push(['seo home metadata',
   s.includes('<title>日本医药品资料库与赴日医疗 | TOKYO MEDI</title>') &&
   s.includes('name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"') &&
@@ -43,11 +39,12 @@ r=await hit('/zh-hans/medicines/ramelteon'); s=await r.text(); checks.push(['reg
 r=await hit('/en/guides/read-japanese-medicine-information'); s=await r.text(); checks.push(['article schema',r.status===200&&s.includes('"@type":"Article"')&&s.includes('"BreadcrumbList"')&&s.includes('"publisher":{"@id":"https://tokyomedi.com/#organization"}')]);
 r=await hit('/en/medical-travel'); checks.push(['legacy route 404',r.status===404]);
 r=await hit('/en/travel'); s=await r.text(); checks.push(['travel',r.status===200&&s.includes('National Cancer Center')&&s.includes('designated coordinating agent')&&s.includes('Center for Global Health')]);
-r=await hit('/ja/inquiry?type=institution'); s=await r.text(); checks.push(['inquiry',r.status===200&&s.includes('機関向け品目照会')]);
+r=await hit('/ja/inquiry?type=institution'); s=await r.text(); checks.push(['inquiry',r.status===200&&s.includes('医療機関 / 薬局 / 企業')&&s.includes('B2B / INSTITUTIONAL')&&!s.includes('INFORMATION / INDIVIDUAL')]);
 r=await hit('/sitemap.xml'); s=await r.text(); checks.push(['sitemap',r.status===200&&s.includes('/zh-hans/medicines/nivolumab')&&s.includes('<lastmod>2026-09-22</lastmod>')&&s.includes('xmlns:xhtml=')&&s.includes('hreflang="x-default"')]);
 r=await hit('/robots.txt'); s=await r.text(); checks.push(['robots ai crawl',r.status===200&&s.includes('User-agent: OAI-SearchBot')&&s.includes('Sitemap: https://tokyomedi.com/sitemap.xml')]);
 r=await hit('/llms.txt'); s=await r.text(); checks.push(['llms discovery',r.status===200&&s.includes('# TOKYO MEDI')&&s.includes('/en/medicines')&&s.includes('PMDA')]);
 r=await hit('/favicon.svg'); s=await r.text(); checks.push(['favicon',r.status===200&&s.includes('<svg')]);
 r=await hit('/zh-hans/inquiry'); s=await r.text(); checks.push(['contact email rendered',s.includes('beibei7jp1978@yahoo.co.jp')&&!s.includes('business@tokyomedi.com')]); checks.push(['accessible inquiry form',s.includes('label for="f0"')&&s.includes('id="f0" name="f0"')]);
+r=await hit('/zh-hans/inquiry?type=personal'); s=await r.text(); checks.push(['no personal consultation mode',r.status===200&&s.includes('本页仅用于医疗机构、药局与企业的医药品询价')&&s.includes('不提供个人医疗咨询')&&!s.includes('个人资料咨询')&&!s.includes('INFORMATION / INDIVIDUAL')]);
 r=await hit('/healthz'); const j=await r.json(); checks.push(['health',j.ok===true&&j.version]);
 const failures=[]; for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`); if(!ok)failures.push(name);} if(failures.length){console.error(`::error title=Smoke failures::${failures.join(', ')}`);process.exitCode=1;}
