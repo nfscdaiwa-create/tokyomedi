@@ -8,11 +8,11 @@ checks.push(['medicine product-level completeness',medicines.length>=16&&medicin
 checks.push(['medicine sources product-specific',new Set(medicines.map(m=>m.source)).size===medicines.length]);
 checks.push(['hospital intake provenance',hospitals.length>=7&&hospitals.every(h=>h.url&&h.verified&&h.facts&&h.facts.en?.length>=2&&h.facts['zh-hans']?.length>=2&&h.facts.ja?.length>=2)]);
 let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status===200&&s.includes('日本医学研究与医疗发展')&&s.includes('处方药品项展示')]); checks.push(['no promotional question-style copy',!s.includes('先看证据，再看服务')&&!s.includes('日本医学实力，有具体成果')&&!s.includes('查到药以后，下一步是什么？')]); checks.push(['homepage trust-first hierarchy',
-  s.indexOf('资料来源与核验')>-1 &&
-  s.indexOf('日本医学研究与医疗发展')>-1 &&
-  s.indexOf('日本医药品资料库')>-1 &&
-  s.indexOf('资料来源与核验') < s.indexOf('日本医学研究与医疗发展') &&
-  s.indexOf('日本医学研究与医疗发展') < s.indexOf('日本医药品资料库')
+  s.includes('资料来源与核验') &&
+  s.includes('日本医学研究与医疗发展') &&
+  s.includes('日本医药品资料库') &&
+  s.indexOf('class="section proofSection"') < s.indexOf('class="section strength evidenceSection"') &&
+  s.indexOf('class="section strength evidenceSection"') < s.indexOf('class="section database"')
 ]);
 checks.push(['patient clinical pathway',
   s.includes('就医流程与机构咨询') &&
