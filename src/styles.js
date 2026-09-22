@@ -657,4 +657,168 @@ button{cursor:pointer}
   .formGrid,.footGrid{grid-template-columns:1fr}
   .footLinks{grid-template-columns:1fr 1fr}
 }
+
+/* 2026 progressive-enhancement layer */
+html{scrollbar-gutter:stable}
+h1,h2,h3{text-wrap:balance}
+p{overflow-wrap:anywhere;text-wrap:pretty}
+.section,.content{content-visibility:auto;contain-intrinsic-size:auto 820px}
+.database .wrap{container:medicine-db / inline-size}
+.guides .wrap{container:guide-module / inline-size}
+.inquirySection .wrap{container:inquiry-module / inline-size}
+.rxShowcase .wrap{container:rx-module / inline-size}
+
+@view-transition{navigation:auto}
+.top{view-transition-name:site-header}
+.brand{view-transition-name:site-brand}
+.hero h1,.pageHero h1{view-transition-name:page-title}
+::view-transition-group(site-header),
+::view-transition-group(site-brand),
+::view-transition-group(page-title){animation-duration:.48s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(root){animation:tm-root-out .26s ease both}
+::view-transition-new(root){animation:tm-root-in .42s cubic-bezier(.22,1,.36,1) both}
+@keyframes tm-root-out{to{opacity:0;filter:blur(4px);transform:scale(.995)}}
+@keyframes tm-root-in{from{opacity:0;filter:blur(5px);transform:translateY(8px)}}
+
+@property --route-angle{
+  syntax:"<angle>";
+  inherits:false;
+  initial-value:0deg;
+}
+.route{
+  --route-angle:0deg;
+  background:
+    radial-gradient(circle at 82% 16%,rgba(69,184,167,.18),transparent 30%),
+    conic-gradient(from var(--route-angle) at 82% 18%,transparent 0 74%,rgba(126,224,208,.08) 79%,transparent 86%),
+    linear-gradient(145deg,#102f37,#0b242c);
+  animation:route-aura 16s linear infinite;
+}
+@keyframes route-aura{to{--route-angle:360deg}}
+
+@scope (.route){
+  :scope:has(.routeRow:hover){box-shadow:0 34px 100px rgba(7,37,42,.22)}
+  .routeRow:focus-visible{outline:2px solid #8dd9ce;outline-offset:6px;border-radius:12px}
+}
+
+.headTools{anchor-scope:--search-anchor;position:relative}
+.headSearch{anchor-name:--search-anchor}
+.searchContext{display:none}
+@supports(anchor-name:--tm-anchor){
+  .searchContext{
+    display:block;
+    position:fixed;
+    position-anchor:--search-anchor;
+    position-area:bottom;
+    position-try-fallbacks:flip-block,flip-inline;
+    width:max-content;max-width:260px;
+    padding:8px 10px;margin:8px;
+    border:1px solid rgba(215,226,223,.96);
+    border-radius:10px;
+    background:rgba(11,37,44,.96);color:#d9eeea;
+    box-shadow:0 12px 34px rgba(8,32,37,.2);
+    font-size:9px;font-weight:800;letter-spacing:.06em;
+    opacity:0;translate:0 -5px;scale:.98;
+    pointer-events:none;
+    transition:opacity .18s ease,translate .18s ease,scale .18s ease;
+    z-index:80;
+  }
+  .headTools:has(.headSearch:hover) .searchContext,
+  .headTools:has(.headSearch:focus-visible) .searchContext{
+    opacity:1;translate:0 0;scale:1;
+  }
+}
+
+.top{container-type:scroll-state;container-name:sitebar}
+@container sitebar scroll-state(stuck:top){
+  .bar{height:66px}
+  .brand small{opacity:.38}
+  .top{box-shadow:0 12px 34px rgba(17,50,56,.07)}
+}
+
+@supports(animation-timeline:scroll()){
+  .top::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:-1px;height:2px;
+    background:linear-gradient(90deg,#0c766c,#76cfc0);
+    transform-origin:left;transform:scaleX(0);
+    animation-name:tm-scroll-progress;
+    animation-timing-function:linear;
+    animation-fill-mode:both;
+    animation-timeline:scroll(root block);
+  }
+  @keyframes tm-scroll-progress{to{transform:scaleX(1)}}
+}
+
+@supports(animation-timeline:view()){
+  .sectionHead,
+  .strengthRow,
+  .whyItem,
+  .guideRow,
+  .hospitalRow,
+  .inquiryCard,
+  .rxItem,
+  .hospitalCard,
+  .sourceLevel{
+    animation-name:tm-reveal;
+    animation-fill-mode:both;
+    animation-timeline:view(block);
+    animation-range:entry 8% cover 32%;
+  }
+  .featuredGuide,.timeline,.dbSearch{
+    animation-name:tm-reveal-scale;
+    animation-fill-mode:both;
+    animation-timeline:view(block);
+    animation-range:entry 6% cover 36%;
+  }
+  .hero:before{
+    animation-name:tm-hero-orbit;
+    animation-fill-mode:both;
+    animation-timeline:scroll(root block);
+    animation-range:0 85vh;
+  }
+  @keyframes tm-reveal{
+    from{opacity:.15;transform:translateY(28px);filter:blur(5px)}
+    to{opacity:1;transform:none;filter:none}
+  }
+  @keyframes tm-reveal-scale{
+    from{opacity:.2;transform:translateY(24px) scale(.975)}
+    to{opacity:1;transform:none}
+  }
+  @keyframes tm-hero-orbit{
+    from{transform:translate3d(0,0,0) scale(1)}
+    to{transform:translate3d(-28px,36px,0) scale(1.05)}
+  }
+}
+
+@container medicine-db (max-width:860px){
+  .dbPanel{grid-template-columns:1fr}
+  .dbSearch{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
+  .dbSearch h3,.dbSearch p{grid-column:1/-1}
+  .dbSearch .searchBox,.dbSearch .chips{margin-top:0}
+}
+@container guide-module (max-width:860px){
+  .guideLayout{grid-template-columns:1fr}
+  .featuredGuide{min-height:350px}
+}
+@container inquiry-module (max-width:760px){
+  .inquirySplit{grid-template-columns:1fr}
+}
+@container rx-module (max-width:920px){
+  .rxTable{grid-template-columns:repeat(2,1fr)}
+}
+@container rx-module (max-width:520px){
+  .rxTable{grid-template-columns:1fr}
+}
+
+.field textarea{field-sizing:content;min-height:120px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  @view-transition{navigation:none}
+}
+@media(prefers-reduced-data:reduce){
+  .route{animation:none}
+}
+
 `;
