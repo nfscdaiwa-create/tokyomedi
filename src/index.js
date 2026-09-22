@@ -64,7 +64,7 @@ ${SITE}/en/inquiry
 export default {async fetch(req){
  const url=new URL(req.url),pathname=url.pathname.replace(/\/+$/,'')||'/';
  if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:securityHeaders({'cache-control':'no-store'})});
- if(pathname==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,{headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
+ if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:securityHeaders({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/llms.txt')return new Response(llms(),{headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/favicon.svg'||pathname==='/logo.svg')return new Response(brandSvg(),{headers:securityHeaders({'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=86400'})});
