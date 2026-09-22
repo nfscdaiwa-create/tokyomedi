@@ -87,6 +87,11 @@ h1{font-size:clamp(48px,6vw,78px);line-height:1.01;letter-spacing:-.055em;margin
 .searchResult p{margin:5px 0 0;color:var(--muted);font-size:13px}
 .searchResult b{font-size:20px;color:var(--teal)}
 .searchEmpty{padding:26px;border-radius:16px;background:var(--soft);color:var(--muted)}
+.resourceList{display:grid;gap:12px;max-width:900px}
+.resourceItem{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.resourceItem strong{font-size:17px}
+.resourceItem p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.resourceItem b{font-size:20px;color:var(--teal)}
 .foot{padding:52px 0 24px;background:#0d1f2c;color:#edf3f5}
 .footGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px}
 .foot p{max-width:680px;color:#9eb0bc;font-size:11px;line-height:1.7}
