@@ -14,14 +14,15 @@ let r=await hit('/zh-hans'); let s=await r.text(); checks.push(['home',r.status=
   s.indexOf('class="section proofSection"') < s.indexOf('class="section strength evidenceSection"') &&
   s.indexOf('class="section strength evidenceSection"') < s.indexOf('class="section database"')
 ]);
+const clinicalStart=s.indexOf('class="clinicalFlow"'); const clinicalEnd=s.indexOf('</div><a class="textLink"',clinicalStart); const clinical=s.slice(clinicalStart,clinicalEnd);
 checks.push(['patient clinical pathway',
   s.includes('就医流程与机构咨询') &&
   s.includes('赴日就医基本流程') &&
-  s.indexOf('医院受理 / 预约') > -1 &&
-  s.indexOf('初诊登记') > s.indexOf('医院受理 / 预约') &&
-  s.indexOf('医生诊察') > s.indexOf('初诊登记') &&
-  s.indexOf('医生判断需要用药时开具处方') > s.indexOf('医生诊察') &&
-  s.indexOf('药局取药') > s.indexOf('医生判断需要用药时开具处方')
+  clinical.indexOf('医院受理 / 预约') > -1 &&
+  clinical.indexOf('初诊登记') > clinical.indexOf('医院受理 / 预约') &&
+  clinical.indexOf('医生诊察') > clinical.indexOf('初诊登记') &&
+  clinical.indexOf('医生判断需要用药时开具处方') > clinical.indexOf('医生诊察') &&
+  clinical.indexOf('药局取药') > clinical.indexOf('医生判断需要用药时开具处方')
 ]);
 checks.push(['institutional pathway separated',
   s.includes('机构品项咨询流程') &&
