@@ -1982,4 +1982,170 @@ body{
   .hospitalCard,.hospitalCard:nth-child(even){padding:18px 0;border-left:0}
 }
 
+
+/* Trust-first homepage architecture */
+.compactHead{margin-bottom:18px}
+.proofSection{
+  padding-top:44px;padding-bottom:52px;
+  background:#fff;border-bottom:1px solid var(--line);
+}
+.proofGrid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.proofItem{
+  padding:20px 22px 22px;border-left:1px solid var(--line);
+}
+.proofItem:first-child{border-left:0}
+.proofItem>span{
+  display:block;margin-bottom:30px;color:#9a635a;
+  font-size:8px;font-weight:800;letter-spacing:.14em;
+}
+.proofItem h3{
+  margin:0 0 8px;font-size:15px;font-weight:720;letter-spacing:-.015em;
+}
+.proofItem p{
+  margin:0;color:var(--muted);font-size:10px;line-height:1.68;
+}
+
+/* Evidence is specific and source-linked, not promotional */
+.evidenceSection{background:var(--paper)}
+.evidenceList{border-top:1px solid var(--line)}
+.evidenceRow{
+  display:grid;grid-template-columns:88px minmax(0,1fr) 116px;
+  gap:24px;align-items:center;
+  padding:20px 0;border-bottom:1px solid var(--line);
+}
+.evidenceRow:hover h3{color:var(--teal)}
+.evidenceYear{
+  color:#9a635a;font-size:22px;font-weight:650;letter-spacing:-.03em;
+}
+.evidenceRow h3{
+  margin:0 0 5px;font-size:18px;font-weight:700;transition:.18s ease;
+}
+.evidenceRow p{
+  margin:0;max-width:680px;color:var(--muted);font-size:10px;line-height:1.65;
+}
+.evidenceRow>b{
+  justify-self:end;color:#778487;
+  font-size:8px;font-weight:800;letter-spacing:.09em;
+}
+
+/* Care pathway is the core conversion logic for individuals */
+.pathwaySection{
+  background:#f0efe9;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.pathwaySplit{
+  display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr);
+  gap:42px;align-items:start;
+}
+.patientPath{padding-right:36px;border-right:1px solid #cdcec7}
+.institutionPath{padding-left:0}
+.pathTitle{
+  display:flex;gap:14px;align-items:flex-start;margin-bottom:24px;
+}
+.pathTitle>span{
+  width:30px;height:30px;display:grid;place-items:center;
+  border:1px solid #adb8b5;color:#9a635a;font-size:9px;font-weight:800;
+}
+.pathTitle small{
+  display:block;margin-bottom:4px;color:#7d898b;
+  font-size:7px;font-weight:800;letter-spacing:.13em;
+}
+.pathTitle h3{
+  margin:0;font-size:20px;font-weight:700;letter-spacing:-.025em;
+}
+.clinicalFlow{
+  display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+  border-top:1px solid #c9cbc5;border-bottom:1px solid #c9cbc5;
+  margin-bottom:16px;
+}
+.clinicalStep{
+  position:relative;padding:18px 12px 18px 0;
+  min-height:150px;border-left:1px solid #d4d5cf;
+}
+.clinicalStep:first-child{border-left:0}
+.clinicalStep>span{
+  display:block;margin-bottom:30px;
+  color:#9a635a;font-size:8px;font-weight:800;
+}
+.clinicalStep strong{
+  display:block;margin-bottom:6px;font-size:11px;font-weight:720;
+}
+.clinicalStep p{
+  margin:0;color:#6f7b7d;font-size:8.5px;line-height:1.55;
+}
+.institutionFlow{
+  border-top:1px solid #c9cbc5;margin-bottom:16px;
+}
+.institutionStep{
+  display:grid;grid-template-columns:30px 1fr;gap:12px;
+  padding:13px 0;border-bottom:1px solid #d4d5cf;
+}
+.institutionStep>span{
+  color:#9a635a;font-size:8px;font-weight:800;padding-top:2px;
+}
+.institutionStep strong{
+  display:block;margin-bottom:3px;font-size:11px;
+}
+.institutionStep p{
+  margin:0;color:#738083;font-size:8.5px;line-height:1.5;
+}
+.clinicalNotice{
+  margin-top:20px;padding:13px 0;
+  border-top:1px solid #c9cbc5;
+  color:#6c787a;font-size:9px;line-height:1.65;
+}
+
+/* Database follows trust proof and should feel like the evidence becoming useful */
+.database{border-top:0}
+.dbProof{margin-top:14px}
+
+/* Later brand-method section is intentionally quieter */
+.trustSection{background:#faf9f6}
+.trustStatement h2{font-size:clamp(31px,3.5vw,44px)}
+.trustStatement p{max-width:390px}
+
+/* Final personal inquiry copy should not resemble medicine shopping */
+.inquiryCard:first-child .btn{
+  background:transparent;color:var(--ink);border:1px solid #adb8b5;
+}
+.inquiryCard:first-child .btn:hover{background:#e6e5df}
+
+@media(max-width:1080px){
+  .proofGrid{grid-template-columns:repeat(2,1fr)}
+  .proofItem:nth-child(3){border-left:0;border-top:1px solid var(--line)}
+  .proofItem:nth-child(4){border-top:1px solid var(--line)}
+  .pathwaySplit{grid-template-columns:1fr;gap:30px}
+  .patientPath{padding-right:0;border-right:0}
+  .institutionPath{padding-top:26px;border-top:1px solid #cdcec7}
+  .clinicalFlow{grid-template-columns:repeat(4,1fr)}
+  .clinicalStep:nth-child(5){border-left:0;border-top:1px solid #d4d5cf}
+  .clinicalStep:nth-child(n+5){border-top:1px solid #d4d5cf}
+}
+@media(max-width:760px){
+  .proofSection{padding:36px 0 42px}
+  .proofGrid{grid-template-columns:1fr}
+  .proofItem,.proofItem:nth-child(n){
+    padding:16px 0;border-left:0;border-top:1px solid var(--line);
+  }
+  .proofItem:first-child{border-top:0}
+  .proofItem>span{margin-bottom:15px}
+  .evidenceRow{
+    grid-template-columns:62px 1fr;gap:14px;padding:17px 0;
+  }
+  .evidenceYear{font-size:18px}
+  .evidenceRow h3{font-size:15px}
+  .evidenceRow>b{grid-column:2;justify-self:start}
+  .clinicalFlow{grid-template-columns:1fr}
+  .clinicalStep,.clinicalStep:nth-child(n){
+    min-height:0;
+    display:grid;grid-template-columns:34px 1fr;gap:10px;
+    padding:12px 0;border-left:0;border-top:1px solid #d4d5cf;
+  }
+  .clinicalStep:first-child{border-top:0}
+  .clinicalStep>span{margin:1px 0 0}
+  .pathTitle h3{font-size:18px}
+}
+
 `;
