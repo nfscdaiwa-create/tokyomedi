@@ -324,7 +324,8 @@ export const hospitals = [
 ];
 
 export const sourceLinks = [
-  ['PMDA','Pharmaceuticals and Medical Devices Agency','https://www.pmda.go.jp/english/'],
+  ['PMDA Medicine Search','Product-level labels, patient guides, interview forms and safety documents','https://www.pmda.go.jp/PmdaSearch/iyakuSearch/'],
+  ['PMDA おくすりサーチ','Patient-facing search for prescribed medicines','https://www.pmda.go.jp/okusuri_search/'],
   ['MHLW','Ministry of Health, Labour and Welfare','https://www.mhlw.go.jp/english/'],
   ['RAD-AR','Risk/Benefit Assessment of Drugs – patient medicine information','https://www.rad-ar.or.jp/siori/english/']
 ];
