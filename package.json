@@ -1,14 +1,13 @@
 {
-  "name": "tokyomedi",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "node scripts/write-build-meta.mjs",
-    "dev": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+  "name":"tokyomedi",
+  "version":"1.0.0",
+  "private":true,
+  "type":"module",
+  "scripts":{
+    "test":"node test/smoke.mjs",
+    "build":"npm test",
+    "dev":"wrangler dev",
+    "deploy":"npm test && wrangler deploy"
   },
-  "devDependencies": {
-    "wrangler": "^4.136.1"
-  }
+  "devDependencies":{"wrangler":"^4.136.1"}
 }

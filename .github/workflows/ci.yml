@@ -1,16 +1,13 @@
 name: TOKYO MEDI CI
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 permissions:
   contents: read
-
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -18,7 +15,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install
-        run: npm install --no-audit --no-fund
-      - name: Build
-        run: npm run build
+      - run: npm install --no-audit --no-fund
+      - run: npm test

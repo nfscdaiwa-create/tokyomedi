@@ -1,73 +1,8 @@
-import { BUILD_META } from "./build-meta.js";
-import { SITE, L, D } from "./content.js";
-import { home, page, searchPage, sitemap, headers } from "./views.js";
+import {SITE,VERSION,LOCALES,medicines,guides} from './data.js';
+import {p,securityHeaders} from './core.js';
+import {home,medicinesPage,medicineDetail} from './pages-home.js';
+import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} from './pages-content.js';
 
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    const pathname = url.pathname.replace(/\/+$/, "") || "/";
+function sitemap(){const paths=[]; for(const l of LOCALES){['','medicines','guides','travel','sources','about','inquiry'].forEach(s=>paths.push(SITE+p(l,s)));medicines.forEach(m=>paths.push(SITE+p(l,'medicines/'+m.slug)));guides.forEach(g=>paths.push(SITE+p(l,'guides/'+g.slug)));}return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths.map(x=>`<url><loc>${x}</loc></url>`).join('\n')}\n</urlset>`;}
 
-    if (pathname === "/__build") {
-      return Response.json(BUILD_META, {
-        headers: headers({ "cache-control": "no-store" })
-      });
-    }
-
-    if (pathname === "/healthz") {
-      return Response.json({
-        ok: true,
-        service: "tokyomedi",
-        commit: BUILD_META.commit
-      }, {
-        headers: headers({ "cache-control": "no-store" })
-      });
-    }
-
-    if (pathname === "/robots.txt") {
-      return new Response(
-        "User-agent: *\nAllow: /\nSitemap: " + SITE + "/sitemap.xml\n",
-        { headers: headers({ "content-type": "text/plain; charset=UTF-8" }) }
-      );
-    }
-
-    if (pathname === "/sitemap.xml") {
-      return new Response(sitemap(), {
-        headers: headers({ "content-type": "application/xml; charset=UTF-8" })
-      });
-    }
-
-    if (pathname === "/") {
-      return Response.redirect(new URL("/en", url), 302);
-    }
-
-    const parts = pathname.split("/").filter(Boolean);
-    const locale = parts[0];
-    const slug = parts[1] || "";
-
-    if (!L[locale]) {
-      return Response.redirect(new URL("/en", url), 302);
-    }
-
-    let html;
-    if (!slug) {
-      html = home(locale);
-    } else if (slug === "search") {
-      html = searchPage(locale, url.searchParams.get("q") || "");
-    } else if (D[locale] && D[locale][slug]) {
-      html = page(locale, slug);
-    } else {
-      return new Response("Not Found", {
-        status: 404,
-        headers: headers({ "content-type": "text/plain; charset=UTF-8" })
-      });
-    }
-
-    return new Response(html, {
-      headers: headers({
-        "content-type": "text/html; charset=UTF-8",
-        "cache-control": "public, max-age=0, must-revalidate",
-        "content-language": locale === "zh" ? "zh-CN" : locale
-      })
-    });
-  }
-};
+export default {async fetch(req){const url=new URL(req.url),pathname=url.pathname.replace(/\/+$/,'')||'/'; if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:securityHeaders({'cache-control':'no-store'})}); if(pathname==='/robots.txt')return new Response(`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,{headers:securityHeaders({'content-type':'text/plain; charset=utf-8'})}); if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:securityHeaders({'content-type':'application/xml; charset=utf-8'})}); if(pathname==='/'){const a=(req.headers.get('accept-language')||'').toLowerCase();const l=a.includes('zh')?'zh-hans':a.includes('ja')?'ja':'en';return Response.redirect(new URL('/'+l,url),302);} const parts=pathname.split('/').filter(Boolean),l=parts[0]; if(!LOCALES.includes(l))return Response.redirect(new URL('/en',url),302); const section=parts[1]||'',slug=parts.slice(2).join('/'); let html=null; if(!section)html=home(l,req); else if(section==='medicines')html=slug?medicineDetail(l,req,slug):medicinesPage(l,req); else if(section==='guides')html=slug?guideDetail(l,req,slug):guidesPage(l,req); else if(section==='travel')html=travelPage(l,req); else if(section==='sources')html=sourcesPage(l,req); else if(section==='about')html=aboutPage(l,req); else if(section==='inquiry')html=inquiryPage(l,req); if(!html)return new Response('Not Found',{status:404,headers:securityHeaders({'content-type':'text/plain; charset=utf-8'})}); return new Response(html,{headers:securityHeaders({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});}};
