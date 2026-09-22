@@ -7,8 +7,8 @@ export const UI = {
   'zh-hans': {
     lang:'简体中文', nav:{medicines:'日本医药品',guides:'最新指南',travel:'赴日医疗',sources:'资料来源',about:'关于',inquiry:'咨询'},
     heroKicker:'日本医药品 · 医疗指南 · 赴日医疗',
-    heroTitle:'先把日本医疗信息弄清楚，再决定下一步。',
-    heroLead:'TOKYO MEDI 面向国际用户整理日本药品、官方资料、医疗指南和赴日医疗路径。处方药只作资料与品项展示，实际使用必须经过专业医疗流程。',
+    heroTitle:'日本医药品与医疗信息，先回到一手资料。',
+    heroLead:'查询日本商品名、一般名、厂家、规格与 PMDA 官方资料，并继续理解医疗指南和赴日接诊路径。处方药仅作资料与品项展示，不提供普通商品式购买。',
     searchPlaceholder:'搜索药名 / 成分 / 日文名 / 英文名', search:'搜索资料库',
     routeTitle:'你现在要做什么？',
     routeItems:[['medicines','查日本药品','按药名、成分和治疗领域查资料'],['guides','看医疗指南','读懂日本药品与医疗制度'],['travel','准备赴日医疗','按医疗需求理解接诊路径'],['inquiry','咨询下一步','个人咨询与机构询价分开处理']],
@@ -27,8 +27,8 @@ export const UI = {
   en: {
     lang:'English', nav:{medicines:'Medicines',guides:'Guides',travel:'Medical Travel',sources:'Sources',about:'About',inquiry:'Inquiry'},
     heroKicker:'JAPANESE MEDICINES · GUIDES · MEDICAL TRAVEL',
-    heroTitle:'Understand the information first. Then decide the next step.',
-    heroLead:'TOKYO MEDI organizes Japanese medicine references, official sources, medical guides and medical-travel pathways for international users. Prescription medicines are reference-only; use requires an appropriate clinical process.',
+    heroTitle:'Japanese medicines and care, grounded in primary sources.',
+    heroLead:'Find Japanese product names, generics, manufacturers, strengths and PMDA primary sources, then continue into medical guides and care pathways in Japan. Prescription medicines remain reference-only.',
     searchPlaceholder:'Search medicine / ingredient / Japanese or English name', search:'Search database',
     routeTitle:'What are you here to do?',
     routeItems:[['medicines','Look up medicines','Search names, ingredients and therapeutic areas'],['guides','Read medical guides','Understand Japanese medicine and care systems'],['travel','Plan care in Japan','Start from your medical need and intake pathway'],['inquiry','Find the next step','Separate patient questions from institutional sourcing']],
@@ -47,8 +47,8 @@ export const UI = {
   ja: {
     lang:'日本語', nav:{medicines:'医薬品',guides:'ガイド',travel:'医療渡航',sources:'情報源',about:'TOKYO MEDI',inquiry:'お問い合わせ'},
     heroKicker:'日本の医薬品 · 医療ガイド · 医療渡航',
-    heroTitle:'まず情報を明確に。その上で次の行動を決める。',
-    heroLead:'TOKYO MEDIは、海外利用者向けに日本の医薬品情報、一次資料、医療ガイド、医療渡航の受診経路を整理します。処方薬は資料・品目表示のみで、実際の使用には適切な医療プロセスが必要です。',
+    heroTitle:'日本の医薬品と医療情報を、一次資料から。',
+    heroLead:'日本販売名、一般名、製造販売元、規格、PMDA一次資料を確認し、その先の医療ガイドや日本での受診経路まで整理します。処方薬は資料・品目表示に限定します。',
     searchPlaceholder:'医薬品名・成分・日本語名・英語名を検索', search:'データベース検索',
     routeTitle:'何をしたいですか？',
     routeItems:[['medicines','日本の医薬品を調べる','名称・成分・領域から資料を探す'],['guides','医療ガイドを読む','日本の医薬品・制度を理解する'],['travel','日本での受診を準備する','医療ニーズから受入経路を確認する'],['inquiry','次の相談先を確認する','個人相談と機関向け照会を分ける']],
