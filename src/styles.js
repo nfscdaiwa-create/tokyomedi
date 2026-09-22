@@ -518,87 +518,6 @@ p{text-wrap:pretty}
 .medicineRow>b{color:#8d625c;font-size:13px;font-weight:500}
 .medicineRow:hover strong{color:var(--teal-dark)}
 
-/* Care pathway */
-.pathwaySection{
-  background:var(--paper-2);
-  border-bottom:1px solid var(--line);
-}
-.pathwaySplit{
-  display:grid;
-  grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);
-  gap:40px;
-  align-items:start;
-}
-.patientPath{padding-right:36px;border-right:1px solid #cccec7}
-.pathTitle{
-  display:flex;
-  align-items:flex-start;
-  gap:13px;
-  margin-bottom:22px;
-}
-.pathTitle>span{
-  width:30px;height:30px;
-  display:grid;
-  place-items:center;
-  flex:0 0 30px;
-  border:1px solid #aeb9b5;
-  border-radius:4px;
-  color:var(--red);
-  font-size:9px;
-  font-weight:800;
-}
-.pathTitle small{
-  display:block;
-  margin-bottom:4px;
-  color:#7a8789;
-  font-size:8px;
-  line-height:1.3;
-  font-weight:800;
-  letter-spacing:.1em;
-}
-.pathTitle h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.02em}
-.clinicalFlow{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  margin-bottom:16px;
-  border-top:1px solid #c7cac3;
-  border-bottom:1px solid #c7cac3;
-}
-.clinicalStep{
-  min-height:164px;
-  padding:17px 11px;
-  border-left:1px solid #d5d6d1;
-}
-.clinicalStep:first-child{border-left:0}
-.clinicalStep>span{
-  display:block;
-  margin-bottom:26px;
-  color:var(--red);
-  font-size:9px;
-  font-weight:800;
-}
-.clinicalStep strong{display:block;margin-bottom:6px;font-size:11px;line-height:1.45}
-.clinicalStep p{margin:0;color:#6d7b7e;font-size:9.5px;line-height:1.55}
-.institutionFlow{border-top:1px solid #c7cac3;margin-bottom:16px}
-.institutionStep{
-  display:grid;
-  grid-template-columns:28px minmax(0,1fr);
-  gap:11px;
-  padding:12px 0;
-  border-bottom:1px solid #d5d6d1;
-}
-.institutionStep>span{padding-top:2px;color:var(--red);font-size:9px;font-weight:800}
-.institutionStep strong{display:block;margin-bottom:3px;font-size:11px}
-.institutionStep p{margin:0;color:#6f7c7e;font-size:9.5px;line-height:1.52}
-.clinicalNotice{
-  margin-top:20px;
-  padding:13px 0 0;
-  border-top:1px solid #c7cac3;
-  color:#687679;
-  font-size:10px;
-  line-height:1.65;
-}
-
 /* Care in Japan */
 .travelGrid{
   display:grid;
@@ -742,6 +661,50 @@ p{text-wrap:pretty}
 .guideRow p{margin:0;color:var(--muted);font-size:10px;line-height:1.55}
 .guideRow>b{color:#8d625c;font-size:12px;font-weight:500}
 .guideRow:hover h3{color:var(--teal-dark)}
+
+/* Institution-only inquiry */
+.institutionInquiry{
+  background:var(--paper-2);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.institutionInquiryGrid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(320px,.55fr);
+  gap:54px;
+  align-items:start;
+}
+.institutionInquiry h2{
+  margin:8px 0 12px;
+  font-size:clamp(30px,3.4vw,44px);
+  line-height:1.12;
+  letter-spacing:-.038em;
+}
+.institutionInquiry p{
+  max-width:720px;
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.72;
+}
+.institutionInquiryMeta{
+  border-top:1px solid #c8cbc4;
+}
+.institutionInquiryMeta span{
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #d3d5cf;
+  color:#657376;
+  font-size:10px;
+  line-height:1.55;
+}
+.institutionInquiryMeta b{
+  color:var(--ink);
+  font-size:10px;
+}
+.institutionInquiryMeta .btn{margin-top:16px}
 
 /* Prescription index */
 .rxShowcase{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -1154,12 +1117,6 @@ p{text-wrap:pretty}
   .proofItem:nth-child(4){border-top:1px solid var(--line)}
   .dbPanel{grid-template-columns:1fr;gap:20px}
   .dbSearch{padding:0 0 20px;border-right:0;border-bottom:1px solid var(--line)}
-  .pathwaySplit{grid-template-columns:1fr;gap:28px}
-  .patientPath{padding-right:0;border-right:0}
-  .institutionPath{padding-top:24px;border-top:1px solid #cccec7}
-  .clinicalFlow{grid-template-columns:repeat(4,1fr)}
-  .clinicalStep:nth-child(5){border-left:0}
-  .clinicalStep:nth-child(n+5){border-top:1px solid #d5d6d1}
   .trustLayout{grid-template-columns:1fr;gap:24px}
   .guideLayout{grid-template-columns:1fr}
   .featuredGuide{min-height:290px}
@@ -1168,6 +1125,7 @@ p{text-wrap:pretty}
 
 /* Mobile */
 @media(max-width:820px){
+  .institutionInquiryGrid{grid-template-columns:1fr;gap:24px}
   :root{--header:auto}
   .wrap{width:min(var(--max),calc(100% - 30px))}
   .bar{
@@ -1233,18 +1191,6 @@ p{text-wrap:pretty}
     gap:10px;
   }
   .medicineRow .area{display:none}
-  .clinicalFlow{grid-template-columns:1fr}
-  .clinicalStep,.clinicalStep:nth-child(n){
-    min-height:0;
-    display:grid;
-    grid-template-columns:34px minmax(0,1fr);
-    gap:10px;
-    padding:11px 0;
-    border-left:0;
-    border-top:1px solid #d5d6d1;
-  }
-  .clinicalStep:first-child{border-top:0}
-  .clinicalStep>span{margin:1px 0 0}
   .travelGrid{grid-template-columns:1fr}
   .travelVisual{min-height:300px}
   .travelVisualCopy strong{font-size:17px}
