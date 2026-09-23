@@ -1,21 +1,99 @@
-TOKYO MEDI medicine product photographs
+TOKYO MEDI medicine photograph source register
 
-semaglutide.jpg — Rybelsus 3 mg / 7 mg Japanese tablets
-Photographer: Windshear
-Source: https://commons.wikimedia.org/wiki/File:Rybelsus_3mg_7mg.jpg
-License: Creative Commons Attribution-ShareAlike 4.0 International
-https://creativecommons.org/licenses/by-sa/4.0/
+Source attribution is not a reuse license. For entries without an explicit CC license, republication permission remains unconfirmed.
 
-dupilumab.jpg — Dupixent 300 mg / 2 mL Japanese autoinjector
-Photographer: Lyall0
-Source: https://commons.wikimedia.org/wiki/File:Dupixent_Pen_and_Packaging.jpg
-License: Creative Commons Attribution-ShareAlike 4.0 International
-https://creativecommons.org/licenses/by-sa/4.0/
+amlodipine — /media/medicine/amlodipine.jpg — photographed strength: 5 mg
+Credit: PETMEDIC PRO
+Source page: https://www.petmedic-pro.com/product.php?id=3263
+Source file: https://files.bcart.jp/petmedicpro/uploads/PICT5/612170710.jpg
+Rights: reuse permission not confirmed
 
-ramelteon.jpg — Rozerem 8 mg Japanese blister pack
-Photographer: 松岡明芳
-Source: https://commons.wikimedia.org/wiki/File:2020-05-20_Ramelteon_%E3%83%AD%E3%82%BC%E3%83%AC%E3%83%A0%E9%8C%A08mg.jpg
-License: Creative Commons Attribution-ShareAlike 4.0 International
-https://creativecommons.org/licenses/by-sa/4.0/
+nivolumab — /media/medicine/nivolumab.jpg — photographed strength: 100 mg / 10 mL
+Credit: BMS Oncology Japan
+Source page: https://www.oncology.bmshealthcare.jp/products/opdivo/drug-info
+Source file: https://www.oncology.bmshealthcare.jp/assets/buildeasy/apac-commercial/bms-healthcare-jp/ja/images/opdivo/opdivo-ivdi-product-image-03.jpg
+Rights: reuse permission not confirmed
 
-Images are 960-pixel thumbnails from Wikimedia Commons without content edits.
+pembrolizumab — /media/medicine/pembrolizumab.webp — photographed strength: 100 mg / 4 mL
+Credit: MSD Connect
+Source page: https://www.msdconnect.jp/products/keytruda/info/picture/
+Source file: https://www.msdconnect.jp/wp-content/uploads/sites/5/2021/03/keytruda_inf100-new_img_001_l.jpg
+Rights: reuse permission not confirmed
+
+osimertinib — /media/medicine/osimertinib.jpg — photographed strength: 40 mg / 80 mg
+Credit: CareNet
+Source page: https://www.carenet.com/news/general/carenet/60720
+Source file: https://www.carenet.com/files/news/20250519170805-1.jpg
+Rights: reuse permission not confirmed
+
+trastuzumab-deruxtecan — /media/medicine/trastuzumab-deruxtecan.png — photographed strength: 100 mg
+Credit: 日刊工業新聞
+Source page: https://www.nikkan.co.jp/articles/view/00558801
+Source file: https://d3ukgu32nhw07o.cloudfront.net/article/img1_file5ecb7ff751090.png
+Rights: reuse permission not confirmed
+
+lecanemab — /media/medicine/lecanemab.webp — photographed strength: 500 mg / 5 mL
+Credit: エーザイ Medical
+Source page: https://medical.eisai.jp/products/leq/leq_v_500
+Source file: https://medical.eisai.jp/hubfs/medical.eisai/DB_images/product_detail/LEQ_V_500/LEQ_V500_PIC_PH.jpg
+Rights: reuse permission not confirmed
+
+sacubitril-valsartan — /media/medicine/sacubitril-valsartan.png — photographed strength: 50 mg
+Credit: ノバルティス ファーマ
+Source page: https://www.pro.novartis.com/jp-ja/products/entresto/document
+Source file: https://www.pro.novartis.com/sites/pro_novartis_com_jp/files/2024-08/ph_enr_ptp_50mg_10_front.png
+Rights: reuse permission not confirmed
+
+empagliflozin — /media/medicine/empagliflozin.jpg — photographed strength: 10 mg
+Credit: ベーリンガーインゲルハイム
+Source page: https://www.bij-kusuri.jp/products/jad/tablets-10/
+Source file: https://www.bij-kusuri.jp/products/files/jad_t10_package2.jpg
+Rights: reuse permission not confirmed
+
+edoxaban — /media/medicine/edoxaban.jpg — photographed strength: 30 mg
+Credit: 関西薬品
+Source page: https://www.kansaiyakuhin.com/hanbai/products/list.php?mode=search&name_kana=%E3%83%A9
+Source file: https://www.kansaiyakuhin.com/upload/save_image/08161644_66bf037b9d37d.jpg
+Rights: reuse permission not confirmed
+
+tolvaptan — /media/medicine/tolvaptan.jpg — photographed strength: OD 7.5 mg / 15 mg / 30 mg
+Credit: 大塚製薬
+Source page: https://www.otsuka.co.jp/company/newsreleases/2019/20191127_1.html
+Source file: https://www.otsuka.co.jp/company/newsreleases/assets/img/20191127_1_02.jpg
+Rights: reuse permission not confirmed
+
+pirfenidone — /media/medicine/pirfenidone.jpg — photographed strength: 200 mg
+Credit: 塩野義製薬
+Source page: https://med.shionogi.co.jp/products/medicine/pirespa.html
+Source file: https://med.shionogi.co.jp/content/dam/hcp/jp/product-files/medicine/f/pirespa/medicine-images/pirespa/pirespa-02.jpg
+Rights: reuse permission not confirmed
+
+upadacitinib — /media/medicine/upadacitinib.jpg — photographed strength: 7.5 mg / 15 mg
+Credit: アッヴィ / 共同通信PRワイヤー
+Source page: https://kyodonewsprwire.jp/release/202004239299
+Source file: https://kyodonewsprwire.jp/prwfile/release/M102977/202004239299/_prw_PI2lg_nVWD5Qc1.jpg
+Rights: reuse permission not confirmed
+
+risankizumab — /media/medicine/risankizumab.jpg — photographed strength: 150 mg / 1 mL pen
+Credit: スキリージ.jp / アッヴィ
+Source page: https://skyrizi.jp/ps/about_skyrizi/treatment.html
+Source file: https://skyrizi.jp/ps/common/images/about_skyrizi/pic_treatment3.jpg
+Rights: reuse permission not confirmed
+
+dupilumab — /media/medicine/dupilumab.jpg — photographed strength: 300 mg / 2 mL
+Credit: Lyall0
+Source page: https://commons.wikimedia.org/wiki/File:Dupixent_Pen_and_Packaging.jpg
+Source file: https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Dupixent_Pen_and_Packaging.jpg/960px-Dupixent_Pen_and_Packaging.jpg
+Rights: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+semaglutide — /media/medicine/semaglutide.jpg — photographed strength: 3 mg / 7 mg
+Credit: Windshear
+Source page: https://commons.wikimedia.org/wiki/File:Rybelsus_3mg_7mg.jpg
+Source file: https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Rybelsus_3mg_7mg.jpg/960px-Rybelsus_3mg_7mg.jpg
+Rights: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+ramelteon — /media/medicine/ramelteon.jpg — photographed strength: 8 mg
+Credit: 松岡明芳
+Source page: https://commons.wikimedia.org/wiki/File:2020-05-20_Ramelteon_%E3%83%AD%E3%82%BC%E3%83%AC%E3%83%A0%E9%8C%A08mg.jpg
+Source file: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/2020-05-20_Ramelteon_%E3%83%AD%E3%82%BC%E3%83%AC%E3%83%A0%E9%8C%A08mg.jpg/960px-2020-05-20_Ramelteon_%E3%83%AD%E3%82%BC%E3%83%AC%E3%83%A0%E9%8C%A08mg.jpg
+Rights: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
