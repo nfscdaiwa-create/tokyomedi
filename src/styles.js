@@ -595,7 +595,7 @@ p{text-wrap:pretty}
   border-bottom:1px solid var(--line);
 }
 .hospitalRow strong{display:block;font-size:11.5px;font-weight:700}
-.hospitalRow small{display:block;margin-top:3px;color:#7a8789;font-size:9px;line-height:1.45}
+.hospitalRow small{display:block;margin-top:3px;color:#58686c;font-size:9px;line-height:1.45}
 .hospitalRow>span{color:#58686c;font-size:9px;text-align:right}
 .hospitalRow>b{color:#8b625c;font-size:12px;font-weight:500}
 .hospitalRow:hover strong{color:var(--teal-dark)}
