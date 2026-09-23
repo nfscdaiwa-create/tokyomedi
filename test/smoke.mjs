@@ -19,7 +19,8 @@ redirect=await hit('/','ja-JP,zh-CN;q=0.5'); checks.push(['Japanese root redirec
 redirect=await hit('/en/medicines/?q=Rybelsus'); checks.push(['trailing slash canonical redirect',redirect.status===308&&redirect.headers.get('location')==='https://tokyomedi.com/en/medicines?q=Rybelsus']);
 const requiredMedicineFields=['slug','en','ja','zh','productJa','brandEn','manufacturerJa','strengths','status','labelUpdated','verifiedAt','source'];
 checks.push(['medicine product-level completeness',medicines.length>=16&&medicines.every(m=>requiredMedicineFields.every(k=>Boolean(m[k]))&&m.source.includes('pmda.go.jp'))]);
-checks.push(['medicine use summaries complete and localized',medicines.every(m=>['zh-hans','ja','en'].every(l=>medicineUses[m.slug]?.[l]?.length>=8))]);
+checks.push(['medicine use source summaries complete',medicines.every(m=>['zh-hans','ja','en'].every(l=>medicineUses[m.slug]?.[l]?.length>=8))]);
+checks.push(['20 published AI locales',LOCALES.length===20&&new Set(LOCALES).size===20&&['en','zh-hans','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja','pcm','mr','vi','te','sw','ha','tr'].every(l=>LOCALES.includes(l))]);
 checks.push(['all medicine photos have product-level provenance',Object.keys(medicinePhotos).length===medicines.length&&medicines.every(m=>{
  const photo=medicinePhotos[m.slug]; return photo?.src.startsWith('https://')&&photo?.page.startsWith('https://')&&photo?.credit&&photo?.strength&&photo?.match;
 })]);
@@ -108,8 +109,9 @@ for(const l of LOCALES)for(const suffix of suffixes){
  const response=await hit(path);
  const html=await response.text();
  const internalLinks=[...html.matchAll(/<a\b[^>]*href="(\/[^"]+)"/g)].map(x=>new URL(x[1],SITE).pathname);
- if(response.status!==200||!html.includes(`<link rel="canonical" href="${SITE+path}">`)||!html.includes(`<html lang="${l==='zh-hans'?'zh-Hans':l}">`)||(html.match(/<h1\b/g)||[]).length!==1||internalLinks.some(x=>!validPaths.has(x)))routeFailures.push(path);
+ const expectedLang=l==='zh-hans'?'zh-Hans':l; const expectedDir=['ar','ur'].includes(l)?'rtl':'ltr';
+ if(response.status!==200||!html.includes(`<link rel="canonical" href="${SITE+path}">`)||!html.includes(`<html lang="${expectedLang}" dir="${expectedDir}">`)||(html.match(/<h1\b/g)||[]).length!==1||internalLinks.some(x=>!validPaths.has(x)))routeFailures.push(path);
 }
-checks.push(['all localized routes and internal links',validPaths.size===147&&routeFailures.length===0]);
+checks.push(['all localized routes and internal links',validPaths.size===LOCALES.length*suffixes.length&&routeFailures.length===0]);
 if(routeFailures.length)console.error('Route failures:',routeFailures.join(', '));
 const failures=[]; for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`); if(!ok)failures.push(name);} if(failures.length){console.error(`::error title=Smoke failures::${failures.join(', ')}`);process.exitCode=1;}
