@@ -3,10 +3,25 @@ import {p,securityHeaders} from './core.js';
 import {home,medicinesPage,medicineDetail} from './pages-home.js';
 import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} from './pages-content.js';
 import {healthPage,healthDetail} from './pages-products.js';
+import {healthImageUrls} from './health-images.js';
 
-const SITE_LASTMOD='2026-09-22';
+const SITE_LASTMOD='2026-09-23';
 const xmlEsc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const hrefLang=l=>l==='zh-hans'?'zh-Hans':l;
+function preferredLocale(header=''){
+ const preferences=header.toLowerCase().split(',').map((entry,index)=>{
+  const [tag,...options]=entry.trim().split(';');
+  const qOption=options.find(x=>x.trim().startsWith('q='));
+  const quality=qOption?Number(qOption.trim().slice(2)):1;
+  return {tag,quality:Number.isFinite(quality)?quality:0,index};
+ }).filter(x=>x.quality>0&&x.quality<=1).sort((a,b)=>b.quality-a.quality||a.index-b.index);
+ for(const {tag} of preferences){
+  if(tag==='zh'||tag.startsWith('zh-'))return 'zh-hans';
+  if(tag==='ja'||tag.startsWith('ja-'))return 'ja';
+  if(tag==='en'||tag.startsWith('en-'))return 'en';
+ }
+ return 'en';
+}
 
 function sitemap(){
  const records=[
@@ -66,90 +81,67 @@ ${SITE}/en/inquiry
 }
 
 
-const retailHeaders={'user-agent':'Mozilla/5.0 (compatible; TOKYO-MEDI/1.0; +https://tokyomedi.com)'};
-
-function decodeHtmlUrl(v=''){return v.replace(/&amp;/g,'&').replace(/&#038;/g,'&').replace(/&#x26;/gi,'&');}
-function pageImage(html,base){
- const patterns=[
-  /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i,
-  /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i,
-  /<img[^>]+class=["'][^"']*(?:wp-post-image|attachment-woocommerce_single|woocommerce-product-gallery__image)[^"']*["'][^>]+src=["']([^"']+)["']/i,
-  /<img[^>]+src=["']([^"']+)["'][^>]+class=["'][^"']*(?:wp-post-image|attachment-woocommerce_single)[^"']*["']/i
- ];
- for(const ptn of patterns){const m=html.match(ptn);if(m?.[1]){try{return new URL(decodeHtmlUrl(m[1]),base).href}catch{}}}
- return '';
-}
-function productLinkFromSearch(html){
- const re=/href=["'](https?:\/\/tsubaki-jp\.com\/(?:ja\/|zh-hans\/|en\/)?product\/[^"'#?]+\/?)[^"']*["']/gi;
- const seen=new Set(); let m;
- while((m=re.exec(html))){const v=decodeHtmlUrl(m[1]); if(!seen.has(v)){seen.add(v);return v;}}
- return '';
-}
 function fallbackProductSvg(title='TOKYO MEDI'){
  const safe=String(title).replace(/[<>&"']/g,'').slice(0,34);
  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560"><rect width="800" height="560" fill="#f3f4f0"/><rect x="230" y="82" width="340" height="330" rx="24" fill="#fff" stroke="#ccd3cf" stroke-width="2"/><path d="M330 160h140M400 130v60" stroke="#426e68" stroke-width="12" stroke-linecap="round"/><text x="400" y="290" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#243236">TOKYO MEDI</text><text x="400" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#718083">${safe}</text><text x="400" y="470" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#8c9798">PRODUCT REFERENCE</text></svg>`;
 }
-async function resolveMedicinePage(m){
- if(m.imagePage)return m.imagePage;
- const known={amlodipine:'https://tsubaki-jp.com/zh-hans/product/%E6%B0%A8%E6%B0%AF%E5%9C%B0%E5%B9%B3-2/'};
- if(known[m.slug])return known[m.slug];
- const productStem=(m.productJa||'').split(/[／・]/)[0].replace(/(?:錠|点滴静注|皮下注|OD錠).*$/,'').trim();
- const queries=[productStem,m.brandEn,m.en,m.ja,m.zh].filter(Boolean);
- for(const q of queries){
-  try{
-   const u='https://tsubaki-jp.com/?post_type=product&s='+encodeURIComponent(q);
-   const res=await fetch(u,{headers:retailHeaders,redirect:'follow'});
-   if(!res.ok)continue;
-   const link=productLinkFromSearch(await res.text());
-   if(link)return link;
-  }catch{}
- }
- return '';
-}
-async function productMedia(kind,slug){
+async function productMedia(kind,slug,ctx){
  const records=kind==='health'?healthProducts:medicines;
  const x=records.find(v=>v.slug===slug);
- if(!x)return new Response('Not Found',{status:404});
+ if(!x)return new Response('Not Found',{status:404,headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'no-store'})});
+ const label=kind==='health'?(x.en||x.ja||x.zh):(x.brandEn||x.en||x.ja);
+ const placeholder=()=>new Response(fallbackProductSvg(label),{headers:{'content-type':'image/svg+xml; charset=utf-8','cache-control':kind==='medicine'?'public, max-age=604800':'public, max-age=300, s-maxage=300','x-content-type-options':'nosniff'}});
+ // Medicine photos from an unrelated retailer can be wrong and took several seconds
+ // on a cache miss. A deterministic reference card is safer and immediate.
+ if(kind==='medicine')return placeholder();
  const key=new Request('https://tokyomedi.com/media/'+kind+'/'+encodeURIComponent(slug));
+ const remember=async response=>{
+  if(typeof caches!=='undefined'){
+   try{const put=caches.default.put(key,response.clone());if(ctx?.waitUntil)ctx.waitUntil(put);else await put}catch{}
+  }
+  return response;
+ };
  try{
   if(typeof caches!=='undefined'){
    const cached=await caches.default.match(key);
    if(cached)return cached;
   }
-  const page=kind==='health'?x.sourcePage:await resolveMedicinePage(x);
-  if(page){
-   const pageRes=await fetch(page,{headers:retailHeaders,redirect:'follow'});
-   if(pageRes.ok){
-    const imageUrl=pageImage(await pageRes.text(),page);
-    if(imageUrl){
-     const imageRes=await fetch(imageUrl,{headers:retailHeaders,redirect:'follow'});
-     if(imageRes.ok&&imageRes.body){
-      const response=new Response(imageRes.body,{headers:{
-       'content-type':imageRes.headers.get('content-type')||'image/jpeg',
-       'cache-control':'public, max-age=86400, s-maxage=604800',
-       'x-content-type-options':'nosniff'
-      }});
-      if(typeof caches!=='undefined')await caches.default.put(key,response.clone());
-      return response;
-     }
-    }
-   }
-  }
+  const imageUrl=healthImageUrls[slug];
+  if(!imageUrl)return remember(placeholder());
+  const imageRes=await fetch(imageUrl,{signal:AbortSignal.timeout(4000),redirect:'follow'});
+  const contentType=imageRes.headers.get('content-type')||'';
+  if(!imageRes.ok||!/^image\/(?:jpeg|png|webp|avif)(?:;|$)/i.test(contentType)||Number(imageRes.headers.get('content-length'))>2_000_000)return remember(placeholder());
+  const imageBytes=await imageRes.arrayBuffer();
+  if(!imageBytes.byteLength||imageBytes.byteLength>2_000_000)return remember(placeholder());
+  const response=new Response(imageBytes,{headers:{
+   'content-type':contentType,
+   'cache-control':'public, max-age=86400, s-maxage=604800',
+   'x-content-type-options':'nosniff'
+  }});
+  return remember(response);
  }catch{}
- const label=kind==='health'?(x.en||x.ja||x.zh):(x.brandEn||x.en||x.ja);
- return new Response(fallbackProductSvg(label),{headers:{'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=3600'}});
+ return remember(placeholder());
 }
 
-export default {async fetch(req){
+export default {async fetch(req,env,ctx){
  const url=new URL(req.url),pathname=url.pathname.replace(/\/+$/,'')||'/';
- if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:securityHeaders({'cache-control':'no-store'})});
- if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
- if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:securityHeaders({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});
- if(pathname==='/llms.txt')return new Response(llms(),{headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
- if(pathname==='/favicon.svg'||pathname==='/logo.svg')return new Response(brandSvg(),{headers:securityHeaders({'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=86400'})});
- if(pathname.startsWith('/media/health/'))return productMedia('health',decodeURIComponent(pathname.slice('/media/health/'.length)));
- if(pathname.startsWith('/media/medicine/'))return productMedia('medicine',decodeURIComponent(pathname.slice('/media/medicine/'.length)));
- if(pathname==='/'){const a=(req.headers.get('accept-language')||'').toLowerCase();const l=a.includes('zh')?'zh-hans':a.includes('ja')?'ja':'en';return Response.redirect(new URL('/'+l,url),302);}
+ const pageSecurity=extra=>securityHeaders(url.protocol==='https:'?{'strict-transport-security':'max-age=31536000',...extra}:extra);
+ if(url.protocol==='http:'&&!['localhost','127.0.0.1'].includes(url.hostname)){
+  url.protocol='https:';
+  return Response.redirect(url,308);
+ }
+ if(url.pathname!==pathname)return Response.redirect(new URL(pathname+url.search,url),308);
+ if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:pageSecurity({'cache-control':'no-store'})});
+ if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
+ if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:pageSecurity({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});
+ if(pathname==='/llms.txt')return new Response(llms(),{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
+ if(pathname==='/favicon.svg'||pathname==='/logo.svg')return new Response(brandSvg(),{headers:pageSecurity({'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=86400'})});
+ if(pathname.startsWith('/media/health/'))return productMedia('health',pathname.slice('/media/health/'.length),ctx);
+ if(pathname.startsWith('/media/medicine/'))return productMedia('medicine',pathname.slice('/media/medicine/'.length),ctx);
+ if(pathname==='/'){
+  const l=preferredLocale(req.headers.get('accept-language')||'');
+  return new Response(null,{status:302,headers:pageSecurity({'location':new URL('/'+l,url).href,'vary':'Accept-Language','cache-control':'private, no-store'})});
+ }
  const parts=pathname.split('/').filter(Boolean),l=parts[0];
  if(!LOCALES.includes(l))return Response.redirect(new URL('/en',url),302);
  const section=parts[1]||'',slug=parts.slice(2).join('/');
@@ -162,6 +154,6 @@ export default {async fetch(req){
  else if(section==='sources')html=sourcesPage(l,req);
  else if(section==='about')html=aboutPage(l,req);
  else if(section==='inquiry')html=inquiryPage(l,req);
- if(!html)return new Response('Not Found',{status:404,headers:securityHeaders({'content-type':'text/plain; charset=utf-8','x-robots-tag':'noindex'})});
- return new Response(html,{headers:securityHeaders({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});
+ if(!html)return new Response('Not Found',{status:404,headers:pageSecurity({'content-type':'text/plain; charset=utf-8','x-robots-tag':'noindex'})});
+ return new Response(html,{headers:pageSecurity({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});
 }};

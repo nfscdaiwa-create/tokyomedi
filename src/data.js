@@ -1,6 +1,6 @@
 export const SITE = 'https://tokyomedi.com';
 export const EMAIL = 'beibei7jp1978@yahoo.co.jp';
-export const VERSION = '2026.09.22-rebuild';
+export const VERSION = '2026.09.23-audit';
 export const LOCALES = ['zh-hans','en','ja'];
 
 export const UI = {
@@ -20,7 +20,7 @@ export const UI = {
     filters:{all:'全部领域',cardio:'心血管',oncology:'肿瘤',metabolic:'代谢',neuro:'神经',immune:'免疫',respiratory:'呼吸'},
     travelFilter:'按医疗需求筛选', hospitalOfficial:'医院官方国际患者信息',
     personal:'资料联系', institution:'医疗机构 / 药局 / 企业',
-    personalDesc:'本站不提供个人医疗咨询、诊断、挂号、处方或就医协调服务。', institutionDesc:'仅面向医疗机构、药局与企业，按药品、规格、数量、目的地和机构资质进行品项询价。',
+    personalDesc:'本站不提供个人医疗咨询、诊断、挂号、处方或就医协调服务。', institutionDesc:'仅面向医疗机构、药局与企业。可整理药品、规格、数量、目的地与公开的许可登记信息，生成品项询价邮件。',
     startPersonal:'查看赴日医疗资讯', startInstitution:'提交机构询价',
     footer:'本站提供一般医疗与药品资料信息，不提供诊断、处方或个体化治疗建议。'
   },
@@ -40,7 +40,7 @@ export const UI = {
     filters:{all:'All fields',cardio:'Cardiovascular',oncology:'Oncology',metabolic:'Metabolic',neuro:'Neurology',immune:'Immunology',respiratory:'Respiratory'},
     travelFilter:'Filter by medical need', hospitalOfficial:'Official international-patient information',
     personal:'Information contact', institution:'Institutions / pharmacies / companies',
-    personalDesc:'TOKYO MEDI does not provide personal medical consultation, appointments, diagnosis, prescribing or care coordination.', institutionDesc:'For institutions, pharmacies and companies only. Submit medicine, strength, quantity, destination and credential details for a product inquiry.',
+    personalDesc:'TOKYO MEDI does not provide personal medical consultation, appointments, diagnosis, prescribing or care coordination.', institutionDesc:'For institutions, pharmacies and companies only. Prepare a product inquiry email with medicine, strength, quantity, destination and public licence information.',
     startPersonal:'View medical travel information', startInstitution:'Submit institutional inquiry',
     footer:'This site provides general medicine and healthcare reference information. It does not provide diagnosis, prescribing or individualized treatment advice.'
   },
@@ -60,7 +60,7 @@ export const UI = {
     filters:{all:'すべて',cardio:'循環器',oncology:'腫瘍',metabolic:'代謝',neuro:'神経',immune:'免疫',respiratory:'呼吸器'},
     travelFilter:'医療ニーズで絞り込む', hospitalOfficial:'病院公式・国際患者情報',
     personal:'情報連絡', institution:'医療機関 / 薬局 / 企業',
-    personalDesc:'TOKYO MEDI は個人向けの医療相談、予約、診断、処方、受診調整を行いません。', institutionDesc:'医療機関・薬局・企業のみを対象に、医薬品、規格、数量、仕向地、機関資格に基づく品目照会を受け付けます。',
+    personalDesc:'TOKYO MEDI は個人向けの医療相談、予約、診断、処方、受診調整を行いません。', institutionDesc:'医療機関・薬局・企業向けです。医薬品、規格、数量、仕向地、公開されている許可登録情報を記載した照会メールを作成できます。',
     startPersonal:'医療渡航情報を見る', startInstitution:'機関向け照会',
     footer:'一般的な医薬品・医療情報を提供するサイトです。診断、処方、個別の治療助言は行いません。'
   }
@@ -123,7 +123,7 @@ export const medicines = [
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190408A1025_1?user=2'
   },
   {
-    slug:'sacubitril-valsartan',en:'Sacubitril / valsartan',ja:'サクビトリルバルサルタン',zh:'沙库巴曲缬沙坦',area:'cardio',form:'tablet / pediatric granules',status:'Rx',
+    slug:'sacubitril-valsartan',en:'Sacubitril / valsartan',ja:'サクビトリルバルサルタン',zh:'沙库巴曲缬沙坦',area:'cardio',form:'tablet / pediatric granule tablet',status:'Rx',
     productJa:'エンレスト錠50mg／100mg／200mg・粒状錠小児用12.5mg／31.25mg',brandEn:'Entresto',
     manufacturerJa:'ノバルティスファーマ株式会社',strengths:'50 mg / 100 mg / 200 mg; pediatric 12.5 mg / 31.25 mg',scope:'brand-family',
     labelUpdated:'2025-09-09',verifiedAt:'2026-09-22',
@@ -139,7 +139,7 @@ export const medicines = [
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3969023F1023_1?user=2'
   },
   {
-    slug:'semaglutide',en:'Semaglutide',ja:'セマグルチド',zh:'司美格鲁肽',area:'metabolic',form:'product-dependent',status:'Rx',
+    slug:'semaglutide',en:'Semaglutide',ja:'セマグルチド',zh:'司美格鲁肽',area:'metabolic',form:'oral tablet',status:'Rx',
     productJa:'リベルサス錠3mg／7mg／14mg',brandEn:'Rybelsus',
     manufacturerJa:'ノボ ノルディスク ファーマ株式会社',strengths:'3 mg / 7 mg / 14 mg',scope:'representative',
     alternateProductsJa:['オゼンピック皮下注2mg','ウゴービ皮下注（複数規格）'],
@@ -208,27 +208,27 @@ export const medicines = [
 ];
 
 export const healthProducts = [
-  {slug:'fish-collagen-peptide-granules-w',sku:'TSU-HF-COLLAGEN-500',brand:'Tsubaki Trading',zh:'日本深海鱼胶原蛋白',ja:'日本発・高品質 深海魚コラーゲン',en:'Japan Deep-Sea Fish Collagen Peptide',pack:'500g',price:'280 CNY',kind:'food',origin:'日本',sourcePage:'https://tsubaki-jp.com/ja/product/fish-collagen-peptide-granules-w/',verifiedAt:'2026-09-23'},
+  {slug:'fish-collagen-peptide-granules-w',sku:'TSU-HF-0001',brand:'Tsubaki Trading',zh:'日本深海鱼胶原蛋白',ja:'日本発・高品質 深海魚コラーゲン',en:'Japan Deep-Sea Fish Collagen Peptide',pack:'500g',price:'280 CNY',kind:'food',origin:'日本',sourcePage:'https://tsubaki-jp.com/ja/product/fish-collagen-peptide-granules-w/',verifiedAt:'2026-09-23'},
   {slug:'dhc-blood-sugar-care',sku:'TSU-HF-0020',brand:'DHC',zh:'DHC 血糖值双重对策',ja:'DHC 血糖値ダブル対策',en:'DHC Blood Sugar Double Support',pack:'60粒 / 20日分',price:'¥2,418',kind:'functional-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-blood-sugar-care/',verifiedAt:'2026-09-23'},
   {slug:'dhc-calcium-cbp',sku:'TSU-HF-0021',brand:'DHC',zh:'DHC 钙 + CBP',ja:'DHC カルシウム + CBP',en:'DHC Calcium + CBP',pack:'80粒 / 20日分',price:'¥969',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-cbp/',verifiedAt:'2026-09-23'},
   {slug:'dhc-calcium-magnesium-20',sku:'TSU-HF-0003',brand:'DHC',zh:'DHC 钙 / 镁',ja:'DHC カルシウム／マグ',en:'DHC Calcium / Magnesium',pack:'60粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium-2/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-calcium-magnesium-60',sku:'TSU-HF-0004',brand:'DHC',zh:'DHC 钙 / 镁 60日装',ja:'DHC カルシウム／マグ 60日分',en:'DHC Calcium / Magnesium 60-Day',pack:'180粒 / 60日分',price:'¥1,788',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-citrulline',sku:'TSU-HF-0005',brand:'DHC',zh:'DHC 瓜氨酸',ja:'DHC シトルリン',en:'DHC Citrulline',pack:'60粒 / 20日分',price:'¥2,256',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-citrulline/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-coenzyme-q10',sku:'TSU-HF-0006',brand:'DHC',zh:'DHC 包接体辅酶 Q10',ja:'DHC コエンザイムQ10 包接体',en:'DHC Coenzyme Q10 Inclusion Complex',pack:'20日分',price:'¥1,548',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-coenzyme-q10/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-concentrated-ukon-20',sku:'TSU-HF-0008',brand:'DHC',zh:'DHC 浓缩姜黄',ja:'DHC 濃縮ウコン',en:'DHC Concentrated Turmeric Ukon',pack:'40粒 / 20日分',price:'¥1,302',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-concentrated-ukon-60',sku:'TSU-HF-0009',brand:'DHC',zh:'DHC 浓缩姜黄 60日装',ja:'DHC 濃縮ウコン 60日分',en:'DHC Concentrated Turmeric Ukon 60-Day',pack:'120粒 / 60日分',price:'¥3,603',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric-2/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-calcium-magnesium-60',sku:'TSU-HF-0002',brand:'DHC',zh:'DHC 钙 / 镁 60日装',ja:'DHC カルシウム／マグ 60日分',en:'DHC Calcium / Magnesium 60-Day',pack:'180粒 / 60日分',price:'¥1,788',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-citrulline',sku:'TSU-HF-0014',brand:'DHC',zh:'DHC 瓜氨酸',ja:'DHC シトルリン',en:'DHC Citrulline',pack:'60粒 / 20日分',price:'¥2,256',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-citrulline/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-coenzyme-q10',sku:'TSU-HF-0015',brand:'DHC',zh:'DHC 包接体辅酶 Q10',ja:'DHC コエンザイムQ10 包接体',en:'DHC Coenzyme Q10 Inclusion Complex',pack:'20日分',price:'¥1,548',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-coenzyme-q10/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-concentrated-ukon-20',sku:'TSU-HF-0016',brand:'DHC',zh:'DHC 浓缩姜黄',ja:'DHC 濃縮ウコン',en:'DHC Concentrated Turmeric Ukon',pack:'40粒 / 20日分',price:'¥1,302',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-concentrated-ukon-60',sku:'TSU-HF-0017',brand:'DHC',zh:'DHC 浓缩姜黄 60日装',ja:'DHC 濃縮ウコン 60日分',en:'DHC Concentrated Turmeric Ukon 60-Day',pack:'120粒 / 60日分',price:'¥3,603',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric-2/',verifiedAt:'2026-09-23'},
   {slug:'dhc-fermented-black-sesamin-stamina',sku:'TSU-HF-0012',brand:'DHC',zh:'DHC 发酵黑芝麻素 + 活力',ja:'DHC 醗酵黒セサミン＋スタミナ',en:'DHC Fermented Black Sesamin + Stamina',pack:'120粒 / 20日分',price:'¥2,823',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-stamina/',verifiedAt:'2026-09-23'},
   {slug:'dhc-fermented-black-sesamin-premium',sku:'TSU-HF-0013',brand:'DHC',zh:'DHC 发酵黑芝麻素 PREMIUM',ja:'DHC 醗酵黒セサミン プレミアム',en:'DHC Fermented Black Sesamin Premium',pack:'120粒 / 20日分',price:'¥4,755',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-premium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-hatomugi-coix-extract',sku:'TSU-HF-0014',brand:'DHC',zh:'DHC 薏仁精华',ja:'DHC はとむぎエキス',en:'DHC Hatomugi Extract',pack:'20日分',price:'¥1,056',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-hatomugi-coix-extract/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-heme-iron',sku:'TSU-HF-0015',brand:'DHC',zh:'DHC 血红素铁',ja:'DHC ヘム鉄',en:'DHC Heme Iron',pack:'40粒 / 20日分',price:'¥1,227',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-heme-iron/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-hatomugi-coix-extract',sku:'TSU-HF-0006',brand:'DHC',zh:'DHC 薏仁精华',ja:'DHC はとむぎエキス',en:'DHC Hatomugi Extract',pack:'20日分',price:'¥1,056',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-hatomugi-coix-extract/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-heme-iron',sku:'TSU-HF-0005',brand:'DHC',zh:'DHC 血红素铁',ja:'DHC ヘム鉄',en:'DHC Heme Iron',pack:'40粒 / 20日分',price:'¥1,227',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-heme-iron/',verifiedAt:'2026-09-23'},
   {slug:'dhc-kozu-black-vinegar',sku:'TSU-HF-0011',brand:'DHC',zh:'DHC 黑醋',ja:'DHC 黒酢',en:'DHC Kozu Black Vinegar',pack:'60粒 / 20日分',price:'¥1,794',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-kozu-black-vinegar/',verifiedAt:'2026-09-23'},
   {slug:'dhc-liver-extract-ornithine',sku:'TSU-HF-0018',brand:'DHC',zh:'DHC 肝脏精华 + 鸟氨酸',ja:'DHC 肝臓エキス＋オルニチン',en:'DHC Liver Extract + Ornithine',pack:'60粒 / 20日分',price:'¥2,160',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-liver-extract-ornithine/',verifiedAt:'2026-09-23'},
   {slug:'dhc-multivitamin',sku:'TSU-HF-0007',brand:'DHC',zh:'DHC 综合维生素',ja:'DHC マルチビタミン',en:'DHC Multivitamin',pack:'20粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-multivitamin/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-natural-vitamin-e-soy',sku:'TSU-HF-0010',brand:'DHC',zh:'DHC 天然维生素 E（大豆）',ja:'DHC 天然ビタミンE（大豆）',en:'DHC Natural Vitamin E (Soy)',pack:'20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-natural-vitamin-e-soy/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-ornithine',sku:'TSU-HF-0017',brand:'DHC',zh:'DHC 鸟氨酸',ja:'DHC オルニチン',en:'DHC Ornithine',pack:'100粒 / 20日分',price:'¥1,815',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-ornithine/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-perfect-supple-multivitamin-mineral',sku:'TSU-HF-0019',brand:'DHC',zh:'DHC 完美综合维生素与矿物质',ja:'DHC パーフェクトサプリ マルチビタミン＆ミネラル',en:'DHC Perfect Supplement Multivitamin & Mineral',pack:'20日分',price:'¥2,844',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-perfect-supple-multivitamin-mineral/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-domestic-perfect-vegetable-premium',sku:'TSU-HF-0016',brand:'DHC',zh:'DHC 国产完美蔬菜 PREMIUM',ja:'DHC 国産パーフェクト野菜 プレミアム',en:'DHC Perfect Vegetables Premium',pack:'20日分',price:'¥1,344',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-domestic-perfect-vegetable-premium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-sustained-release-folic-acid',sku:'TSU-HF-0022',brand:'DHC',zh:'DHC 缓释叶酸',ja:'DHC 持続型葉酸',en:'DHC Sustained-Release Folic Acid',pack:'60日分',price:'¥1,554',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-sustained-release-folic-acid/',verifiedAt:'2026-09-23'}
+  {slug:'dhc-natural-vitamin-e-soy',sku:'TSU-HF-0004',brand:'DHC',zh:'DHC 天然维生素 E（大豆）',ja:'DHC 天然ビタミンE（大豆）',en:'DHC Natural Vitamin E (Soy)',pack:'20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-natural-vitamin-e-soy/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-ornithine',sku:'TSU-HF-0019',brand:'DHC',zh:'DHC 鸟氨酸',ja:'DHC オルニチン',en:'DHC Ornithine',pack:'100粒 / 20日分',price:'¥1,815',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-ornithine/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-perfect-supple-multivitamin-mineral',sku:'TSU-HF-0009',brand:'DHC',zh:'DHC 完美综合维生素与矿物质',ja:'DHC パーフェクトサプリ マルチビタミン＆ミネラル',en:'DHC Perfect Supplement Multivitamin & Mineral',pack:'20日分',price:'¥2,844',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-perfect-supple-multivitamin-mineral/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-domestic-perfect-vegetable-premium',sku:'TSU-HF-0010',brand:'DHC',zh:'DHC 国产完美蔬菜 PREMIUM',ja:'DHC 国産パーフェクト野菜 プレミアム',en:'DHC Perfect Vegetables Premium',pack:'20日分',price:'¥1,344',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-domestic-perfect-vegetable-premium/',verifiedAt:'2026-09-23'},
+  {slug:'dhc-sustained-release-folic-acid',sku:'TSU-HF-0008',brand:'DHC',zh:'DHC 缓释叶酸',ja:'DHC 持続型葉酸',en:'DHC Sustained-Release Folic Acid',pack:'60日分',price:'¥1,554',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-sustained-release-folic-acid/',verifiedAt:'2026-09-23'}
 ];
 
 

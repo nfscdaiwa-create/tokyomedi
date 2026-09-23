@@ -3,7 +3,20 @@ import {CSS} from './styles.js';
 
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 export const p=(l,s='')=>`/${l}${s?'/'+s:''}`;
+export const searchText=v=>String(v??'').normalize('NFKC').toLocaleLowerCase();
 export const labelArea=(l,a)=>UI[l].filters[a]||a;
+const dosageForms={
+ 'tablet / OD tablet':{'zh-hans':'片剂 / 口崩片',ja:'錠剤 / OD錠'},
+ 'IV infusion':{'zh-hans':'静脉输注剂',ja:'点滴静注剤'},
+ tablet:{'zh-hans':'片剂',ja:'錠剤'},
+ 'tablet / pediatric granule tablet':{'zh-hans':'片剂 / 儿童用颗粒片',ja:'錠剤 / 小児用粒状錠'},
+ 'oral tablet':{'zh-hans':'口服片剂',ja:'経口錠剤'},
+ 'OD tablet / granules':{'zh-hans':'口崩片 / 颗粒剂',ja:'OD錠 / 顆粒'},
+ 'SC pen / syringe':{'zh-hans':'皮下注射笔 / 预充式注射器',ja:'皮下注ペン / シリンジ'},
+ 'tablet / oral solution':{'zh-hans':'片剂 / 口服液',ja:'錠剤 / 内用液'},
+ 'SC syringe / pen':{'zh-hans':'预充式注射器 / 皮下注射笔',ja:'皮下注シリンジ / ペン'}
+};
+export const localizedForm=(l,form)=>dosageForms[form]?.[l]||form;
 export const htmlLang=l=>l==='zh-hans'?'zh-Hans':l;
 const localeName={en:'English',ja:'日本語','zh-hans':'简体中文'};
 const ogLocale={en:'en_US',ja:'ja_JP','zh-hans':'zh_CN'};
@@ -29,15 +42,37 @@ function speculationRules(){
  const rules={prefetch:[{where:{and:[{href_matches:"/*"},{not:{selector_matches:"a[target='_blank'],a[href^='mailto:'],.no-prefetch"}}]},eagerness:"moderate"}]};
  return `<script type="speculationrules">${JSON.stringify(rules).replace(/</g,'\\u003c')}</script>`;
 }
+function localeSwitchQuery(url,active,l){
+ const params=new URLSearchParams();
+ if(active==='medicines'||active==='health'){
+  const q=(url.searchParams.get('q')||'').trim().slice(0,120);
+  if(q)params.set('q',q);
+ }
+ if(active==='medicines'){
+  const area=url.searchParams.get('area')||'';
+  if(area&&UI[l].filters[area])params.set('area',area);
+ }
+ if(active==='travel'){
+  const area=(url.searchParams.get('area')||'').slice(0,40);
+  if(/^[a-z-]+$/.test(area))params.set('area',area);
+ }
+ if(active==='inquiry'){
+  const medicine=(url.searchParams.get('medicine')||'').slice(0,200);
+  if(medicine)params.set('medicine',medicine);
+  if(url.searchParams.get('type')==='institution')params.set('type','institution');
+ }
+ const query=params.toString();
+ return query?'?'+query:'';
+}
 export function shell(l,req,title,description,active,body,extraLd=''){
  const url=new URL(req.url); const canonical=SITE+url.pathname; const currentLang=htmlLang(l); const robots=url.search?'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1':'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
  const alts=LOCALES.map(x=>`<link rel="alternate" hreflang="${htmlLang(x)}" href="${SITE+swapLocale(url.pathname,x)}">`).join('')+`<link rel="alternate" hreflang="x-default" href="${SITE+swapLocale(url.pathname,'en')}">`;
  const ogAlts=LOCALES.filter(x=>x!==l).map(x=>`<meta property="og:locale:alternate" content="${ogLocale[x]}">`).join('');
- const t=UI[l];
+ const t=UI[l]; const switchQuery=localeSwitchQuery(url,active,l);
  const nav=['medicines','health','guides','travel','sources','about'];
  const fullTitle=pageTitle(l,title);
  return `<!doctype html><html lang="${currentLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(fullTitle)}</title><meta name="description" content="${esc(description)}"><meta name="author" content="TOKYO MEDI"><meta name="robots" content="${robots}"><meta name="theme-color" content="#26363a"><meta name="color-scheme" content="light"><meta name="format-detection" content="telephone=no"><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><link rel="canonical" href="${canonical}">${alts}<meta property="og:type" content="website"><meta property="og:site_name" content="TOKYO MEDI"><meta property="og:title" content="${esc(fullTitle)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:locale" content="${ogLocale[l]}">${ogAlts}${jsonLd(siteGraph(l))}${extraLd}${speculationRules()}<style>${CSS}</style></head><body>
- <header class="top"><div class="wrap bar"><a class="brand" href="${p(l)}" aria-label="TOKYO MEDI">${brandLogo()}</a><nav class="nav" aria-label="Primary navigation">${nav.map(n=>`<a class="${active===n?'on':''}" ${active===n?'aria-current="page"':''} href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</nav><div class="headTools"><a class="headSearch" href="${p(l,'medicines')}">⌕ ${esc(t.search)}</a><span class="searchContext" role="note">${esc(t.official)} · PMDA / MHLW</span><select class="lang" aria-label="Language" onchange="location.href=this.value">${LOCALES.map(x=>`<option value="${swapLocale(url.pathname,x)}${url.search}" ${x===l?'selected':''}>${localeName[x]}</option>`).join('')}</select></div></div></header>
+ <header class="top"><div class="wrap bar"><a class="brand" href="${p(l)}">${brandLogo()}</a><nav class="nav" aria-label="Primary navigation">${nav.map(n=>`<a class="${active===n?'on':''}" ${active===n?'aria-current="page"':''} href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</nav><div class="headTools"><a class="headSearch" href="${p(l,'medicines')}">⌕ ${esc(t.search)}</a><span class="searchContext" role="note">${esc(t.official)} · PMDA / MHLW</span><select class="lang" aria-label="Language" onchange="location.href=this.value">${LOCALES.map(x=>`<option value="${swapLocale(url.pathname,x)}${switchQuery}" ${x===l?'selected':''}>${localeName[x]}</option>`).join('')}</select></div></div></header>
  ${body}
  <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','health','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a></div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer></body></html>`;
 }
@@ -62,4 +97,4 @@ export function medicineRows(l,items,limit=Infinity){return items.slice(0,limit)
 export function rxRows(l,items,limit=8){return items.slice(0,limit).map(m=>`<a class="rxItem" href="${p(l,'medicines/'+m.slug)}"><div class="rxThumb"><img src="/media/medicine/${encodeURIComponent(m.slug)}" loading="lazy" decoding="async" alt=""></div><div><strong>${esc(medicineListPrimary(l,m))}</strong><small>${esc(medicineListSecondary(l,m))}</small></div><span class="area">${esc(labelArea(l,m.area))}</span><span class="rxTag">${esc(m.status)}</span><b>→</b></a>`).join('');}
 export function guideTitle(l,g){return g.title[l]||g.title.en} export function guideExcerpt(l,g){return g.excerpt[l]||g.excerpt.en}
 
-export function securityHeaders(extra={}){return {'x-content-type-options':'nosniff','x-frame-options':'SAMEORIGIN','referrer-policy':'strict-origin-when-cross-origin','permissions-policy':'camera=(), microphone=(), geolocation=()','content-security-policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'inline-speculation-rules'; img-src 'self' data: https://images.unsplash.com; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:",'cross-origin-opener-policy':'same-origin','cross-origin-resource-policy':'same-origin',...extra};}
+export function securityHeaders(extra={}){return {'x-content-type-options':'nosniff','x-frame-options':'SAMEORIGIN','referrer-policy':'strict-origin-when-cross-origin','permissions-policy':'camera=(), microphone=(), geolocation=()','content-security-policy':"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'inline-speculation-rules' https://static.cloudflareinsights.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self' mailto:",'cross-origin-opener-policy':'same-origin','cross-origin-resource-policy':'same-origin',...extra};}
