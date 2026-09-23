@@ -1971,6 +1971,22 @@ body{font-size:15px;line-height:1.7;background:var(--paper)}
   .proofGrid{gap:10px}
   .proofItem:nth-child(3),.proofItem:nth-child(4){border:1px solid var(--line)}
 }
+@media(min-width:821px) and (max-width:960px){
+  .bar{height:auto;min-height:var(--header);flex-wrap:wrap;padding:12px 0 8px}
+  .brand{order:1}
+  .headTools{order:2;margin-left:auto}
+  .nav{
+    order:3;
+    width:100%;
+    margin:0;
+    padding-top:7px;
+    justify-content:space-between;
+    align-self:auto;
+    border-top:1px solid var(--line);
+  }
+  .nav a{height:auto;padding:4px 0 7px;font-size:12px}
+  .nav a:after{bottom:0}
+}
 @media(max-width:820px){
   .hero{padding:33px 0 38px}
   .heroIntro{padding:0;border:0}
