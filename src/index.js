@@ -57,17 +57,17 @@ function llms(){
 TOKYO MEDI is a multilingual reference platform for Japanese medicines, primary regulatory sources, medical guides, and medical-travel intake information.
 
 ## Languages
-- Simplified Chinese: ${SITE}/zh-hans
-- English: ${SITE}/en
-- Japanese: ${SITE}/ja
+- [Simplified Chinese](${SITE}/zh-hans)
+- [English](${SITE}/en)
+- [Japanese](${SITE}/ja)
 
 ## Primary sections
-- Japanese medicine reference: ${SITE}/en/medicines
-- Health & nutrition products: ${SITE}/en/health
-- Medical guides: ${SITE}/en/guides
-- Medical travel in Japan: ${SITE}/en/travel
-- Source and editorial policy: ${SITE}/en/sources
-- About TOKYO MEDI: ${SITE}/en/about
+- [Japanese medicine reference](${SITE}/en/medicines)
+- [Health & nutrition products](${SITE}/en/health)
+- [Medical guides](${SITE}/en/guides)
+- [Medical travel in Japan](${SITE}/en/travel)
+- [Source and editorial policy](${SITE}/en/sources)
+- [About TOKYO MEDI](${SITE}/en/about)
 
 ## Source policy
 Medicine records are matched to Japanese product names, manufacturers, strengths, and PMDA product-level sources where available. Hospital intake information links back to official hospital pages. Official document dates and TOKYO MEDI verification dates are kept separate.
@@ -76,7 +76,7 @@ Medicine records are matched to Japanese product names, manufacturers, strengths
 TOKYO MEDI does not provide remote prescribing, individualized diagnosis, or treatment recommendations. Prescription medicines are reference items, not ordinary ecommerce products. Health foods and supplements are presented in a separate product category and are not described as medicines.
 
 ## Contact
-${SITE}/en/inquiry
+[Institutional inquiry](${SITE}/en/inquiry)
 `;
 }
 
@@ -135,6 +135,7 @@ export default {async fetch(req,env,ctx){
  if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:pageSecurity({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/llms.txt')return new Response(llms(),{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
+ if(pathname.startsWith('/.well-known/'))return new Response('Not Found',{status:404,headers:pageSecurity({'content-type':'text/plain; charset=utf-8','x-robots-tag':'noindex','cache-control':'public, max-age=300'})});
  if(pathname==='/favicon.svg'||pathname==='/logo.svg')return new Response(brandSvg(),{headers:pageSecurity({'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=86400'})});
  if(pathname.startsWith('/media/health/'))return productMedia('health',pathname.slice('/media/health/'.length),ctx);
  if(pathname.startsWith('/media/medicine/'))return productMedia('medicine',pathname.slice('/media/medicine/'.length),ctx);
