@@ -3,6 +3,8 @@
   "name": "tokyomedi",
   "main": "src/index.js",
   "compatibility_date": "2026-09-22",
+  "assets": {"directory": "./public"},
+  "previews": {},
   "observability": {
     "enabled": true,
     "traces": {"enabled": true}
