@@ -1,8 +1,13 @@
 import worker from '../src/index.js';
 import {medicines,healthProducts,hospitals,guides,LOCALES,SITE} from '../src/data.js';
 import {healthImageUrls} from '../src/health-images.js';
+import {CSS} from '../src/styles.js';
 const hit=async(path,lang='zh-CN')=>worker.fetch(new Request('https://tokyomedi.com'+path,{headers:{'accept-language':lang}}));
 const checks=[];
+const luminance=hex=>{const channels=hex.match(/[\da-f]{2}/gi).map(v=>parseInt(v,16)/255);return channels.map(v=>v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[0.2126,0.7152,0.0722][i],0)};
+const contrast=(foreground,background)=>{const a=luminance(foreground),b=luminance(background);return (Math.max(a,b)+0.05)/(Math.min(a,b)+0.05)};
+const hospitalMetaColor=CSS.match(/\.hospitalRow small\{[^}]*color:(#[\da-f]{6})/i)?.[1];
+checks.push(['desktop hospital metadata contrast',Boolean(hospitalMetaColor)&&contrast(hospitalMetaColor,'#f6f5f1')>=4.5]);
 checks.push(['contact email',true]);
 let redirect=await hit('/','en-US,en;q=0.9,zh-CN;q=0.1'); checks.push(['language preference weighting',redirect.status===302&&redirect.headers.get('location')==='https://tokyomedi.com/en'&&redirect.headers.get('vary')==='Accept-Language'&&redirect.headers.get('cache-control')==='private, no-store']);
 redirect=await worker.fetch(new Request('http://tokyomedi.com/en/medicines?q=Rybelsus')); checks.push(['HTTP upgrades to HTTPS',redirect.status===308&&redirect.headers.get('location')==='https://tokyomedi.com/en/medicines?q=Rybelsus']);
