@@ -6,8 +6,8 @@ export const CSS = `
   --surface-soft:#faf9f6;
   --ink:#203136;
   --ink-2:#33484d;
-  --muted:#667579;
-  --muted-2:#859093;
+  --muted:#59696d;
+  --muted-2:#5c6b6f;
   --line:#d8dad4;
   --line-strong:#c5c9c2;
   --teal:#396b64;
@@ -240,7 +240,7 @@ p{text-wrap:pretty}
   flex-wrap:wrap;
   gap:10px 18px;
   margin-top:16px;
-  color:#738083;
+  color:#5b696d;
   font-size:10px;
 }
 .heroMeta span{display:flex;align-items:center;gap:7px}
@@ -312,7 +312,7 @@ p{text-wrap:pretty}
 }
 .routeRow:nth-of-type(even){border-left:1px solid var(--line)}
 .routeRow:hover{background:var(--surface-soft)}
-.routeNo{padding-top:2px;color:#9da5a5;font-size:9px}
+.routeNo{padding-top:2px;color:#607074;font-size:9px}
 .routeRow strong{display:block;font-size:12px;font-weight:720;line-height:1.4}
 .routeRow small{
   display:block;
@@ -337,7 +337,7 @@ p{text-wrap:pretty}
   gap:28px;
 }
 .sourceRailLead{
-  color:#627174;
+  color:#56666a;
   font-size:10px;
   font-weight:700;
 }
@@ -357,7 +357,7 @@ p{text-wrap:pretty}
 .sourceRailMarks small{
   display:block;
   margin-top:4px;
-  color:#899294;
+  color:#5c6a6e;
   font-size:8.5px;
   line-height:1.35;
 }
@@ -427,7 +427,7 @@ p{text-wrap:pretty}
 .evidenceRow p{max-width:720px;margin:0;color:var(--muted);font-size:11px;line-height:1.62}
 .evidenceRow>b{
   justify-self:end;
-  color:#718083;
+  color:#5b6a6e;
   font-size:9px;
   font-weight:750;
   letter-spacing:.07em;
@@ -460,7 +460,7 @@ p{text-wrap:pretty}
   display:block;
   padding:10px 0;
   border-bottom:1px solid var(--line);
-  color:#788588;
+  color:#5d6b6e;
   font-size:9.5px;
   line-height:1.5;
 }
@@ -475,7 +475,7 @@ p{text-wrap:pretty}
   border:1px solid var(--line-strong);
   border-radius:4px;
   background:transparent;
-  color:#667477;
+  color:#526165;
   font-size:10px;
   line-height:1.2;
 }
@@ -512,7 +512,7 @@ p{text-wrap:pretty}
 .medicineRow small{
   display:block;
   margin-top:4px;
-  color:#7c898b;
+  color:#5b696d;
   font-size:9.5px;
   line-height:1.5;
   overflow-wrap:anywhere;
@@ -584,7 +584,7 @@ p{text-wrap:pretty}
   background:var(--teal);
 }
 .step strong{font-size:11.5px}
-.step p{margin:4px 0 0;color:#748184;font-size:10px;line-height:1.58}
+.step p{margin:4px 0 0;color:#58686c;font-size:10px;line-height:1.58}
 .hospitalPreview{border-top:1px solid var(--line)}
 .hospitalRow{
   display:grid;
@@ -596,7 +596,7 @@ p{text-wrap:pretty}
 }
 .hospitalRow strong{display:block;font-size:11.5px;font-weight:700}
 .hospitalRow small{display:block;margin-top:3px;color:#7a8789;font-size:9px;line-height:1.45}
-.hospitalRow>span{color:#778487;font-size:9px;text-align:right}
+.hospitalRow>span{color:#58686c;font-size:9px;text-align:right}
 .hospitalRow>b{color:#8b625c;font-size:12px;font-weight:500}
 .hospitalRow:hover strong{color:var(--teal-dark)}
 
@@ -622,7 +622,7 @@ p{text-wrap:pretty}
   padding:17px 0;
   border-bottom:1px solid var(--line);
 }
-.whyItem>span{padding-top:2px;color:#8a9697;font-size:9px;font-weight:800}
+.whyItem>span{padding-top:2px;color:#5d6b6e;font-size:9px;font-weight:800}
 .whyItem h3{margin:0 0 5px;font-size:15px;font-weight:700}
 .whyItem p{margin:0;color:var(--muted);font-size:10.5px;line-height:1.6}
 
@@ -705,7 +705,7 @@ p{text-wrap:pretty}
   gap:12px;
   padding:12px 0;
   border-bottom:1px solid #d3d5cf;
-  color:#657376;
+  color:#56666a;
   font-size:10px;
   line-height:1.55;
 }
@@ -752,7 +752,7 @@ p{text-wrap:pretty}
   font-weight:800;
 }
 .rxItem strong{display:block;font-size:11.5px;line-height:1.4;overflow-wrap:anywhere}
-.rxItem small{display:block;margin-top:3px;color:#7c898b;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
+.rxItem small{display:block;margin-top:3px;color:#5b696d;font-size:9px;line-height:1.4;overflow-wrap:anywhere}
 .rxItem .area{display:none}
 .rxItem>b{color:#8d625c;font-size:12px;font-weight:500}
 .rxItem:hover strong{color:var(--teal-dark)}
@@ -886,7 +886,7 @@ p{text-wrap:pretty}
   gap:10px;
 }
 .medicineResultCount{
-  color:#667579;
+  color:#59696d;
   font-size:10px;
   font-weight:650;
 }
@@ -903,7 +903,7 @@ p{text-wrap:pretty}
   font-weight:700;
 }
 .medicineFilterLabel{
-  color:#778487;
+  color:#58686c;
   font-size:9.5px;
   font-weight:700;
 }
@@ -1022,7 +1022,7 @@ p{text-wrap:pretty}
 .medicineCardNames{
   min-height:38px;
   margin:7px 0 15px;
-  color:#748184;
+  color:#58686c;
   font-size:10px;
   line-height:1.55;
   overflow-wrap:anywhere;
@@ -1126,7 +1126,7 @@ p{text-wrap:pretty}
 }
 .medicineIndexNote p{
   margin:0;
-  color:#68777a;
+  color:#59686b;
   font-size:9.5px;
   line-height:1.58;
 }
@@ -1152,7 +1152,7 @@ p{text-wrap:pretty}
 .homeHealthMedia{height:190px;padding:14px;background:linear-gradient(180deg,#fbfcf8,#f2f4ee)}
 .homeHealthMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .homeHealthBody{padding:14px 15px 15px}
-.homeHealthBody span{display:block;color:#7a8883;font-size:9px;line-height:1.4}
+.homeHealthBody span{display:block;color:#596963;font-size:9px;line-height:1.4}
 .homeHealthBody h3{min-height:42px;margin:6px 0 12px;font-size:14px;line-height:1.45}
 .homeHealthBody b{color:var(--teal-dark);font-size:9.5px;font-weight:760}
 .homeHealthFoot{
@@ -1164,7 +1164,7 @@ p{text-wrap:pretty}
   padding-top:15px;
   border-top:1px solid #d5dbd4;
 }
-.homeHealthFoot p{margin:0;color:#66766f;font-size:10px;line-height:1.6}
+.homeHealthFoot p{margin:0;color:#53645d;font-size:10px;line-height:1.6}
 
 .healthIndex{background:#f5f6f2;min-height:70vh}
 .healthIndexHero{
@@ -1209,7 +1209,7 @@ p{text-wrap:pretty}
 .healthBoundary>strong{display:block;margin-top:8px;font-size:21px;line-height:1.3}
 .healthBoundary>p{margin:12px 0 0;color:#c0d0ca;font-size:10px;line-height:1.65}
 .healthIndexBody{padding:28px 0 70px}
-.healthToolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;color:#718079;font-size:10px}
+.healthToolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;color:#53645d;font-size:10px}
 .healthToolbar b{color:var(--ink);font-size:18px;margin-right:3px}
 .healthToolbar a{color:var(--teal-dark);font-weight:700}
 .healthCardGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -1228,11 +1228,11 @@ p{text-wrap:pretty}
 .healthCardMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .2s ease}
 .healthCard:hover .healthCardMedia img{transform:scale(1.025)}
 .healthCardBody{display:flex;flex:1;flex-direction:column;padding:15px 16px}
-.healthCardTop{display:flex;justify-content:space-between;gap:10px;color:#7b8983;font-size:8.5px}
+.healthCardTop{display:flex;justify-content:space-between;gap:10px;color:#5b6a62;font-size:8.5px}
 .healthCardTop span{color:#477268;font-weight:760}
 .healthCard h2{margin:9px 0 6px;font-size:15px;line-height:1.42}
 .healthCardBody>p{margin:0;color:#697871;font-size:10px}
-.healthCardFoot{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #e0e3de;color:#89938f;font-size:8.5px}
+.healthCardFoot{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid #e0e3de;color:#5b6963;font-size:8.5px}
 .healthCardFoot b{color:#426b61;font-size:9px}
 .healthDisclaimer{
   display:grid;
@@ -1245,7 +1245,7 @@ p{text-wrap:pretty}
   background:#eef1ec;
 }
 .healthDisclaimer strong{font-size:10px;color:#405c54}
-.healthDisclaimer p{margin:0;color:#66766f;font-size:10px;line-height:1.65}
+.healthDisclaimer p{margin:0;color:#53645d;font-size:10px;line-height:1.65}
 
 .healthDetailHero{padding:44px 0 36px;border-bottom:1px solid var(--line);background:#f0f3ed}
 .healthDetailGrid{display:grid;grid-template-columns:380px minmax(0,1fr);gap:52px;align-items:center}
@@ -1309,7 +1309,7 @@ p{text-wrap:pretty}
   padding:6px 9px;
   border:1px solid var(--line-strong);
   border-radius:4px;
-  color:#6c7a7d;
+  color:#516165;
   font-size:9.5px;
 }
 .verificationStrip b{color:var(--ink);font-size:10px}
@@ -1327,7 +1327,7 @@ p{text-wrap:pretty}
   padding:12px 0;
   border-bottom:1px solid var(--line);
 }
-.fact dt{color:#738083;font-size:10px;font-weight:650}
+.fact dt{color:#5b696d;font-size:10px;font-weight:650}
 .fact dd{margin:0;color:var(--ink);font-size:11.5px;line-height:1.55;overflow-wrap:anywhere}
 .sideNote{
   padding:20px;
@@ -1347,7 +1347,7 @@ p{text-wrap:pretty}
   padding:9px;
   border:1px solid #dfd3cf;
   border-radius:4px;
-  color:#816e69;
+  color:#695752;
   font-size:9px;
 }
 .sideVerify b{display:block;margin-top:3px;color:#5d4a46;font-size:9.5px}
@@ -1382,7 +1382,7 @@ p{text-wrap:pretty}
   margin-bottom:28px;
   padding-bottom:14px;
   border-bottom:1px solid var(--line);
-  color:#7d898b;
+  color:#58686b;
   font-size:10px;
 }
 .article h2{margin:34px 0 10px;font-size:24px;line-height:1.25;letter-spacing:-.025em}
@@ -1401,8 +1401,8 @@ p{text-wrap:pretty}
   border-bottom:1px solid var(--line);
 }
 .hospitalCard:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}
-.hospitalCard h3{margin:7px 0 2px;font-size:17px;line-height:1.35}
-.hospitalJa{margin:0 0 10px;color:#788588;font-size:10px}
+.hospitalCard h2{margin:7px 0 2px;font-size:17px;line-height:1.35}
+.hospitalJa{margin:0 0 10px;color:#5d6b6e;font-size:10px}
 .hospitalRoute{
   margin:10px 0 12px;
   padding:8px 10px;
@@ -1420,7 +1420,7 @@ p{text-wrap:pretty}
   flex-wrap:wrap;
   gap:5px 14px;
   margin-bottom:10px;
-  color:#859092;
+  color:#58686b;
   font-size:9px;
 }
 .hospitalCard>a{color:var(--teal-dark);font-size:10px;font-weight:700}
@@ -1434,7 +1434,7 @@ p{text-wrap:pretty}
   padding:17px 0;
   border-bottom:1px solid var(--line);
 }
-.sourceLevel h3{margin:0;font-size:14px}
+.sourceLevel h2{margin:0;font-size:14px}
 .sourceLevel p{max-width:760px;margin:0;color:var(--muted);font-size:10.5px;line-height:1.65}
 .policyGrid,.aboutBoundary{
   display:grid;
@@ -1451,7 +1451,7 @@ p{text-wrap:pretty}
 .policyCard>span,.aboutBoundary article>span{
   display:block;
   margin-bottom:22px;
-  color:#8b9899;
+  color:#59696d;
   font-size:9px;
   font-weight:800;
 }
@@ -1470,7 +1470,7 @@ p{text-wrap:pretty}
   border-bottom:1px solid var(--line);
 }
 .sourceLink strong{font-size:11px}
-.sourceLink small{color:#7f8b8d;font-size:9px}
+.sourceLink small{color:#58686b;font-size:9px}
 .sourceLink b{color:#8d625c;font-weight:500}
 .transparencyBox{
   display:grid;
@@ -1494,7 +1494,7 @@ p{text-wrap:pretty}
   border-bottom:1px solid var(--line);
 }
 .strengthRow:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}
-.strengthRow>span{display:block;margin-bottom:18px;color:#8a9697;font-size:9px;font-weight:800}
+.strengthRow>span{display:block;margin-bottom:18px;color:#5d6b6e;font-size:9px;font-weight:800}
 .strengthRow h3{margin:0 0 7px;font-size:15px}
 .strengthRow p{margin:0;color:var(--muted);font-size:10.5px;line-height:1.65}
 
@@ -1519,7 +1519,7 @@ p{text-wrap:pretty}
 .field input{height:42px;padding:0 11px}
 .field textarea{min-height:116px;padding:10px 11px;resize:vertical;field-sizing:content}
 .field input:focus,.field textarea:focus{border-color:#7ea29b;box-shadow:0 0 0 3px rgba(57,107,100,.08)}
-.formNote{max-width:760px;margin:9px 0 0;color:#7c888a;font-size:9.5px;line-height:1.6}
+.formNote{max-width:760px;margin:9px 0 0;color:#59676a;font-size:9.5px;line-height:1.6}
 .generated{
   display:none;
   margin-top:20px;
@@ -1573,7 +1573,7 @@ p{text-wrap:pretty}
   margin-top:28px;
   padding-top:14px;
   border-top:1px solid rgba(255,255,255,.12);
-  color:#849698;
+  color:#a8b8b9;
   font-size:9px;
 }
 
@@ -1611,17 +1611,6 @@ p{text-wrap:pretty}
 }
 @container sitebar scroll-state(stuck:top){
   .top{box-shadow:0 8px 22px rgba(24,43,47,.045)}
-}
-@supports (animation-timeline:view()){
-  .sectionHead,.proofItem,.evidenceRow,.medicineRow,.guideRow,.hospitalRow,.hospitalCard,.whyItem{
-    animation:tm-reveal linear both;
-    animation-timeline:view(block);
-    animation-range:entry 8% cover 24%;
-  }
-  @keyframes tm-reveal{
-    from{opacity:.45;transform:translateY(7px)}
-    to{opacity:1;transform:none}
-  }
 }
 
 /* Tablet */
@@ -1691,17 +1680,16 @@ p{text-wrap:pretty}
   .headSearch{display:none}
   .lang{min-width:86px}
   .nav{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
     order:3;
     width:100%;
     margin:0;
     padding-top:7px;
-    gap:20px;
-    overflow-x:auto;
+    gap:5px 12px;
     border-top:1px solid var(--line);
-    scrollbar-width:none;
   }
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{height:auto;padding:0 0 7px}
+  .nav a{height:auto;padding:2px 0 5px;white-space:normal;line-height:1.35}
   .nav a:after{bottom:0}
   .hero{padding:34px 0 28px}
   .hero h1{font-size:clamp(35px,10vw,47px);margin:12px 0 14px}
