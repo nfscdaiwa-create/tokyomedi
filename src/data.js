@@ -1,6 +1,6 @@
 export const SITE = 'https://tokyomedi.com';
 export const EMAIL = 'beibei7jp1978@yahoo.co.jp';
-export const VERSION = '2026.09.23-visual';
+export const VERSION = '2026.09.23-medicine';
 export const LOCALES = ['zh-hans','en','ja'];
 
 export const UI = {
@@ -143,8 +143,8 @@ export const medicines = [
     productJa:'リベルサス錠3mg／7mg／14mg',brandEn:'Rybelsus',
     manufacturerJa:'ノボ ノルディスク ファーマ株式会社',strengths:'3 mg / 7 mg / 14 mg',scope:'representative',
     alternateProductsJa:['オゼンピック皮下注2mg','ウゴービ皮下注（複数規格）'],
-    labelUpdated:'2025-07',verifiedAt:'2026-09-22',
-    source:'https://www.pmda.go.jp/PmdaSearch/iyakuDetail/ResultDataSetPDF/620023_2499014F1021_1_06',
+    labelUpdated:'2026-05-22',verifiedAt:'2026-09-23',
+    source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=2'
   },
   {

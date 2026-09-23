@@ -1778,7 +1778,7 @@ body{font-size:15px;line-height:1.7;background:var(--paper)}
 .medicineIndexTrust>div strong{font-size:11px}
 .medicineIndexTrust>p{font-size:11px}
 .medicineCard,.homeHealthCard,.healthCard{border-radius:3px}
-.medicineCardMedia{height:145px}
+.medicineCardMedia{height:190px}
 .medicineCard h2{font-size:23px}
 .medicineCardNames{font-size:11px}
 .medicineCardFacts span{font-size:9px;color:#53666a}
@@ -2031,4 +2031,72 @@ body{font-size:15px;line-height:1.7;background:var(--paper)}
   *,*::before,*::after{animation:none!important;transition:none!important}
   @view-transition{navigation:none}
 }
+
+/* Product identification and plain-language medicine uses */
+.medicineCardMedia{position:relative}
+.medicineCardMedia img{max-width:100%;max-height:100%;object-fit:contain}
+.medicinePhotoLabel{
+  position:absolute;
+  right:9px;
+  bottom:8px;
+  padding:4px 7px;
+  background:rgba(255,255,255,.92);
+  color:#3c5659;
+  font-size:9px;
+  font-weight:700;
+}
+.medicineNoPhoto{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:9px;padding:18px;text-align:center;
+  color:#41615f;
+  background:linear-gradient(140deg,#eaf0eb,#f8f8f3);
+}
+.medicineNoPhoto span{font-size:9px;letter-spacing:.18em;font-weight:800}
+.medicineNoPhoto strong{font-size:clamp(17px,2vw,25px);line-height:1.15;overflow-wrap:anywhere}
+.medicineNoPhoto small{font-size:10px;color:#667877}
+.medicineCardUse{
+  margin:0 0 14px;
+  padding:12px 13px;
+  border-left:3px solid #5d8983;
+  background:#f0f5f1;
+}
+.medicineCardUse span{display:block;color:#476864;font-size:10px;font-weight:800}
+.medicineCardUse p{margin:5px 0 0;color:#243c3e;font-size:13px;line-height:1.6}
+.medicineCardMeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.medicineCardMeta span{padding:5px 7px;background:#f4f5f1;color:#4a5b5e;font-size:10px;line-height:1.4}
+.medicineCardFoot{margin-top:14px;border-top:1px solid var(--line)}
+.medicineUseBox{margin-bottom:22px;padding:20px 23px;background:#eaf2ed;border-left:4px solid #4d8378}
+.medicineUseBox span{display:block;margin-bottom:8px;color:#37695f;font-size:11px;font-weight:800}
+.medicineUseBox strong{display:block;color:#203a3a;font-size:18px;line-height:1.55}
+.medicineUseBox small{display:block;margin-top:9px;color:#516869;font-size:11px;line-height:1.6}
+.medicineHeroMedia{display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;overflow:hidden}
+.medicineHeroMedia img{width:100%;min-height:0;flex:1;object-fit:contain}
+.medicineHeroMedia figcaption{font-size:9px;line-height:1.5;color:#516568;text-align:center}
+.medicineHeroMedia figcaption a{color:#2d6860;text-decoration:underline}
+.referenceMark{display:grid;place-items:center;width:100%;height:100%;color:#4c7670;font-size:17px;font-weight:800;letter-spacing:-.08em}
+.medicineRowUse{color:#2f6259!important;font-weight:650}
+.homeMedicineGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.homeMedicineCard{display:grid;grid-template-columns:104px minmax(0,1fr);gap:13px;min-height:150px;padding:10px;border:1px solid #d8ded8;background:#fff;transition:border-color .2s,transform .2s}
+.homeMedicineCard:hover{border-color:#83a49b;transform:translateY(-2px)}
+.homeMedicineMedia{position:relative;display:grid;place-items:center;min-height:126px;overflow:hidden;background:#eff3ef}
+.homeMedicineMedia img{width:100%;height:100%;object-fit:contain}
+.homeMedicineCredit{position:absolute;bottom:3px;right:3px;max-width:calc(100% - 6px);padding:2px 3px;background:rgba(255,255,255,.9);color:#3c5659;font-size:7px;line-height:1.2;text-align:right}
+.homeMedicineReference{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;padding:12px;color:#4b6b65;text-align:center;overflow-wrap:anywhere}
+.homeMedicineReference strong{font-size:14px;line-height:1.2}
+.homeMedicineReference small{font-size:9px;line-height:1.2}
+.homeMedicineText{min-width:0;padding:4px 2px}
+.homeMedicineText>span{font-size:9px;font-weight:750;color:#4e7b71}
+.homeMedicineText h3{margin:5px 0 2px;font-size:15px;line-height:1.28;color:#203a3a}
+.homeMedicineText small{display:block;color:#6a7978;font-size:9px;line-height:1.3;overflow-wrap:anywhere}
+.homeMedicineText p{margin:7px 0 9px;color:#344e4c;font-size:11px;line-height:1.5}
+.homeMedicineText b{color:#2d7469;font-size:10px}
+.homeMedicineAll{grid-column:1/-1;padding:12px 15px;background:#214a47;color:#fff;font-size:12px;font-weight:750;text-align:center}
+.homeMedicineAll:hover{background:#163e3a}
+@media(max-width:1130px){.homeMedicineGrid{grid-template-columns:1fr}}
+@media(max-width:820px){
+  .medicineCardMedia{height:200px}
+  .medicineCardUse p{font-size:13px}
+}
+@media(max-width:520px){.homeMedicineCard{grid-template-columns:92px minmax(0,1fr)}.homeMedicineMedia{min-height:118px}}
 `;

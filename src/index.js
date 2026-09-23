@@ -90,11 +90,11 @@ async function productMedia(kind,slug,ctx){
  const x=records.find(v=>v.slug===slug);
  if(!x)return new Response('Not Found',{status:404,headers:securityHeaders({'content-type':'text/plain; charset=utf-8','cache-control':'no-store'})});
  const label=kind==='health'?(x.en||x.ja||x.zh):(x.brandEn||x.en||x.ja);
- const placeholder=()=>new Response(fallbackProductSvg(label),{headers:{'content-type':'image/svg+xml; charset=utf-8','cache-control':kind==='medicine'?'public, max-age=604800':'public, max-age=300, s-maxage=300','x-content-type-options':'nosniff'}});
- // Medicine photos from an unrelated retailer can be wrong and took several seconds
- // on a cache miss. A deterministic reference card is safer and immediate.
+ const placeholder=()=>new Response(fallbackProductSvg(label),{headers:{'content-type':'image/svg+xml; charset=utf-8','cache-control':'public, max-age=300, s-maxage=300','x-content-type-options':'nosniff'}});
+ // The legacy image route remains a clearly generic reference card.
+ // Verified photographs are immutable static assets under /media/medicine/*.jpg.
  if(kind==='medicine')return placeholder();
- const key=new Request('https://tokyomedi.com/media/'+kind+'/'+encodeURIComponent(slug));
+ const key=new Request('https://tokyomedi.com/media/'+kind+'/'+encodeURIComponent(slug)+'?v='+VERSION);
  const remember=async response=>{
   if(typeof caches!=='undefined'){
    try{const put=caches.default.put(key,response.clone());if(ctx?.waitUntil)ctx.waitUntil(put);else await put}catch{}
@@ -107,12 +107,12 @@ async function productMedia(kind,slug,ctx){
    if(cached)return cached;
   }
   const imageUrl=healthImageUrls[slug];
-  if(!imageUrl)return remember(placeholder());
+  if(!imageUrl)return placeholder();
   const imageRes=await fetch(imageUrl,{signal:AbortSignal.timeout(4000),redirect:'follow'});
   const contentType=imageRes.headers.get('content-type')||'';
-  if(!imageRes.ok||!/^image\/(?:jpeg|png|webp|avif)(?:;|$)/i.test(contentType)||Number(imageRes.headers.get('content-length'))>2_000_000)return remember(placeholder());
+  if(!imageRes.ok||!/^image\/(?:jpeg|png|webp|avif)(?:;|$)/i.test(contentType)||Number(imageRes.headers.get('content-length'))>2_000_000)return placeholder();
   const imageBytes=await imageRes.arrayBuffer();
-  if(!imageBytes.byteLength||imageBytes.byteLength>2_000_000)return remember(placeholder());
+  if(!imageBytes.byteLength||imageBytes.byteLength>2_000_000)return placeholder();
   const response=new Response(imageBytes,{headers:{
    'content-type':contentType,
    'cache-control':'public, max-age=86400, s-maxage=604800',
@@ -120,7 +120,7 @@ async function productMedia(kind,slug,ctx){
   }});
   return remember(response);
  }catch{}
- return remember(placeholder());
+ return placeholder();
 }
 
 export default {async fetch(req,env,ctx){
