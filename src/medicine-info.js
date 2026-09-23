@@ -85,9 +85,113 @@ export const medicineUses = {
 
 export const medicineUse = (locale, medicine) => medicineUses[medicine.slug]?.[locale] || '';
 
-// Only publish images with a confirmed product match and reusable license.
-// A photo is never inferred from the ingredient name alone.
+// Product-level Japanese images. Keep the represented strength and original
+// source visible; a photo of one strength never claims to show every variant.
 export const medicinePhotos = {
+  amlodipine: {
+    path:'/media/medicine/amlodipine.jpg',
+    src:'https://files.bcart.jp/petmedicpro/uploads/PICT5/612170710.jpg',
+    page:'https://www.petmedic-pro.com/product.php?id=3263',
+    credit:'PETMEDIC PRO',
+    strength:'5 mg',
+    match:'Japanese Norvasc 5 mg blister pack'
+  },
+  nivolumab: {
+    path:'/media/medicine/nivolumab.jpg',
+    src:'https://www.oncology.bmshealthcare.jp/assets/buildeasy/apac-commercial/bms-healthcare-jp/ja/images/opdivo/opdivo-ivdi-product-image-03.jpg',
+    page:'https://www.oncology.bmshealthcare.jp/products/opdivo/drug-info',
+    credit:'BMS Oncology Japan',
+    strength:'100 mg / 10 mL',
+    match:'Japanese Opdivo intravenous vial'
+  },
+  pembrolizumab: {
+    path:'/media/medicine/pembrolizumab.webp',
+    src:'https://www.msdconnect.jp/wp-content/uploads/sites/5/2021/03/keytruda_inf100-new_img_001_l.jpg',
+    page:'https://www.msdconnect.jp/products/keytruda/info/picture/',
+    credit:'MSD Connect',
+    strength:'100 mg / 4 mL',
+    match:'Japanese Keytruda intravenous vial'
+  },
+  osimertinib: {
+    path:'/media/medicine/osimertinib.jpg',
+    src:'https://www.carenet.com/files/news/20250519170805-1.jpg',
+    page:'https://www.carenet.com/news/general/carenet/60720',
+    credit:'CareNet',
+    strength:'40 mg / 80 mg',
+    match:'Japanese Tagrisso 40 and 80 mg blister packs'
+  },
+  'trastuzumab-deruxtecan': {
+    path:'/media/medicine/trastuzumab-deruxtecan.png',
+    src:'https://d3ukgu32nhw07o.cloudfront.net/article/img1_file5ecb7ff751090.png',
+    page:'https://www.nikkan.co.jp/articles/view/00558801',
+    credit:'日刊工業新聞',
+    strength:'100 mg',
+    match:'Japanese Enhertu 100 mg infusion vial and box'
+  },
+  lecanemab: {
+    path:'/media/medicine/lecanemab.webp',
+    src:'https://medical.eisai.jp/hubfs/medical.eisai/DB_images/product_detail/LEQ_V_500/LEQ_V500_PIC_PH.jpg',
+    page:'https://medical.eisai.jp/products/leq/leq_v_500',
+    credit:'エーザイ Medical',
+    strength:'500 mg / 5 mL',
+    match:'Japanese Leqembi 500 mg infusion vial'
+  },
+  'sacubitril-valsartan': {
+    path:'/media/medicine/sacubitril-valsartan.png',
+    src:'https://www.pro.novartis.com/sites/pro_novartis_com_jp/files/2024-08/ph_enr_ptp_50mg_10_front.png',
+    page:'https://www.pro.novartis.com/jp-ja/products/entresto/document',
+    credit:'ノバルティス ファーマ',
+    strength:'50 mg',
+    match:'Japanese Entresto 50 mg blister pack, adult tablet'
+  },
+  empagliflozin: {
+    path:'/media/medicine/empagliflozin.jpg',
+    src:'https://www.bij-kusuri.jp/products/files/jad_t10_package2.jpg',
+    page:'https://www.bij-kusuri.jp/products/jad/tablets-10/',
+    credit:'ベーリンガーインゲルハイム',
+    strength:'10 mg',
+    match:'Japanese Jardiance 10 mg blister pack'
+  },
+  edoxaban: {
+    path:'/media/medicine/edoxaban.jpg',
+    src:'https://www.kansaiyakuhin.com/upload/save_image/08161644_66bf037b9d37d.jpg',
+    page:'https://www.kansaiyakuhin.com/hanbai/products/list.php?mode=search&name_kana=%E3%83%A9',
+    credit:'関西薬品',
+    strength:'30 mg',
+    match:'Japanese Lixiana 30 mg retail box'
+  },
+  tolvaptan: {
+    path:'/media/medicine/tolvaptan.jpg',
+    src:'https://www.otsuka.co.jp/company/newsreleases/assets/img/20191127_1_02.jpg',
+    page:'https://www.otsuka.co.jp/company/newsreleases/2019/20191127_1.html',
+    credit:'大塚製薬',
+    strength:'OD 7.5 mg / 15 mg / 30 mg',
+    match:'Japanese Samsca orally disintegrating tablet boxes and blisters'
+  },
+  pirfenidone: {
+    path:'/media/medicine/pirfenidone.jpg',
+    src:'https://med.shionogi.co.jp/content/dam/hcp/jp/product-files/medicine/f/pirespa/medicine-images/pirespa/pirespa-02.jpg',
+    page:'https://med.shionogi.co.jp/products/medicine/pirespa.html',
+    credit:'塩野義製薬',
+    strength:'200 mg',
+    match:'Japanese Pirespa 200 mg blister pack'
+  },
+  upadacitinib: {
+    path:'/media/medicine/upadacitinib.jpg',
+    src:'https://kyodonewsprwire.jp/prwfile/release/M102977/202004239299/_prw_PI2lg_nVWD5Qc1.jpg',
+    page:'https://kyodonewsprwire.jp/release/202004239299',
+    credit:'アッヴィ / 共同通信PRワイヤー',
+    strength:'7.5 mg / 15 mg',
+    match:'Japanese Rinvoq 7.5 and 15 mg boxes and blisters'
+  },
+  risankizumab: {
+    path:'/media/medicine/risankizumab.jpg',
+    src:'https://skyrizi.jp/ps/common/images/about_skyrizi/pic_treatment3.jpg',
+    page:'https://skyrizi.jp/ps/about_skyrizi/treatment.html',
+    credit:'スキリージ.jp / アッヴィ',
+    strength:'150 mg / 1 mL pen',
+    match:'Japanese Skyrizi 150 mg subcutaneous pen'
+  },
   dupilumab: {
     path:'/media/medicine/dupilumab.jpg',
     src:'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Dupixent_Pen_and_Packaging.jpg/960px-Dupixent_Pen_and_Packaging.jpg',
