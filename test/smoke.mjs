@@ -20,8 +20,16 @@ redirect=await hit('/en/medicines/?q=Rybelsus'); checks.push(['trailing slash ca
 const requiredMedicineFields=['slug','en','ja','zh','productJa','brandEn','manufacturerJa','strengths','status','labelUpdated','verifiedAt','source'];
 checks.push(['medicine product-level completeness',medicines.length>=16&&medicines.every(m=>requiredMedicineFields.every(k=>Boolean(m[k]))&&m.source.includes('pmda.go.jp'))]);
 checks.push(['medicine use summaries complete and localized',medicines.every(m=>['zh-hans','ja','en'].every(l=>medicineUses[m.slug]?.[l]?.length>=8))]);
-checks.push(['licensed medicine photos are product specific',Object.entries(medicinePhotos).length>=2&&Object.entries(medicinePhotos).every(([slug,photo])=>medicines.some(m=>m.slug===slug)&&photo.src.startsWith('https://thumb.wikimedia.org/')&&photo.page.startsWith('https://commons.wikimedia.org/wiki/File:')&&photo.credit&&photo.licenseUrl)]);
-checks.push(['medicine photo files are deployed assets',Object.values(medicinePhotos).every(photo=>{const bytes=readFileSync(new URL('../public'+photo.path,import.meta.url));return bytes.length>20_000&&bytes[0]===0xff&&bytes[1]===0xd8})]);
+checks.push(['all medicine photos have product-level provenance',Object.keys(medicinePhotos).length===medicines.length&&medicines.every(m=>{
+ const photo=medicinePhotos[m.slug]; return photo?.src.startsWith('https://')&&photo?.page.startsWith('https://')&&photo?.credit&&photo?.strength&&photo?.match;
+})]);
+checks.push(['medicine photo files are real image assets',Object.values(medicinePhotos).every(photo=>{
+ const bytes=readFileSync(new URL('../public'+photo.path,import.meta.url));
+ const jpeg=bytes[0]===0xff&&bytes[1]===0xd8;
+ const png=bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+ const webp=bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP';
+ return bytes.length>5_000&&((photo.path.endsWith('.jpg')&&jpeg)||(photo.path.endsWith('.png')&&png)||(photo.path.endsWith('.webp')&&webp));
+})]);
 checks.push(['medicine sources product-specific',new Set(medicines.map(m=>m.source)).size===medicines.length]);
 checks.push(['Rybelsus current PMDA label',medicines.find(m=>m.slug==='semaglutide')?.labelUpdated==='2026-05-22'&&medicines.find(m=>m.slug==='semaglutide')?.source.includes('rdDetail/iyaku/2499014F1021_1?user=1')]);
 checks.push(['health catalogue restored',healthProducts.length>=20&&healthProducts.every(x=>x.slug&&x.brand&&x.zh&&x.ja&&x.en&&x.pack&&x.sourcePage&&x.verifiedAt)]);
@@ -56,13 +64,13 @@ checks.push(['seo home metadata',
   s.includes('"@type":"Organization"') &&
   s.includes('"@type":"WebSite"')
 ]);
-r=await hit('/zh-hans/medicines'); s=await r.text(); checks.push(['medicine use index',r.status===200&&s.includes('class="medicineCardGrid"')&&s.includes('class="medicineIndexTrust"')&&s.includes('主要用途')&&s.includes('用于特发性肺纤维化')&&s.includes('本站核验')&&s.includes('PMDA')]); checks.push(['medicine photos distinguish verified from missing',s.includes('/media/medicine/semaglutide')&&s.includes('/media/medicine/dupilumab')&&s.includes('实物照片待核验')&&!s.includes('/media/medicine/nivolumab')]);
-const zhName=s.indexOf('<h2>纳武利尤单抗</h2>'), jaProduct=s.indexOf('オプジーボ点滴静注20mg'); checks.push(['localized medicine hierarchy',zhName>-1&&jaProduct>zhName]);
+r=await hit('/zh-hans/medicines'); s=await r.text(); checks.push(['medicine use index',r.status===200&&s.includes('class="medicineCardGrid"')&&s.includes('class="medicineIndexTrust"')&&s.includes('主要用途')&&s.includes('用于特发性肺纤维化')&&s.includes('本站核验')&&s.includes('PMDA')]); checks.push(['all medicine cards show product photos',medicines.every(m=>s.includes(medicinePhotos[m.slug].path))&&!s.includes('实物照片待核验')]);
+const zhName=s.indexOf('<h2>纳武利尤单抗</h2>'), jaProduct=s.indexOf('オプジーボ点滴静注20mg',zhName); checks.push(['localized medicine hierarchy',zhName>-1&&jaProduct>zhName]);
 r=await hit('/zh-hans/medicines?q=opdivo'); s=await r.text(); checks.push(['medicine search by brand',r.status===200&&s.includes('纳武利尤单抗')&&s.includes('オプジーボ')&&s.includes('小野薬品工業')]); checks.push(['query pages noindex',s.includes('name="robots" content="noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"')]);
 r=await hit('/zh-hans/medicines?status=rx'); s=await r.text(); checks.push(['prescription filter excludes non-Rx record',s.includes('<b>15</b>')&&!s.includes('/zh-hans/medicines/ramelteon')]);
 r=await hit('/en/medicines?q=%EF%BC%B2%EF%BC%B9%EF%BC%A2%EF%BC%A5%EF%BC%AC%EF%BC%B3%EF%BC%B5%EF%BC%B3'); s=await r.text(); checks.push(['full-width Latin search',s.includes('/en/medicines/semaglutide')&&s.includes('<b>1</b>')]);
 r=await hit('/en/medicines?q='+encodeURIComponent('X'.repeat(500))); s=await r.text(); checks.push(['search query size limit',s.includes('X'.repeat(120))&&!s.includes('X'.repeat(121))]);
-r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]); checks.push(['unverified medicine photo is not depicted',s.includes('class="medicineHeroMedia"')&&s.includes('实物照片待核验')&&!s.includes('/media/medicine/nivolumab')]); checks.push(['medicine semantic schema',s.includes('"@type":"Drug"')&&s.includes('"manufacturer"')&&s.includes('"BreadcrumbList"')&&s.includes('"prescriptionStatus":"https://schema.org/PrescriptionOnly"')]); checks.push(['patient medicine CTA',s.includes('href="/zh-hans/travel">查看赴日医疗资讯</a>')&&!s.includes('type=personal')&&s.includes('type=institution')]);
+r=await hit('/zh-hans/medicines/nivolumab'); s=await r.text(); checks.push(['medicine verified detail',r.status===200&&s.includes('オプジーボ点滴静注20mg')&&s.includes('制造销售企业')&&s.includes('2026-08-25')&&s.includes('2026-09-22')&&s.includes('PMDA · 专业资料')]); checks.push(['new medicine detail photo and provenance',s.includes('class="medicineHeroMedia"')&&s.includes('/media/medicine/nivolumab.jpg')&&s.includes('BMS Oncology Japan')&&!s.includes('undefined')]); checks.push(['medicine semantic schema',s.includes('"@type":"Drug"')&&s.includes('"manufacturer"')&&s.includes('"BreadcrumbList"')&&s.includes('"prescriptionStatus":"https://schema.org/PrescriptionOnly"')]); checks.push(['patient medicine CTA',s.includes('href="/zh-hans/travel">查看赴日医疗资讯</a>')&&!s.includes('type=personal')&&s.includes('type=institution')]);
 r=await hit('/en/medicines/semaglutide'); s=await r.text(); checks.push(['representative oral tablet form',s.includes('<dt>Dosage form</dt><dd>oral tablet</dd>')]); checks.push(['licensed medicine photo credit',s.includes('/media/medicine/semaglutide')&&s.includes('Windshear')&&s.includes('CC BY-SA 4.0')&&s.includes('Japanese product photo')]);
 r=await hit('/zh-hans/medicines/semaglutide'); s=await r.text(); checks.push(['localized dosage form',s.includes('<dt>剂型</dt><dd>口服片剂</dd>')]);
 r=await hit('/zh-hans/medicines/ramelteon'); s=await r.text(); checks.push(['regulatory status nuance',r.status===200&&s.includes('解除“处方笺医药品”指定')&&!s.includes('<strong>Rx ·')]);
