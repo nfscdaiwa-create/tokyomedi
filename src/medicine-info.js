@@ -83,7 +83,7 @@ export const medicineUses = {
   }
 };
 
-export const medicineUse = (locale, medicine) => medicineUses[medicine.slug]?.[locale] || '';
+export const medicineUse = (locale, medicine) => medicineUses[medicine.slug]?.[locale] || medicineUses[medicine.slug]?.en || '';
 
 // Product-level Japanese images. Keep the represented strength and original
 // source visible; a photo of one strength never claims to show every variant.
