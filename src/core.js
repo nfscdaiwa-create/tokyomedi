@@ -4,6 +4,12 @@ import {DESIGN_CSS} from './styles-v2.js';
 import {medicineUse,medicinePhotos} from './medicine-info.js';
 
 export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+// Shared WhatsApp contact; do not prefill or transmit inquiry/patient data.
+export const WHATSAPP_NUMBER='+81 90-4739-0207';
+export const WHATSAPP_URL='https://wa.me/'+WHATSAPP_NUMBER.replace(/\D/g,'');
+export function whatsappLink(className=''){
+ return `<a class="whatsappContact ${esc(className)}" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"><span dir="ltr">WhatsApp: <bdi dir="ltr" style="white-space:nowrap">${WHATSAPP_NUMBER}</bdi></span></a>`;
+}
 export const p=(l,s='')=>`/${l}${s?'/'+s:''}`;
 export const searchText=v=>String(v??'').normalize('NFKC').toLocaleLowerCase();
 export const labelArea=(l,a)=>UI[l].filters[a]||a;
@@ -77,7 +83,7 @@ export function shell(l,req,title,description,active,body,extraLd=''){
  return `<!doctype html><html lang="${currentLang}" dir="${htmlDir(l)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(fullTitle)}</title><meta name="description" content="${esc(description)}"><meta name="author" content="TOKYO MEDI"><meta name="robots" content="${robots}"><meta name="theme-color" content="#26363a"><meta name="color-scheme" content="light"><meta name="format-detection" content="telephone=no"><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><link rel="canonical" href="${canonical}">${alts}<meta property="og:type" content="website"><meta property="og:site_name" content="TOKYO MEDI"><meta property="og:title" content="${esc(fullTitle)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:locale" content="${ogLocale[l]}">${ogAlts}${jsonLd(siteGraph(l))}${extraLd}${speculationRules()}<style>${CSS}${DESIGN_CSS}</style></head><body>
  <header class="top"><div class="wrap bar"><a class="brand" href="${p(l)}">${brandLogo()}</a><nav class="nav" aria-label="Primary navigation">${nav.map(n=>`<a class="${active===n?'on':''}" ${active===n?'aria-current="page"':''} href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</nav><div class="headTools"><a class="headSearch" href="${p(l,'medicines')}">⌕ ${esc(t.search)}</a><span class="searchContext" role="note">${esc(t.official)} · PMDA / MHLW</span><select class="lang" aria-label="Language" onchange="location.href=this.value">${LOCALES.map(x=>`<option value="${swapLocale(url.pathname,x)}${switchQuery}" ${x===l?'selected':''}>${localeName[x]}</option>`).join('')}</select></div></div></header>
  ${body}
- <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','health','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a></div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer></body></html>`;
+ <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','health','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a>${whatsappLink()}</div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer></body></html>`;
 }
 
 export function medicineName(l,m){
