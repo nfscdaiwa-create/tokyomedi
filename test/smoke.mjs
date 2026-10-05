@@ -1,5 +1,5 @@
 import worker from '../src/index.js';
-import {medicines,healthProducts,hospitals,guides,LOCALES,SITE} from '../src/data.js';
+import {medicines,healthProducts,hospitals,guides,LOCALES,CONTENT_LOCALES,SITE} from '../src/data.js';
 import {healthImageUrls} from '../src/health-images.js';
 import {medicineUses,medicinePhotos} from '../src/medicine-info.js';
 import {CSS} from '../src/styles.js';
@@ -20,7 +20,7 @@ redirect=await hit('/en/medicines/?q=Rybelsus'); checks.push(['trailing slash ca
 const requiredMedicineFields=['slug','en','ja','zh','productJa','brandEn','manufacturerJa','strengths','status','labelUpdated','verifiedAt','source'];
 checks.push(['medicine product-level completeness',medicines.length>=16&&medicines.every(m=>requiredMedicineFields.every(k=>Boolean(m[k]))&&m.source.includes('pmda.go.jp'))]);
 checks.push(['medicine use source summaries complete',medicines.every(m=>['zh-hans','ja','en'].every(l=>medicineUses[m.slug]?.[l]?.length>=8))]);
-checks.push(['20 published AI locales',LOCALES.length===20&&new Set(LOCALES).size===20&&['en','zh-hans','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja','pcm','mr','vi','te','sw','ha','tr'].every(l=>LOCALES.includes(l))]);
+checks.push(['20 available navigation locales',LOCALES.length===20&&new Set(LOCALES).size===20&&['en','zh-hans','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja','pcm','mr','vi','te','sw','ha','tr'].every(l=>LOCALES.includes(l))]);
 checks.push(['all medicine photos have product-level provenance',Object.keys(medicinePhotos).length===medicines.length&&medicines.every(m=>{
  const photo=medicinePhotos[m.slug]; return photo?.src.startsWith('https://')&&photo?.page.startsWith('https://')&&photo?.credit&&photo?.strength&&photo?.match;
 })]);
@@ -101,7 +101,7 @@ r=await hit('/zh-hans/inquiry'); s=await r.text(); checks.push(['contact email r
 r=await hit('/zh-hans/inquiry?type=personal'); s=await r.text(); checks.push(['no personal consultation mode',r.status===200&&s.includes('本页仅用于医疗机构、药局与企业的医药品询价')&&s.includes('不提供个人医疗咨询')&&!s.includes('个人资料咨询')&&!s.includes('INFORMATION / INDIVIDUAL')]);
 r=await hit('/en/inquiry?medicine='+encodeURIComponent('X'.repeat(500))); s=await r.text(); checks.push(['inquiry prefill size limit',s.includes('X'.repeat(200))&&!s.includes('X'.repeat(201))]);
 r=await hit('/healthz'); const j=await r.json(); checks.push(['health',j.ok===true&&j.version]);
-const suffixes=['','medicines','health','guides','travel','sources','about','inquiry',...medicines.map(x=>'medicines/'+x.slug),...healthProducts.map(x=>'health/'+x.slug),...guides.map(x=>'guides/'+x.slug)];
+const suffixes=['','medicines','health','guides','travel','sources','about','inquiry','privacy','terms',...medicines.map(x=>'medicines/'+x.slug),...healthProducts.map(x=>'health/'+x.slug),...guides.map(x=>'guides/'+x.slug)];
 const validPaths=new Set(LOCALES.flatMap(l=>suffixes.map(x=>'/'+l+(x?'/'+x:''))));
 const routeFailures=[];
 for(const l of LOCALES)for(const suffix of suffixes){
@@ -110,7 +110,7 @@ for(const l of LOCALES)for(const suffix of suffixes){
  const html=await response.text();
  const internalLinks=[...html.matchAll(/<a\b[^>]*href="(\/[^"]+)"/g)].map(x=>new URL(x[1],SITE).pathname);
  const expectedLang=l==='zh-hans'?'zh-Hans':l; const expectedDir=['ar','ur'].includes(l)?'rtl':'ltr';
- if(response.status!==200||!html.includes(`<link rel="canonical" href="${SITE+path}">`)||!html.includes(`<html lang="${expectedLang}" dir="${expectedDir}">`)||(html.match(/<h1\b/g)||[]).length!==1||internalLinks.some(x=>!validPaths.has(x)))routeFailures.push(path);
+ if(response.status!==200||!html.includes(`<link rel="canonical" href="${SITE+(CONTENT_LOCALES.includes(l)?path:path.replace('/'+l,'/en'))}">`)||!html.includes(`<html lang="${expectedLang}" dir="${expectedDir}">`)||(html.match(/<h1\b/g)||[]).length!==1||internalLinks.some(x=>!validPaths.has(x)))routeFailures.push(path);
 }
 checks.push(['all localized routes and internal links',validPaths.size===LOCALES.length*suffixes.length&&routeFailures.length===0]);
 if(routeFailures.length)console.error('Route failures:',routeFailures.join(', '));

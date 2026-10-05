@@ -1,7 +1,8 @@
-import {SITE,VERSION,LOCALES,medicines,healthProducts,guides} from './data.js';
+import {SITE,VERSION,LOCALES,CONTENT_LOCALES,medicines,healthProducts,guides} from './data.js';
 import {p,securityHeaders,notFoundPage} from './core.js';
 import {home,medicinesPage,medicineDetail} from './pages-home.js';
 import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} from './pages-content.js';
+import {legalPage} from './pages-legal.js';
 import {healthPage,healthDetail} from './pages-products.js';
 import {healthImageUrls} from './health-images.js';
 
@@ -32,14 +33,16 @@ function sitemap(){
   {path:'sources',lastmod:SITE_LASTMOD},
   {path:'about',lastmod:SITE_LASTMOD},
   {path:'inquiry',lastmod:SITE_LASTMOD},
+  {path:'privacy',lastmod:SITE_LASTMOD},
+  {path:'terms',lastmod:SITE_LASTMOD},
   ...medicines.map(m=>({path:'medicines/'+m.slug,lastmod:m.verifiedAt||SITE_LASTMOD})),
   ...healthProducts.map(x=>({path:'health/'+x.slug,lastmod:x.verifiedAt||SITE_LASTMOD})),
   ...guides.map(g=>({path:'guides/'+g.slug,lastmod:g.date||SITE_LASTMOD}))
  ];
  const urls=[];
  for(const r of records){
-  const alternates=LOCALES.map(l=>`<xhtml:link rel="alternate" hreflang="${hrefLang(l)}" href="${xmlEsc(SITE+p(l,r.path))}"/>`).join('')+`<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEsc(SITE+p('en',r.path))}"/>`;
-  for(const l of LOCALES){
+  const alternates=CONTENT_LOCALES.map(l=>`<xhtml:link rel="alternate" hreflang="${hrefLang(l)}" href="${xmlEsc(SITE+p(l,r.path))}"/>`).join('')+`<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEsc(SITE+p('en',r.path))}"/>`;
+  for(const l of CONTENT_LOCALES){
    urls.push(`<url><loc>${xmlEsc(SITE+p(l,r.path))}</loc><lastmod>${r.lastmod}</lastmod>${alternates}</url>`);
   }
  }
@@ -125,12 +128,17 @@ async function productMedia(kind,slug,ctx){
 export default {async fetch(req,env,ctx){
  const url=new URL(req.url),pathname=url.pathname.replace(/\/+$/,'')||'/';
  const pageSecurity=extra=>securityHeaders(url.protocol==='https:'?{'strict-transport-security':'max-age=31536000',...extra}:extra);
- if(url.protocol==='http:'&&!['localhost','127.0.0.1'].includes(url.hostname)){
-  url.protocol='https:';
-  return Response.redirect(url,308);
+ if(url.hostname==='www.tokyomedi.com'||(url.protocol==='http:'&&!['localhost','127.0.0.1'].includes(url.hostname))){
+  url.protocol='https:';if(url.hostname==='www.tokyomedi.com')url.hostname='tokyomedi.com';
+  return Response.redirect(url,url.hostname==='tokyomedi.com'&&new URL(req.url).hostname==='www.tokyomedi.com'?301:308);
  }
  if(!['GET','HEAD'].includes(req.method))return new Response('Method Not Allowed',{status:405,headers:pageSecurity({'allow':'GET, HEAD','content-type':'text/plain; charset=utf-8'})});
  if(url.pathname!==pathname)return Response.redirect(new URL(pathname+url.search,url),308);
+ // Apply host/method normalization before static assets so www images also redirect.
+ if(env?.ASSETS){
+  const asset=await env.ASSETS.fetch(req);
+  if(asset.status!==404){const headers=new Headers(asset.headers);for(const [key,value] of Object.entries(pageSecurity({})))headers.set(key,value);return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});}
+ }
  if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:pageSecurity({'cache-control':'no-store'})});
  if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:pageSecurity({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});
@@ -155,6 +163,7 @@ export default {async fetch(req,env,ctx){
  else if(section==='sources'&&!slug)html=sourcesPage(l,req);
  else if(section==='about'&&!slug)html=aboutPage(l,req);
  else if(section==='inquiry'&&!slug)html=inquiryPage(l,req);
+ else if(['privacy','terms'].includes(section)&&!slug)html=legalPage(l,req,section);
  if(!html)return new Response(notFoundPage(l,req),{status:404,headers:pageSecurity({'content-type':'text/html; charset=utf-8','x-robots-tag':'noindex','cache-control':'no-store'})});
  return new Response(html,{headers:pageSecurity({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});
 }};
