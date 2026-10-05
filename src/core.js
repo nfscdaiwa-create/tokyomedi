@@ -11,7 +11,9 @@ export function whatsappLink(className=''){
  return `<a class="whatsappContact ${esc(className)}" href="${WHATSAPP_URL}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"><span dir="ltr">WhatsApp: <bdi dir="ltr" style="white-space:nowrap">${WHATSAPP_NUMBER}</bdi></span></a>`;
 }
 export const p=(l,s='')=>`/${l}${s?'/'+s:''}`;
-export const searchText=v=>String(v??'').normalize('NFKC').toLocaleLowerCase();
+export const searchText=v=>String(v??'').normalize('NFKC').toLocaleLowerCase().replace(/[µμ]/g,'u').replace(/(\d)\s+(mg|mcg|ug|g|ml|iu)\b/g,'$1$2');
+export const matchesSearch=(value,query)=>{const text=searchText(value);return searchText(query).trim().split(/\s+/).filter(Boolean).every(term=>text.includes(term));};
+export const contentLang=l=>['zh-hans','ja'].includes(l)?htmlLang(l):'en';
 export const labelArea=(l,a)=>UI[l].filters[a]||a;
 const dosageForms={
  'tablet / OD tablet':{'zh-hans':'片剂 / 口崩片',ja:'錠剤 / OD錠'},
@@ -60,7 +62,9 @@ function localeSwitchQuery(url,active,l){
  if(active==='medicines'){
   const area=url.searchParams.get('area')||'';
   if(area&&UI[l].filters[area])params.set('area',area);
+  if(url.searchParams.get('status')==='rx')params.set('status','rx');
  }
+ if(active==='health'&&['food','functional-food','nutrient-food'].includes(url.searchParams.get('kind')))params.set('kind',url.searchParams.get('kind'));
  if(active==='travel'){
   const area=(url.searchParams.get('area')||'').slice(0,40);
   if(/^[a-z-]+$/.test(area))params.set('area',area);
@@ -74,18 +78,29 @@ function localeSwitchQuery(url,active,l){
  return query?'?'+query:'';
 }
 export function shell(l,req,title,description,active,body,extraLd=''){
- const url=new URL(req.url); const canonical=SITE+url.pathname; const currentLang=htmlLang(l); const robots=url.search?'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1':'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+ const url=new URL(req.url); const canonical=SITE+url.pathname; const currentLang=htmlLang(l); const robots=active==='404'||url.search?'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1':'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
  const alts=LOCALES.map(x=>`<link rel="alternate" hreflang="${htmlLang(x)}" href="${SITE+swapLocale(url.pathname,x)}">`).join('')+`<link rel="alternate" hreflang="x-default" href="${SITE+swapLocale(url.pathname,'en')}">`;
  const ogAlts=LOCALES.filter(x=>x!==l).map(x=>`<meta property="og:locale:alternate" content="${ogLocale[x]}">`).join('');
  const t=UI[l]; const switchQuery=localeSwitchQuery(url,active,l);
  const nav=['medicines','health','guides','travel','sources','about'];
  const fullTitle=pageTitle(l,title);
+ const tr=(zh,en,ja)=>l==='zh-hans'?zh:l==='ja'?ja:en;
+ const segments=url.pathname.split('/').filter(Boolean);
+ const crumbs=active&&active!=='404'?`<nav class="breadcrumbs wrap" aria-label="${tr('当前位置','Breadcrumb','現在位置')}"><a href="${p(l)}">${tr('首页','Home','ホーム')}</a><span aria-hidden="true">/</span>${segments.length>2?`<a href="${p(l,active)}">${esc(t.nav[active]||title)}</a><span aria-hidden="true">/</span>`:''}<span aria-current="page">${esc(segments.length>2?title:t.nav[active]||title)}</span></nav>`:'';
+ const fallback=['zh-hans','ja','en'].includes(l)?'':`<div class="contentLanguage wrap" lang="en" dir="ltr">Detailed reference content is available in English, Chinese and Japanese. <a href="${swapLocale(url.pathname,'en')}${switchQuery}" lang="en">English</a> · <a href="${swapLocale(url.pathname,'zh-hans')}${switchQuery}" lang="zh-Hans">中文</a> · <a href="${swapLocale(url.pathname,'ja')}${switchQuery}" lang="ja">日本語</a></div>`;
+ const pageBody=body.replace(/<main([^>]*)>/,`<main$1 id="main-content" tabindex="-1" lang="${contentLang(l)}"${contentLang(l)==='en'?' dir="ltr"':''}>${crumbs}${fallback}`);
+ const skip=tr('跳至主要内容','Skip to main content','本文へ移動');
  return `<!doctype html><html lang="${currentLang}" dir="${htmlDir(l)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(fullTitle)}</title><meta name="description" content="${esc(description)}"><meta name="author" content="TOKYO MEDI"><meta name="robots" content="${robots}"><meta name="theme-color" content="#26363a"><meta name="color-scheme" content="light"><meta name="format-detection" content="telephone=no"><link rel="preconnect" href="https://images.unsplash.com" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" type="application/xml" href="/sitemap.xml"><link rel="canonical" href="${canonical}">${alts}<meta property="og:type" content="website"><meta property="og:site_name" content="TOKYO MEDI"><meta property="og:title" content="${esc(fullTitle)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:locale" content="${ogLocale[l]}">${ogAlts}${jsonLd(siteGraph(l))}${extraLd}${speculationRules()}<style>${CSS}${DESIGN_CSS}</style></head><body>
- <header class="top"><div class="wrap bar"><a class="brand" href="${p(l)}">${brandLogo()}</a><nav class="nav" aria-label="Primary navigation">${nav.map(n=>`<a class="${active===n?'on':''}" ${active===n?'aria-current="page"':''} href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</nav><div class="headTools"><a class="headSearch" href="${p(l,'medicines')}">⌕ ${esc(t.search)}</a><span class="searchContext" role="note">${esc(t.official)} · PMDA / MHLW</span><select class="lang" aria-label="Language" onchange="location.href=this.value">${LOCALES.map(x=>`<option value="${swapLocale(url.pathname,x)}${switchQuery}" ${x===l?'selected':''}>${localeName[x]}</option>`).join('')}</select></div></div></header>
- ${body}
- <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','health','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a>${whatsappLink()}</div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer></body></html>`;
+ <a class="skipLink" href="#main-content">${skip}</a><header class="top"><div class="wrap bar"><a class="brand" href="${p(l)}">${brandLogo()}</a><nav class="nav" aria-label="Primary navigation">${nav.map(n=>`<a class="${active===n?'on':''}" ${active===n?'aria-current="page"':''} href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</nav><div class="headTools"><a class="headSearch" href="${p(l,'medicines')}">⌕ ${esc(t.search)}</a><span class="searchContext" role="note">${esc(t.official)} · PMDA / MHLW</span><select class="lang" aria-label="Language" onchange="location.href=this.value">${LOCALES.map(x=>`<option value="${swapLocale(url.pathname,x)}${switchQuery}" ${x===l?'selected':''}>${localeName[x]}</option>`).join('')}</select></div></div></header>
+ ${pageBody}
+ <footer class="foot"><div class="wrap footGrid"><div><div class="brand footBrand">${brandLogo()}</div><p>${esc(t.footer)}</p><p>${esc(t.rxNotice)}</p></div><div class="footLinks"><div>${['medicines','health','guides','travel'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}</div><div>${['sources','about','inquiry'].map(n=>`<a href="${p(l,n)}">${esc(t.nav[n])}</a>`).join('')}<a href="mailto:${EMAIL}">${EMAIL}</a>${whatsappLink()}</div></div></div><div class="wrap footBottom"><span>© ${new Date().getUTCFullYear()} TOKYO MEDI</span><span>Tokyo · Japan · ${VERSION}</span></div></footer><script>const readingMedia=matchMedia('(max-width:820px)');function fitReadingMenu(){document.querySelectorAll('.readingMenu').forEach(menu=>menu.open=!readingMedia.matches)}fitReadingMenu();readingMedia.addEventListener('change',fitReadingMenu);document.querySelectorAll('.readingMenu a').forEach(a=>a.addEventListener('click',()=>{if(readingMedia.matches)a.closest('details').open=false}));</script></body></html>`;
 }
 
+export function notFoundPage(l,req){
+ const tr=(zh,en,ja)=>l==='zh-hans'?zh:l==='ja'?ja:en;
+ const title=tr('页面未找到','Page not found','ページが見つかりません');
+ return shell(l,req,title,title,'404',`<main><section class="pageHero"><div class="wrap"><div class="eyebrow">404</div><h1>${title}</h1><p>${tr('链接可能已更改，请从资料库查找产品。','The link may have changed. Find the product in our catalogs.','リンクが変更された可能性があります。製品一覧からお探しください。')}</p><div class="sourceButtons"><a class="btn teal" href="${p(l,'medicines')}">${esc(UI[l].nav.medicines)}</a><a class="btn ghost" href="${p(l,'health')}">${esc(UI[l].nav.health)}</a><a class="textLink" href="${p(l)}">${tr('返回首页','Return home','ホームへ')}</a></div></div></section></main>`);
+}
 export function medicineName(l,m){
  if(l==='ja') return m.productJa||m.ja;
  if(l==='zh-hans') return m.brandEn?`${m.brandEn}｜${m.zh}`:m.zh;

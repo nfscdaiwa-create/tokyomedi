@@ -1,5 +1,5 @@
 import {SITE,VERSION,LOCALES,medicines,healthProducts,guides} from './data.js';
-import {p,securityHeaders} from './core.js';
+import {p,securityHeaders,notFoundPage} from './core.js';
 import {home,medicinesPage,medicineDetail} from './pages-home.js';
 import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} from './pages-content.js';
 import {healthPage,healthDetail} from './pages-products.js';
@@ -17,8 +17,7 @@ function preferredLocale(header=''){
  }).filter(x=>x.quality>0&&x.quality<=1).sort((a,b)=>b.quality-a.quality||a.index-b.index);
  for(const {tag} of preferences){
   if(tag==='zh'||tag.startsWith('zh-'))return 'zh-hans';
-  if(tag==='ja'||tag.startsWith('ja-'))return 'ja';
-  if(tag==='en'||tag.startsWith('en-'))return 'en';
+  const base=tag.split('-')[0];if(LOCALES.includes(base))return base;
  }
  return 'en';
 }
@@ -130,6 +129,7 @@ export default {async fetch(req,env,ctx){
   url.protocol='https:';
   return Response.redirect(url,308);
  }
+ if(!['GET','HEAD'].includes(req.method))return new Response('Method Not Allowed',{status:405,headers:pageSecurity({'allow':'GET, HEAD','content-type':'text/plain; charset=utf-8'})});
  if(url.pathname!==pathname)return Response.redirect(new URL(pathname+url.search,url),308);
  if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:pageSecurity({'cache-control':'no-store'})});
  if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
@@ -144,17 +144,17 @@ export default {async fetch(req,env,ctx){
   return new Response(null,{status:302,headers:pageSecurity({'location':new URL('/'+l,url).href,'vary':'Accept-Language','cache-control':'private, no-store'})});
  }
  const parts=pathname.split('/').filter(Boolean),l=parts[0];
- if(!LOCALES.includes(l))return Response.redirect(new URL('/en',url),302);
+ if(!LOCALES.includes(l))return new Response(notFoundPage('en',req),{status:404,headers:pageSecurity({'content-type':'text/html; charset=utf-8','x-robots-tag':'noindex','cache-control':'no-store'})});
  const section=parts[1]||'',slug=parts.slice(2).join('/');
  let html=null;
  if(!section)html=home(l,req);
  else if(section==='medicines')html=slug?medicineDetail(l,req,slug):medicinesPage(l,req);
  else if(section==='health')html=slug?healthDetail(l,req,slug):healthPage(l,req);
  else if(section==='guides')html=slug?guideDetail(l,req,slug):guidesPage(l,req);
- else if(section==='travel')html=travelPage(l,req);
- else if(section==='sources')html=sourcesPage(l,req);
- else if(section==='about')html=aboutPage(l,req);
- else if(section==='inquiry')html=inquiryPage(l,req);
- if(!html)return new Response('Not Found',{status:404,headers:pageSecurity({'content-type':'text/plain; charset=utf-8','x-robots-tag':'noindex'})});
+ else if(section==='travel'&&!slug)html=travelPage(l,req);
+ else if(section==='sources'&&!slug)html=sourcesPage(l,req);
+ else if(section==='about'&&!slug)html=aboutPage(l,req);
+ else if(section==='inquiry'&&!slug)html=inquiryPage(l,req);
+ if(!html)return new Response(notFoundPage(l,req),{status:404,headers:pageSecurity({'content-type':'text/html; charset=utf-8','x-robots-tag':'noindex','cache-control':'no-store'})});
  return new Response(html,{headers:pageSecurity({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});
 }};

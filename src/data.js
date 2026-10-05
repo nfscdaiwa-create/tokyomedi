@@ -1,6 +1,6 @@
 export const SITE = 'https://tokyomedi.com';
 export const EMAIL = 'beibei7jp1978@yahoo.co.jp';
-export const VERSION = '2026.10.05-product-encyclopedia';
+export const VERSION = '2026.10.05-comprehensive';
 export const LOCALES = ['en','zh-hans','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja','pcm','mr','vi','te','sw','ha','tr'];
 
 export const UI = {

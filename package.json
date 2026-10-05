@@ -4,7 +4,7 @@
   "private":true,
   "type":"module",
   "scripts":{
-    "test":"node test/smoke.mjs && node test/dossiers.mjs",
+    "test":"node test/smoke.mjs && node test/dossiers.mjs && node test/polish.mjs",
     "build":"npm test",
     "dev":"wrangler dev --host localhost",
     "deploy":"npm test && wrangler deploy"
