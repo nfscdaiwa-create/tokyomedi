@@ -102,7 +102,7 @@ export const medicineDossiers={
   storage:tr('室温，在 PTP 泡罩状态保存；本品吸湿性强且对光不稳定，不宜提前取出放入普通分药盒。图为日本 3 mg／7 mg 包装。','Store at room temperature in the PTP blister because tablets are moisture- and light-sensitive.','吸湿性と光への不安定性があるため、PTPの状態で室温保存します。')
  },
  edoxaban:{
-  overview:tr('依度沙班是直接口服抗凝药（DOAC），Lixiana 通过抑制凝血因子 Xa 减少血栓形成。15／30／60 mg 的选择依适应症、体重、肾功能、年龄和併用药决定，不能按“预防药”理解为人人适合。','Lixiana is a direct oral factor-Xa anticoagulant. Dose depends on indication, weight, renal function and other factors.','リクシアナは経口FXa阻害剤です。適応、体重、腎機能、年齢、併用薬で用量を選びます。'),
+  overview:tr('艾多沙班（亦译依度沙班）是直接口服抗凝药（DOAC），Lixiana 通过抑制凝血因子 Xa 减少血栓形成。15／30／60 mg 的选择依适应症、体重、肾功能、年龄和併用药决定，不能按“预防药”理解为人人适合。','Lixiana is a direct oral factor-Xa anticoagulant. Dose depends on indication, weight, renal function and other factors.','リクシアナは経口FXa阻害剤です。適応、体重、腎機能、年齢、併用薬で用量を選びます。'),
   mechanism:tr('直接抑制 Xa 活性，减少凝血酶生成与凝块形成。抗凝作用也使止血能力受到影响，出血风险是整个治疗过程中需平衡的关键；它与阿司匹林等抗血小板药并不是同类作用。','Directly inhibits factor Xa and reduces thrombin generation; bleeding risk must be balanced against clot prevention.','FXaを直接阻害しトロンビン生成を抑えます。抗血小板薬とは作用が異なります。'),
   indications:tr('日本批准包括非瓣膜性房颤的缺血性卒中／全身栓塞预防、深静脉血栓和肺栓塞治疗及复发抑制、慢性血栓栓塞性肺高压相关血栓抑制，以及特定下肢骨科术后静脉血栓预防。','Japanese uses cover selected AF stroke prevention, VTE treatment/prevention, CTEPH and specified orthopedic procedures.','非弁膜症性AF、VTE治療・再発抑制、CTEPH、特定の下肢整形外科術後等に使用します。'),
   dosing:tr('房颤和静脉血栓相关常规成人方案：体重不超过 60 kg 常为 30 mg 每日一次，超过 60 kg 常为 60 mg 每日一次；肾功能及併用药可能需减量。15 mg 用于符合条件的高出血风险老年房颤人群，不是普遍“低剂量方案”。骨科术后通常 30 mg 每日一次。','Common adult doses are 30 mg daily at ≤60 kg and 60 mg at >60 kg, with renal/drug adjustments; 15 mg has restricted elderly AF criteria.','通常は60kg以下30mg、60kg超60mgを1日1回。腎機能・併用薬で調整し、15mgは特定の高齢AF患者用です。'),

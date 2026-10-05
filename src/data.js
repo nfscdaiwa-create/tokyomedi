@@ -428,7 +428,7 @@ export const medicines = [
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=2'
   },
   {
-    slug:'edoxaban',en:'Edoxaban',ja:'エドキサバン',zh:'依度沙班',area:'cardio',form:'tablet',status:'Rx',
+    slug:'edoxaban',en:'Edoxaban',ja:'エドキサバン',zh:'艾多沙班（依度沙班）',area:'cardio',form:'tablet',status:'Rx',
     productJa:'リクシアナ錠15mg／30mg／60mg',brandEn:'Lixiana',
     manufacturerJa:'第一三共株式会社',strengths:'15 mg / 30 mg / 60 mg',scope:'brand-family',
     labelUpdated:'2025-11',verifiedAt:'2026-10-05',
