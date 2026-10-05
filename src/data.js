@@ -1,6 +1,6 @@
 export const SITE = 'https://tokyomedi.com';
 export const EMAIL = 'beibei7jp1978@yahoo.co.jp';
-export const VERSION = '2026.10.05-photo-layout';
+export const VERSION = '2026.10.05-product-encyclopedia';
 export const LOCALES = ['en','zh-hans','hi','es','ar','fr','bn','pt','id','ur','ru','de','ja','pcm','mr','vi','te','sw','ha','tr'];
 
 export const UI = {
@@ -358,7 +358,7 @@ export const medicines = [
     slug:'amlodipine',en:'Amlodipine',ja:'アムロジピン',zh:'氨氯地平',area:'cardio',form:'tablet / OD tablet',status:'Rx',
     productJa:'ノルバスク錠2.5mg／5mg／10mg・ノルバスクOD錠2.5mg／5mg／10mg',brandEn:'Norvasc',
     manufacturerJa:'ヴィアトリス製薬合同会社',strengths:'2.5 mg / 5 mg / 10 mg',scope:'representative',
-    labelUpdated:'2026-05-20',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-05',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2171022F1029_4?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2171022F1029_4?user=2'
   },
@@ -366,7 +366,7 @@ export const medicines = [
     slug:'nivolumab',en:'Nivolumab',ja:'ニボルマブ',zh:'纳武利尤单抗',area:'oncology',form:'IV infusion',status:'Rx',
     productJa:'オプジーボ点滴静注20mg／100mg／120mg／240mg',brandEn:'Opdivo',
     manufacturerJa:'小野薬品工業株式会社',strengths:'20 mg / 100 mg / 120 mg / 240 mg',scope:'brand-family',
-    labelUpdated:'2026-08-25',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291427A1024_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291427A1024_1?user=2'
   },
@@ -374,7 +374,7 @@ export const medicines = [
     slug:'pembrolizumab',en:'Pembrolizumab',ja:'ペムブロリズマブ',zh:'帕博利珠单抗',area:'oncology',form:'IV infusion',status:'Rx',
     productJa:'キイトルーダ点滴静注100mg',brandEn:'Keytruda',
     manufacturerJa:'MSD株式会社',strengths:'100 mg',scope:'brand-family',
-    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291435A2025_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291435A2025_1?user=2'
   },
@@ -382,7 +382,7 @@ export const medicines = [
     slug:'osimertinib',en:'Osimertinib',ja:'オシメルチニブ',zh:'奥希替尼',area:'oncology',form:'tablet',status:'Rx',
     productJa:'タグリッソ錠40mg／80mg',brandEn:'Tagrisso',
     manufacturerJa:'アストラゼネカ株式会社',strengths:'40 mg / 80 mg',scope:'brand-family',
-    labelUpdated:'2026-01-13',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291045F1027_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291045F1027_1?user=2'
   },
@@ -390,7 +390,7 @@ export const medicines = [
     slug:'trastuzumab-deruxtecan',en:'Trastuzumab deruxtecan',ja:'トラスツズマブ デルクステカン',zh:'曲妥珠单抗德鲁斯特康',area:'oncology',form:'IV infusion',status:'Rx',
     productJa:'エンハーツ点滴静注用100mg',brandEn:'Enhertu',
     manufacturerJa:'第一三共株式会社',strengths:'100 mg',scope:'brand-family',
-    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291452D1029_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4291452D1029_1?user=2'
   },
@@ -398,7 +398,7 @@ export const medicines = [
     slug:'lecanemab',en:'Lecanemab',ja:'レカネマブ',zh:'仑卡奈单抗',area:'neuro',form:'IV infusion',status:'Rx',
     productJa:'レケンビ点滴静注200mg／500mg',brandEn:'Leqembi',
     manufacturerJa:'エーザイ株式会社',strengths:'200 mg / 500 mg',scope:'brand-family',
-    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190408A1025_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190408A1025_1?user=2'
   },
@@ -406,7 +406,7 @@ export const medicines = [
     slug:'sacubitril-valsartan',en:'Sacubitril / valsartan',ja:'サクビトリルバルサルタン',zh:'沙库巴曲缬沙坦',area:'cardio',form:'tablet / pediatric granule tablet',status:'Rx',
     productJa:'エンレスト錠50mg／100mg／200mg・粒状錠小児用12.5mg／31.25mg',brandEn:'Entresto',
     manufacturerJa:'ノバルティスファーマ株式会社',strengths:'50 mg / 100 mg / 200 mg; pediatric 12.5 mg / 31.25 mg',scope:'brand-family',
-    labelUpdated:'2025-09-09',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-10',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2190041F1027_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2190041F1027_1?user=2'
   },
@@ -414,7 +414,7 @@ export const medicines = [
     slug:'empagliflozin',en:'Empagliflozin',ja:'エンパグリフロジン',zh:'恩格列净',area:'metabolic',form:'tablet',status:'Rx',
     productJa:'ジャディアンス錠10mg／25mg',brandEn:'Jardiance',
     manufacturerJa:'日本ベーリンガーインゲルハイム株式会社',strengths:'10 mg / 25 mg',scope:'brand-family',
-    labelUpdated:'2025-09-01',verifiedAt:'2026-09-22',
+    labelUpdated:'2025-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3969023F1023_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3969023F1023_1?user=2'
   },
@@ -423,7 +423,7 @@ export const medicines = [
     productJa:'リベルサス錠3mg／7mg／14mg',brandEn:'Rybelsus',
     manufacturerJa:'ノボ ノルディスク ファーマ株式会社',strengths:'3 mg / 7 mg / 14 mg',scope:'representative',
     alternateProductsJa:['オゼンピック皮下注2mg','ウゴービ皮下注（複数規格）'],
-    labelUpdated:'2026-05-22',verifiedAt:'2026-09-23',
+    labelUpdated:'2026-05',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2499014F1021_1?user=2'
   },
@@ -431,7 +431,7 @@ export const medicines = [
     slug:'edoxaban',en:'Edoxaban',ja:'エドキサバン',zh:'依度沙班',area:'cardio',form:'tablet',status:'Rx',
     productJa:'リクシアナ錠15mg／30mg／60mg',brandEn:'Lixiana',
     manufacturerJa:'第一三共株式会社',strengths:'15 mg / 30 mg / 60 mg',scope:'brand-family',
-    labelUpdated:'2025-11-26',verifiedAt:'2026-09-22',
+    labelUpdated:'2025-11',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3339002F1020_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3339002F1020_1?user=2'
   },
@@ -439,7 +439,7 @@ export const medicines = [
     slug:'tolvaptan',en:'Tolvaptan',ja:'トルバプタン',zh:'托伐普坦',area:'cardio',form:'OD tablet / granules',status:'Rx',
     productJa:'サムスカOD錠7.5mg／15mg／30mg・サムスカ顆粒1%',brandEn:'Samsca',
     manufacturerJa:'大塚製薬株式会社',strengths:'7.5 mg / 15 mg / 30 mg; granules 1%',scope:'brand-family',
-    labelUpdated:'2025-12-09',verifiedAt:'2026-09-22',
+    labelUpdated:'2025-12',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2139011D1022_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/2139011D1022_1?user=2'
   },
@@ -447,7 +447,7 @@ export const medicines = [
     slug:'pirfenidone',en:'Pirfenidone',ja:'ピルフェニドン',zh:'吡非尼酮',area:'respiratory',form:'tablet',status:'Rx',
     productJa:'ピレスパ錠200mg',brandEn:'Pirespa',
     manufacturerJa:'塩野義製薬株式会社',strengths:'200 mg',scope:'brand-family',
-    labelUpdated:'2023-09-15',verifiedAt:'2026-09-22',
+    labelUpdated:'2022-03',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999025F1021_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999025F1021_1?user=2'
   },
@@ -455,7 +455,7 @@ export const medicines = [
     slug:'dupilumab',en:'Dupilumab',ja:'デュピルマブ',zh:'度普利尤单抗',area:'immune',form:'SC pen / syringe',status:'Rx',
     productJa:'デュピクセント皮下注300mg／200mg ペン・シリンジ',brandEn:'Dupixent',
     manufacturerJa:'サノフィ株式会社',strengths:'200 mg / 300 mg',scope:'brand-family',
-    labelUpdated:'2026-03-23',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-03',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4490405G1024_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/4490405G1024_1?user=2'
   },
@@ -463,7 +463,7 @@ export const medicines = [
     slug:'upadacitinib',en:'Upadacitinib',ja:'ウパダシチニブ',zh:'乌帕替尼',area:'immune',form:'tablet / oral solution',status:'Rx',
     productJa:'リンヴォック錠7.5mg／15mg／30mg／45mg・内用液0.1%',brandEn:'Rinvoq',
     manufacturerJa:'アッヴィ合同会社',strengths:'7.5 mg / 15 mg / 30 mg / 45 mg; oral solution 0.1%',scope:'brand-family',
-    labelUpdated:'2026-08-25',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-08',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999048G2024_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999048G2024_1?user=2'
   },
@@ -471,7 +471,7 @@ export const medicines = [
     slug:'risankizumab',en:'Risankizumab',ja:'リサンキズマブ',zh:'利生奇珠单抗',area:'immune',form:'SC syringe / pen',status:'Rx',
     productJa:'スキリージ皮下注55mg／75mg／150mg シリンジ・150mgペン',brandEn:'Skyrizi',
     manufacturerJa:'アッヴィ合同会社',strengths:'55 mg / 75 mg / 150 mg',scope:'brand-family',
-    labelUpdated:'2026-09-16',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999450G1028_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/3999450G1028_1?user=2'
   },
@@ -481,34 +481,34 @@ export const medicines = [
     manufacturerJa:'武田薬品工業株式会社',strengths:'8 mg',scope:'brand-family',
     statusNoteJa:'2026年9月に処方箋医薬品の指定解除',statusNoteEn:'Prescription-only designation removed in September 2026; still listed by PMDA as a medical-use medicine.',
     statusNoteZh:'2026年9月解除“处方笺医药品”指定；仍属于 PMDA 医疗用医药品信息范围。',
-    labelUpdated:'2026-09-01',verifiedAt:'2026-09-22',
+    labelUpdated:'2026-09',verifiedAt:'2026-10-05',
     source:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190016F1024_1?user=1',
     patientSource:'https://www.pmda.go.jp/PmdaSearch/rdDetail/iyaku/1190016F1024_1?user=2'
   }
 ];
 
 export const healthProducts = [
-  {slug:'fish-collagen-peptide-granules-w',sku:'TSU-HF-0001',brand:'Tsubaki Trading',zh:'日本深海鱼胶原蛋白',ja:'日本発・高品質 深海魚コラーゲン',en:'Japan Deep-Sea Fish Collagen Peptide',pack:'500g',price:'280 CNY',kind:'food',origin:'日本',sourcePage:'https://tsubaki-jp.com/ja/product/fish-collagen-peptide-granules-w/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-blood-sugar-care',sku:'TSU-HF-0020',brand:'DHC',zh:'DHC 血糖值双重对策',ja:'DHC 血糖値ダブル対策',en:'DHC Blood Sugar Double Support',pack:'60粒 / 20日分',price:'¥2,418',kind:'functional-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-blood-sugar-care/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-calcium-cbp',sku:'TSU-HF-0021',brand:'DHC',zh:'DHC 钙 + CBP',ja:'DHC カルシウム + CBP',en:'DHC Calcium + CBP',pack:'80粒 / 20日分',price:'¥969',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-cbp/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-calcium-magnesium-20',sku:'TSU-HF-0003',brand:'DHC',zh:'DHC 钙 / 镁',ja:'DHC カルシウム／マグ',en:'DHC Calcium / Magnesium',pack:'60粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium-2/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-calcium-magnesium-60',sku:'TSU-HF-0002',brand:'DHC',zh:'DHC 钙 / 镁 60日装',ja:'DHC カルシウム／マグ 60日分',en:'DHC Calcium / Magnesium 60-Day',pack:'180粒 / 60日分',price:'¥1,788',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-citrulline',sku:'TSU-HF-0014',brand:'DHC',zh:'DHC 瓜氨酸',ja:'DHC シトルリン',en:'DHC Citrulline',pack:'60粒 / 20日分',price:'¥2,256',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-citrulline/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-coenzyme-q10',sku:'TSU-HF-0015',brand:'DHC',zh:'DHC 包接体辅酶 Q10',ja:'DHC コエンザイムQ10 包接体',en:'DHC Coenzyme Q10 Inclusion Complex',pack:'20日分',price:'¥1,548',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-coenzyme-q10/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-concentrated-ukon-20',sku:'TSU-HF-0016',brand:'DHC',zh:'DHC 浓缩姜黄',ja:'DHC 濃縮ウコン',en:'DHC Concentrated Turmeric Ukon',pack:'40粒 / 20日分',price:'¥1,302',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-concentrated-ukon-60',sku:'TSU-HF-0017',brand:'DHC',zh:'DHC 浓缩姜黄 60日装',ja:'DHC 濃縮ウコン 60日分',en:'DHC Concentrated Turmeric Ukon 60-Day',pack:'120粒 / 60日分',price:'¥3,603',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric-2/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-fermented-black-sesamin-stamina',sku:'TSU-HF-0012',brand:'DHC',zh:'DHC 发酵黑芝麻素 + 活力',ja:'DHC 醗酵黒セサミン＋スタミナ',en:'DHC Fermented Black Sesamin + Stamina',pack:'120粒 / 20日分',price:'¥2,823',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-stamina/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-fermented-black-sesamin-premium',sku:'TSU-HF-0013',brand:'DHC',zh:'DHC 发酵黑芝麻素 PREMIUM',ja:'DHC 醗酵黒セサミン プレミアム',en:'DHC Fermented Black Sesamin Premium',pack:'120粒 / 20日分',price:'¥4,755',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-premium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-hatomugi-coix-extract',sku:'TSU-HF-0006',brand:'DHC',zh:'DHC 薏仁精华',ja:'DHC はとむぎエキス',en:'DHC Hatomugi Extract',pack:'20日分',price:'¥1,056',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-hatomugi-coix-extract/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-heme-iron',sku:'TSU-HF-0005',brand:'DHC',zh:'DHC 血红素铁',ja:'DHC ヘム鉄',en:'DHC Heme Iron',pack:'40粒 / 20日分',price:'¥1,227',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-heme-iron/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-kozu-black-vinegar',sku:'TSU-HF-0011',brand:'DHC',zh:'DHC 黑醋',ja:'DHC 黒酢',en:'DHC Kozu Black Vinegar',pack:'60粒 / 20日分',price:'¥1,794',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-kozu-black-vinegar/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-liver-extract-ornithine',sku:'TSU-HF-0018',brand:'DHC',zh:'DHC 肝脏精华 + 鸟氨酸',ja:'DHC 肝臓エキス＋オルニチン',en:'DHC Liver Extract + Ornithine',pack:'60粒 / 20日分',price:'¥2,160',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-liver-extract-ornithine/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-multivitamin',sku:'TSU-HF-0007',brand:'DHC',zh:'DHC 综合维生素',ja:'DHC マルチビタミン',en:'DHC Multivitamin',pack:'20粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-multivitamin/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-natural-vitamin-e-soy',sku:'TSU-HF-0004',brand:'DHC',zh:'DHC 天然维生素 E（大豆）',ja:'DHC 天然ビタミンE（大豆）',en:'DHC Natural Vitamin E (Soy)',pack:'20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-natural-vitamin-e-soy/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-ornithine',sku:'TSU-HF-0019',brand:'DHC',zh:'DHC 鸟氨酸',ja:'DHC オルニチン',en:'DHC Ornithine',pack:'100粒 / 20日分',price:'¥1,815',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-ornithine/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-perfect-supple-multivitamin-mineral',sku:'TSU-HF-0009',brand:'DHC',zh:'DHC 完美综合维生素与矿物质',ja:'DHC パーフェクトサプリ マルチビタミン＆ミネラル',en:'DHC Perfect Supplement Multivitamin & Mineral',pack:'20日分',price:'¥2,844',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-perfect-supple-multivitamin-mineral/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-domestic-perfect-vegetable-premium',sku:'TSU-HF-0010',brand:'DHC',zh:'DHC 国产完美蔬菜 PREMIUM',ja:'DHC 国産パーフェクト野菜 プレミアム',en:'DHC Perfect Vegetables Premium',pack:'20日分',price:'¥1,344',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-domestic-perfect-vegetable-premium/',verifiedAt:'2026-09-23'},
-  {slug:'dhc-sustained-release-folic-acid',sku:'TSU-HF-0008',brand:'DHC',zh:'DHC 缓释叶酸',ja:'DHC 持続型葉酸',en:'DHC Sustained-Release Folic Acid',pack:'60日分',price:'¥1,554',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-sustained-release-folic-acid/',verifiedAt:'2026-09-23'}
+  {slug:'fish-collagen-peptide-granules-w',sku:'TSU-HF-0001',brand:'Tsubaki Trading',zh:'日本鱼源胶原蛋白肽（颗粒W）',ja:'フィッシュコラーゲン（顆粒W）',en:'Fish Collagen Peptide Granules W',pack:'500g',price:'280 CNY',kind:'food',origin:'日本',sourcePage:'https://tsubaki-jp.com/ja/product/fish-collagen-peptide-granules-w/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-blood-sugar-care',sku:'TSU-HF-0020',brand:'DHC',zh:'DHC 血糖值双重对策',ja:'DHC 血糖値ダブル対策',en:'DHC Blood Sugar Double Support',pack:'60粒 / 20日分',price:'¥2,418',kind:'functional-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-blood-sugar-care/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-calcium-cbp',sku:'TSU-HF-0021',brand:'DHC',zh:'DHC 钙 + CBP',ja:'DHC カルシウム + CBP',en:'DHC Calcium + CBP',pack:'80粒 / 20日分',price:'¥969',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-cbp/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-calcium-magnesium-20',sku:'TSU-HF-0003',brand:'DHC',zh:'DHC 钙 / 镁',ja:'DHC カルシウム／マグ',en:'DHC Calcium / Magnesium',pack:'60粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium-2/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-calcium-magnesium-60',sku:'TSU-HF-0002',brand:'DHC',zh:'DHC 钙 / 镁 60日装',ja:'DHC カルシウム／マグ 60日分',en:'DHC Calcium / Magnesium 60-Day',pack:'180粒 / 60日分',price:'¥1,788',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-calcium-magnesium/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-citrulline',sku:'TSU-HF-0014',brand:'DHC',zh:'DHC 瓜氨酸',ja:'DHC シトルリン',en:'DHC Citrulline',pack:'60粒 / 20日分',price:'¥2,256',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-citrulline/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-coenzyme-q10',sku:'TSU-HF-0015',brand:'DHC',zh:'DHC 包接体辅酶 Q10',ja:'DHC コエンザイムQ10 包接体',en:'DHC Coenzyme Q10 Inclusion Complex',pack:'40粒 / 20日分',price:'¥1,548',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-coenzyme-q10/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-concentrated-ukon-20',sku:'TSU-HF-0016',brand:'DHC',zh:'DHC 浓缩姜黄',ja:'DHC 濃縮ウコン',en:'DHC Concentrated Turmeric Ukon',pack:'40粒 / 20日分',price:'¥1,302',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-concentrated-ukon-60',sku:'TSU-HF-0017',brand:'DHC',zh:'DHC 浓缩姜黄 60日装',ja:'DHC 濃縮ウコン 60日分',en:'DHC Concentrated Turmeric Ukon 60-Day',pack:'120粒 / 60日分',price:'¥3,603',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-concentrated-ukon-turmeric-2/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-fermented-black-sesamin-stamina',sku:'TSU-HF-0012',brand:'DHC',zh:'DHC 发酵黑芝麻素 + 活力',ja:'DHC 醗酵黒セサミン＋スタミナ',en:'DHC Fermented Black Sesamin + Stamina',pack:'120粒 / 20日分',price:'¥2,823',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-stamina/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-fermented-black-sesamin-premium',sku:'TSU-HF-0013',brand:'DHC',zh:'DHC 发酵黑芝麻素 PREMIUM',ja:'DHC 醗酵黒セサミン プレミアム',en:'DHC Fermented Black Sesamin Premium',pack:'120粒 / 20日分',price:'¥4,755',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-fermented-black-sesamin-premium/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-hatomugi-coix-extract',sku:'TSU-HF-0006',brand:'DHC',zh:'DHC 薏仁精华',ja:'DHC はとむぎエキス',en:'DHC Hatomugi Extract',pack:'20粒 / 20日分',price:'¥1,056',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-hatomugi-coix-extract/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-heme-iron',sku:'TSU-HF-0005',brand:'DHC',zh:'DHC 血红素铁',ja:'DHC ヘム鉄',en:'DHC Heme Iron',pack:'40粒 / 20日分',price:'¥1,227',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-heme-iron/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-kozu-black-vinegar',sku:'TSU-HF-0011',brand:'DHC',zh:'DHC 香醋（Kozu）',ja:'DHC 香酢（こうず）',en:'DHC Kozu Aromatic Vinegar',pack:'60粒 / 20日分',price:'¥1,794',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-kozu-black-vinegar/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-liver-extract-ornithine',sku:'TSU-HF-0018',brand:'DHC',zh:'DHC 肝脏精华 + 鸟氨酸',ja:'DHC 肝臓エキス＋オルニチン',en:'DHC Liver Extract + Ornithine',pack:'60粒 / 20日分',price:'¥2,160',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-liver-extract-ornithine/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-multivitamin',sku:'TSU-HF-0007',brand:'DHC',zh:'DHC 综合维生素',ja:'DHC マルチビタミン',en:'DHC Multivitamin',pack:'20粒 / 20日分',price:'¥663',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-multivitamin/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-natural-vitamin-e-soy',sku:'TSU-HF-0004',brand:'DHC',zh:'DHC 天然维生素 E（大豆）',ja:'DHC 天然ビタミンE（大豆）',en:'DHC Natural Vitamin E (Soy)',pack:'20粒 / 20日分',price:'¥663',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-natural-vitamin-e-soy/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-ornithine',sku:'TSU-HF-0019',brand:'DHC',zh:'DHC 鸟氨酸',ja:'DHC オルニチン',en:'DHC Ornithine',pack:'100粒 / 20日分',price:'¥1,815',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-ornithine/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-perfect-supple-multivitamin-mineral',sku:'TSU-HF-0009',brand:'DHC',zh:'DHC 完美综合维生素与矿物质',ja:'DHC パーフェクトサプリ マルチビタミン＆ミネラル',en:'DHC Perfect Supplement Multivitamin & Mineral',pack:'80粒 / 20日分',price:'¥2,844',kind:'nutrient-food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-perfect-supple-multivitamin-mineral/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-domestic-perfect-vegetable-premium',sku:'TSU-HF-0010',brand:'DHC',zh:'DHC 国产完美蔬菜 PREMIUM',ja:'DHC 国産パーフェクト野菜 プレミアム',en:'DHC Perfect Vegetables Premium',pack:'80粒 / 20日分',price:'¥1,344',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-domestic-perfect-vegetable-premium/',verifiedAt:'2026-10-05'},
+  {slug:'dhc-sustained-release-folic-acid',sku:'TSU-HF-0008',brand:'DHC',zh:'DHC 缓释叶酸',ja:'DHC 持続型葉酸',en:'DHC Sustained-Release Folic Acid',pack:'60粒 / 60日分',price:'¥1,554',kind:'food',sourcePage:'https://tsubaki-jp.com/ja/product/dhc-sustained-release-folic-acid/',verifiedAt:'2026-10-05'}
 ];
 
 
