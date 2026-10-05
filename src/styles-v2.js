@@ -30,9 +30,9 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
 .heroMedicine:hover{transform:translateY(-4px);box-shadow:0 22px 39px rgba(29,66,54,.13)}
 .heroMedicine1{grid-row:1/3;grid-column:1;display:flex;flex-direction:column}
 .heroMedicine2,.heroMedicine3{grid-column:2}
-.heroMedicineImage{min-width:0;min-height:0;background:#e6ece9;overflow:hidden}
-.heroMedicineImage img{width:100%;height:100%;object-fit:cover}
-.heroMedicine1 .heroMedicineImage{height:65%;background:#328bc7}
+.heroMedicineImage{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;padding:14px;background:#f7f8f5;overflow:hidden}
+.heroMedicineImage img{display:block;width:100%;height:100%;min-width:0;min-height:0;max-width:100%;max-height:100%;object-fit:contain}
+.heroMedicine1 .heroMedicineImage{height:250px;flex:0 0 250px;padding:22px;background:#f7f8f5}
 .heroMedicine1 .heroMedicineImage img{object-fit:contain;object-position:center}
 .heroMedicine2 .heroMedicineImage img,.heroMedicine3 .heroMedicineImage img{object-fit:contain}
 .heroMedicineInfo{min-width:0;padding:20px 18px}
@@ -46,7 +46,9 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
 .heroMedicine1 .heroMedicineInfo strong{font-size:25px}
 .heroMedicine1 .heroMedicineInfo p{-webkit-line-clamp:2}
 .heroMedicineArrow{position:absolute;right:13px;top:10px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#fffef9;color:var(--teal);font-size:18px}
-.heroMedicineCredit{position:absolute;left:8px;top:8px;padding:2px 4px;background:rgba(255,255,255,.88);color:#455e61;font-size:8px;line-height:1.2}
+.heroMedicineInfo .heroMedicineCredit{display:block;margin-top:10px;padding-top:8px;border-top:1px solid #e0e6df;color:#526564;font-size:10px;font-weight:400;letter-spacing:0;line-height:1.5;text-transform:none;overflow-wrap:anywhere}
+.heroActions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.heroActions .textLink{padding:7px 0}
 .route{margin-top:30px;box-shadow:none;border:0;gap:8px;background:transparent}
 .routeTitle{border:1px solid var(--line);background:#174d48;color:#fff;font-size:12px}
 .routeRow{min-height:146px;border:1px solid #d6ded5!important;background:#fffefa;padding:17px 18px}
@@ -61,7 +63,9 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
 .dbPanel{background:#fffef9;border:1px solid var(--line);padding:25px}
 .homeMedicineGrid{gap:12px}
 .homeMedicineCard{grid-template-columns:120px minmax(0,1fr);min-height:172px;border-color:#d5ded5;padding:10px}
-.homeMedicineMedia{min-height:150px;background:#eef3ed}
+.homeMedicineMedia{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;height:172px;min-height:0;align-self:start;padding:8px;background:#f7f8f5}
+.homeMedicineMedia img{min-width:0;min-height:0;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.homeMedicineCredit{position:static;max-width:none;padding:0;background:transparent;color:#526564;font-size:9px;line-height:1.4;text-align:start;overflow-wrap:anywhere}
 .homeMedicineText>span{font-size:11px}.homeMedicineText h3{font-size:18px}.homeMedicineText small{font-size:10px}
 .homeMedicineText p{font-size:13px}.homeMedicineText b{font-size:12px}
 .homeHealthBody h3{font-size:18px}.homeHealthBody span,.homeHealthBody b{font-size:12px}
@@ -90,9 +94,11 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
 .medicineCardGrid{gap:16px}
 .medicineCard{min-height:0;padding:0;border:1px solid #d3dfd5;border-radius:2px;background:#fff;box-shadow:0 4px 16px rgba(31,69,53,.035)}
 .medicineCard:before{display:none}
-.medicineCardMedia{height:270px;margin:0;padding:10px 18px;border-bottom:1px solid #e2e8df;background:#eff4ee}
-.medicineCardMedia img{width:100%;height:100%;object-fit:contain;mix-blend-mode:normal}
-.medicinePhotoLabel{right:7px;bottom:6px;max-width:calc(100% - 14px);font-size:9px;line-height:1.2}
+.medicineCardMedia{display:block;height:auto;margin:0;padding:0;border-bottom:1px solid #e2e8df;background:#f7f8f5}
+.medicinePhotoFrame{display:flex;align-items:center;justify-content:center;height:270px;min-width:0;min-height:0;padding:22px}
+.medicinePhotoFrame img{display:block;flex:0 1 auto;width:100%;height:100%;min-width:0;min-height:0;max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:normal}
+.medicineCard:hover .medicineCardMedia img{transform:none}
+.medicinePhotoLabel{display:block;position:static;max-width:none;padding:10px 18px;border-top:1px solid #e2e8df;background:#fff;color:#526564;font-size:11px;font-weight:400;line-height:1.5;overflow-wrap:anywhere}
 .medicineCardTop{margin:19px 22px 8px}
 .medicineArea{font-size:12px;min-height:27px;padding:4px 10px;border-radius:3px}
 .medicineStatus{font-size:11px}
@@ -192,7 +198,7 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
  .route{grid-template-columns:repeat(2,minmax(0,1fr))}.routeRow,.routeRow:last-child{min-height:130px;grid-column:auto}
  .section{padding:56px 0}.sectionHead h2{font-size:38px}
  .medicineIndexHero,.healthIndexHero{padding:34px 0}.medicineIndexIntro h1,.healthIndexHero h1,.pageHero h1{font-size:clamp(39px,8vw,54px)}
- .medicineCardGrid{grid-template-columns:1fr}.medicineCardMedia{height:260px}
+ .medicineCardGrid{grid-template-columns:1fr}.medicinePhotoFrame{height:260px}
  .medicineHeroGrid,.healthDetailGrid,.detailGrid{grid-template-columns:1fr}.medicineHeroMedia{height:330px}.healthDetailMedia{height:350px}
  .content .guideList,.sourceHierarchy,.hospitalGrid{grid-template-columns:1fr}.content .guideRow{min-height:0}
  .sourceLevel{min-height:0}.policyGrid,.aboutBoundary,.strengthList{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -202,13 +208,14 @@ body{font-size:16px;line-height:1.7;background:var(--paper)}
  .wrap{width:calc(100% - 28px)}.bar{min-height:60px}.wordmark small{display:none}.wordTop b{font-size:12px}.brandSymbol{width:36px;height:36px;flex-basis:36px}.lang{min-width:86px;font-size:11px}.nav a{font-size:12px}
  .heroGrid{grid-template-columns:minmax(0,1fr)}.heroIntro,.heroStage,.heroMedicineGallery{min-width:0;width:100%}.searchBox{width:100%;max-width:100%}.searchBox input{min-width:0;width:0;flex:1 1 0}.searchBox button{min-width:96px;padding-inline:8px}
  .hero h1,:lang(zh-Hans) .hero h1,:lang(ja) .hero h1{font-size:42px}.lead{font-size:15px}
- .heroMedicineGallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:270px 180px;gap:8px;min-height:0}
- .heroMedicine1{grid-column:1/-1;grid-row:1}.heroMedicine1 .heroMedicineImage{height:70%}.heroMedicine2,.heroMedicine3{grid-column:auto;display:flex;flex-direction:column}.heroMedicineImage{height:48%}.heroMedicineInfo{padding:9px}.heroMedicineInfo span{font-size:8px}.heroMedicineInfo strong,.heroMedicine1 .heroMedicineInfo strong{font-size:16px}.heroMedicineInfo small,.heroMedicineInfo p{display:none}.heroMedicineCredit{font-size:6px}.heroMedicineArrow{width:23px;height:23px;font-size:14px}
+ .heroMedicineGallery{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:270px auto;gap:8px;min-height:0}
+ .heroMedicine2,.heroMedicine3{min-height:210px}
+ .heroMedicine1{grid-column:1/-1;grid-row:1}.heroMedicine1 .heroMedicineImage{height:155px;flex-basis:155px;padding:14px}.heroMedicine2,.heroMedicine3{grid-column:auto;display:flex;flex-direction:column}.heroMedicineImage{height:90px;flex:0 0 90px;padding:10px}.heroMedicineInfo{padding:9px}.heroMedicineInfo span{font-size:10px}.heroMedicineInfo strong,.heroMedicine1 .heroMedicineInfo strong{font-size:16px}.heroMedicineInfo small,.heroMedicineInfo p{display:none}.heroMedicineInfo .heroMedicineCredit{margin-top:5px;padding-top:5px;font-size:9px}.heroMedicineArrow{width:23px;height:23px;font-size:14px}
  .route{grid-template-columns:1fr}.routeRow,.routeRow:last-child{min-height:0}
  .medicineIndexTrust{display:block}.medicineIndexTrust>div{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.15)}
  .medicineIndexTrust{display:flex;align-items:center;gap:18px;padding:12px 15px}.medicineIndexTrust>div{padding:0;border:0}.medicineIndexTrust>div span{font-size:16px}.medicineIndexTrust>div strong{font-size:10px}.medicineIndexTrust>div:nth-child(3),.medicineIndexTrust>p{display:none}
  .medicineFilters{display:flex;overflow-x:auto;flex-wrap:nowrap;padding-bottom:7px}.medicineFilters .filter{flex:none}
- .medicineCardMedia{height:225px}.medicineCard h2{font-size:23px}.medicineCardUse p{font-size:14px}.medicineCardMeta span{font-size:10px}
+ .medicinePhotoFrame{height:225px;padding:18px}.medicineCard h2{font-size:23px}.medicineCardUse p{font-size:14px}.medicineCardMeta span{font-size:10px}
  .healthCardGrid{grid-template-columns:1fr}.healthCardMedia{height:250px}.healthDetailMedia{height:290px}
  .medicineHeroMedia{height:300px}.medicineUseBox strong{font-size:18px}.verificationStrip span{font-size:11px}
  .pageHero{padding:33px 0}.pageHero h1{font-size:42px}.pageHero p{font-size:15px}.content{padding:30px 0 55px}
