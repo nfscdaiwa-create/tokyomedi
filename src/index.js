@@ -5,7 +5,7 @@ import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} fro
 import {healthPage,healthDetail} from './pages-products.js';
 import {healthImageUrls} from './health-images.js';
 
-const SITE_LASTMOD='2026-09-23';
+const SITE_LASTMOD='2026-10-05';
 const xmlEsc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const hrefLang=l=>l==='zh-hans'?'zh-Hans':l;
 function preferredLocale(header=''){
