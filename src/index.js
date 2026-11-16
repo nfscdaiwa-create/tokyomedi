@@ -146,6 +146,10 @@ export default {async fetch(req,env,ctx){
   const asset=await env.ASSETS.fetch(req);
   if(asset.status!==404){const headers=new Headers(asset.headers);for(const [key,value] of Object.entries(pageSecurity({})))headers.set(key,value);return new Response(asset.body,{status:asset.status,statusText:asset.statusText,headers});}
  }
+ // A cached/previous HTML document may name a stylesheet from an older release.
+ // Keep retained static assets above; otherwise follow the current CSS without
+ // caching that fallback under the historical immutable fingerprint.
+ if(/^\/assets\/site-[0-9a-f]{16}\.css$/.test(pathname))return new Response(null,{status:302,headers:pageSecurity({'location':new URL(STYLESHEET_PATH,url).href,'cache-control':'no-store'})});
  if(pathname==='/healthz')return Response.json({ok:true,service:'tokyomedi',version:VERSION},{headers:pageSecurity({'cache-control':'no-store'})});
  if(pathname==='/robots.txt')return new Response(`User-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`,{headers:pageSecurity({'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600'})});
  if(pathname==='/sitemap.xml')return new Response(sitemap(),{headers:pageSecurity({'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600'})});

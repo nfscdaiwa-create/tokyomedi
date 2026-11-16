@@ -22,7 +22,14 @@ assert.equal((await worker.fetch(request(STYLESHEET_PATH,{headers:{'if-none-matc
 const head=await worker.fetch(request(STYLESHEET_PATH,{method:'HEAD'}));
 assert.equal(head.status,200);assert.equal(await head.text(),'');
 assert.equal(head.headers.get('etag'),STYLESHEET_ETAG);
-assert.equal((await worker.fetch(request('/assets/site-0000000000000000.css'))).status,404);
+const previous=await worker.fetch(request('/assets/site-0000000000000000.css'));
+assert.equal(previous.status,302);
+assert.equal(previous.headers.get('cache-control'),'no-store');
+assert.equal(await previous.text(),'');
+assert.equal(await (await worker.fetch(new Request(previous.headers.get('location')))).text(),CSS+DESIGN_CSS);
+const retainedEnv={ASSETS:{fetch:async()=>new Response('retained earlier CSS',{headers:{'content-type':'text/css'}})}};
+assert.equal(await (await worker.fetch(request('/assets/site-0000000000000000.css'),retainedEnv)).text(),'retained earlier CSS');
+assert.equal((await worker.fetch(request('/assets/site-not-a-fingerprint.css'))).status,404);
 assert.equal((await worker.fetch(request(STYLESHEET_PATH,{method:'POST'}))).status,405);
 const assetEnv={ASSETS:{fetch(){throw new Error('Stylesheet must not depend on static asset fallback');}}};
 assert.equal((await worker.fetch(request(STYLESHEET_PATH),assetEnv)).status,200);
@@ -33,4 +40,4 @@ for(const locale of LOCALES){
   assert(!html.includes(CSS),'Shared CSS is not repeated in HTML');
  }
 }
-console.log('PASS: exact CSS cascade; immutable content fingerprint; 100 localized pages; GET/HEAD/304/405/404; static-binding independence');
+console.log('PASS: exact CSS cascade; immutable content fingerprint; 100 localized pages; old-fingerprint fallback and retained assets; GET/HEAD/304/405/404; static-binding independence');
