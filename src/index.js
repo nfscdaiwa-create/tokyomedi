@@ -5,6 +5,7 @@ import {guidesPage,guideDetail,travelPage,sourcesPage,aboutPage,inquiryPage} fro
 import {legalPage} from './pages-legal.js';
 import {healthPage,healthDetail} from './pages-products.js';
 import {healthImageUrls} from './health-images.js';
+import {STYLESHEET,STYLESHEET_PATH,STYLESHEET_ETAG} from './stylesheet.js';
 
 const SITE_LASTMOD='2026-10-05';
 const xmlEsc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -134,6 +135,12 @@ export default {async fetch(req,env,ctx){
  }
  if(!['GET','HEAD'].includes(req.method))return new Response('Method Not Allowed',{status:405,headers:pageSecurity({'allow':'GET, HEAD','content-type':'text/plain; charset=utf-8'})});
  if(url.pathname!==pathname)return Response.redirect(new URL(pathname+url.search,url),308);
+ // Content-derived URL means a CSS edit gets a new cache key automatically.
+ if(pathname===STYLESHEET_PATH){
+  const headers=pageSecurity({'content-type':'text/css; charset=utf-8','cache-control':'public, max-age=31536000, immutable','etag':STYLESHEET_ETAG});
+  const match=(req.headers.get('if-none-match')||'').split(',').some(tag=>tag.trim()==='*'||tag.trim().replace(/^W\//,'')===STYLESHEET_ETAG);
+  return new Response(match||req.method==='HEAD'?null:STYLESHEET,{status:match?304:200,headers});
+ }
  // Apply host/method normalization before static assets so www images also redirect.
  if(env?.ASSETS){
   const asset=await env.ASSETS.fetch(req);
@@ -167,3 +174,4 @@ export default {async fetch(req,env,ctx){
  if(!html)return new Response(notFoundPage(l,req),{status:404,headers:pageSecurity({'content-type':'text/html; charset=utf-8','x-robots-tag':'noindex','cache-control':'no-store'})});
  return new Response(html,{headers:pageSecurity({'content-type':'text/html; charset=utf-8','cache-control':'public, max-age=0, must-revalidate','content-language':l==='zh-hans'?'zh-CN':l})});
 }};
+
